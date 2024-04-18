@@ -30,6 +30,7 @@ if [[ "$(hostname)" == *"fedora"* ]] then
   if type "fzf" > /dev/null; then
     # Enable zsh keybindings to fzf
     source /usr/share/fzf/shell/key-bindings.zsh
+    source ~/.config/fzf/completion.zsh
 
     # Use fd for searching files and directories
     export FZF_DEFAULT_COMMAND='fd --type=f --strip-cwd-prefix --hidden --follow --exclude .git'
