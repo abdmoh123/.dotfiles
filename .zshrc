@@ -2,20 +2,31 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-bindkey -v
+# Use emacs mode
+bindkey -e
+# Enable CTRL-LEFT and CTRL-RIGHT word navigation
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/var/home/abdha/.zshrc'
 
+# Must be before setting up zoxide
+autoload -Uz compinit
+compinit
+
+# Declare prompt value (empty)
+PS1=''
+
 # Applied to all distrobox containers
 if (env | grep -Fq 'DISTROBOX'); then
-  PS1='📦'
+  # Box signifies a distrobox container
+  PS1+='📦'
 fi
 
 # Exclusive to fedora distrobox container
 if [[ "$(hostname)" == *"fedora"* ]] then
-  PS1+=' %n@%m '
-
   # Apply aliases
   . ~/.config/zsh/fedora_aliases.zsh
 
@@ -96,22 +107,18 @@ if [[ "$(hostname)" == *"fedora"* ]] then
   fi
 fi
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-# load version control info
+# Load version control info
 autoload -Uz vcs_info
-
 zstyle ':vcs_info:git:*' formats '[%b]'
 
-# green dir and white '>' sign and cmd text
 setopt PROMPT_SUBST
 precmd() {
   vcs_info;
+  # Blue dir and green git info
   print -rP '%F{blue}%~%f %B%F{green}${vcs_info_msg_0_}%f%b';
 }
-PS1+='%% '
+# Simple zsh prompt (e.g. abdha-lptp@fedora % echo 'hello')
+PS1+=' %n@%m %% '
 
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
