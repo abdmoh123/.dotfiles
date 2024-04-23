@@ -10,15 +10,15 @@ return {
       themable = true,
       numbers = 'buffer_id',
       indicator = {
-        icon = '▎',
+        icon = '▌',
         style = 'icon',
       },
       offsets = {
         {
           filetype = 'neo-tree',
-          text = 'File Explorer',
+          text = '󰉓 Explorer',
           text_align = 'left',
-          separator = true,
+          separator = '┃',
         },
       },
       hover = {
