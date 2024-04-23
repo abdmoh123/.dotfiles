@@ -106,6 +106,8 @@ vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
+-- Enable mouse move event, useful for hover events like in bufferline plugin
+vim.opt.mousemoveevent = true
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -215,6 +217,9 @@ if not vim.loop.fs_stat(lazypath) then
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
+
+-- Enable termguicolors to fix visual issues
+vim.opt.termguicolors = true
 
 -- [[ Configure and install plugins ]]
 --
@@ -743,10 +748,13 @@ require('lazy').setup({
     end,
   },
 
+  -- imports all custom themes
+  { require 'custom.themes' },
+
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
-    --
+
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
@@ -754,13 +762,9 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+
+      -- Default colorscheme is Gruvbox material
       vim.cmd.colorscheme 'gruvbox-material'
-
-      vim.cmd 'highlight TelescopeBorder guibg=none'
-      vim.cmd 'highlight TelescopeTitle guibg=none'
-
-      -- Make telescope backgrounds transparent when theme has transparent background
-      vim.api.nvim_set_hl(0, 'TelescopeNormal', { bg = 'none' })
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -783,25 +787,10 @@ require('lazy').setup({
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Parentheses
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
-
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
