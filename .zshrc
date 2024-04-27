@@ -12,37 +12,50 @@ bindkey "^[[1;5D" backward-word
 # The following lines were added by compinstall
 zstyle :compinstall filename '/var/home/abdha/.zshrc'
 
+# Enable zsh basic auto-complete (tabs)
 # Must be before setting up zoxide
 autoload -Uz compinit
 compinit
 
-# Declare prompt value (empty)
+# Load version control info
+autoload -Uz vcs_info
+zstyle ':vcs_info:git:*' formats '[%b ]'
+
+# Declare/initialise empty value for prompt
 PS1=''
 
+# Exclusive to fedora
+if (env | grep -Fq 'fedora') then
+  # Add fedora icon to prompt
+  PS1+='%F{blue}%f '
+fi
+ 
 # Applied to all distrobox containers
 if (env | grep -Fq 'DISTROBOX'); then
   # Box signifies a distrobox container
-  PS1+='📦'
+  PS1+='%F{magenta}⬢%f '
 fi
 
-# Exclusive to fedora distrobox container
-if [[ "$(hostname)" == *"fedora"* ]] then
-  # Apply aliases
-  . ~/.config/zsh/fedora_aliases.zsh
+setopt PROMPT_SUBST
+precmd() {
+  vcs_info;
+  # Blue dir and green git info
+  print -rP '%F{blue} %~%f %B%F{green}${vcs_info_msg_0_}%f%b';
+}
+# Simple zsh prompt (e.g. abdha-lptp@fedora % echo 'hello')
+PS1+='%n@%m %% '
 
-  # Do bat things only if bat is installed
-  if type "bat" > /dev/null; then
-    # Set theme to gruvbox-dark
-    export BAT_THEME="gruvbox-dark"
+# App specific stuff (configs and aliases)
+# Do fzf things only if fzf is installed
+if type "fzf" > /dev/null; then
+  # Enable zsh keybindings and auto-complete to fzf
+  source /usr/share/fzf/shell/key-bindings.zsh
+  if [[ -f ~/.config/fzf/completion.zsh ]] then
+    source ~/.config/fzf/completion.zsh
   fi
 
-  
-  # Do fzf things only if fzf is installed
-  if type "fzf" > /dev/null; then
-    # Enable zsh keybindings to fzf
-    source /usr/share/fzf/shell/key-bindings.zsh
-    source ~/.config/fzf/completion.zsh
-
+  # Enable fd (faster find) integration in fzf
+  if type "fd" > /dev/null; then
     # Use fd for searching files and directories
     export FZF_DEFAULT_COMMAND='fd --type=f --strip-cwd-prefix --hidden --follow --exclude .git'
     export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
@@ -59,10 +72,14 @@ if [[ "$(hostname)" == *"fedora"* ]] then
     _fzf_compgen_dir() {
       fd --type=d --hidden --follow --exclude ".git" . "$1"
     }
+  fi
 
+  if type "git" > /dev/null; then
     # Enable git integration for fzf
     source ~/.config/fzf/fzf-git/fzf-git.sh
+  fi
 
+  if type "bat" "eza" > /dev/null; then
     # Integrate bat and eza for use in fzf previews
     export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
     export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
@@ -80,45 +97,33 @@ if [[ "$(hostname)" == *"fedora"* ]] then
         *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
       esac
     }
-
-    # Customise the look of fzf
-    fg_plus="#E2CCA9"
-    bg_plus="#3C3836"
-    blue="#80AA9E"
-    aqua="#8BBA7F"
-    orange="#F28534"
-    red="#F2594B"
-    purple="#D3869B"
-    green="#B0B846"
-    grey="#7C6F64"
-    export FZF_DEFAULT_OPTS="
-      --color=hl:${blue},hl+:${aqua},info:${grey},marker:${red}
-      --color=fg:-1,fg+:${fg_plus},bg:-1,bg+:${bg_plus}
-      --color=prompt:${orange},spinner:${purple},pointer:${green},header:${orange}
-      --color=border:${grey},label:${blue},query:${fg_plus}
-      --border='rounded' --border-label='🔍 Search' --border-label-pos=2 --preview-window='border-rounded'
-      --prompt='> ' --marker='◆' --pointer='>' --separator='─'
-      --scrollbar='│'"
   fi
 
-  # Do zoxide things only if zoxide is installed
-  if type "zoxide" > /dev/null; then
-    eval "$(zoxide init zsh)"
+  # Enable my visual customisations
+  if [[ -f ~/.config/fzf/theme.zsh ]] then
+    source ~/.config/fzf/theme.zsh
   fi
 fi
 
-# Load version control info
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' formats '[%b]'
+# Do zoxide things only if zoxide is installed
+if type "zoxide" > /dev/null; then
+  source ~/.config/aliases/zoxide.zsh
+  eval "$(zoxide init zsh)"
+fi
 
-setopt PROMPT_SUBST
-precmd() {
-  vcs_info;
-  # Blue dir and green git info
-  print -rP '%F{blue}%~%f %B%F{green}${vcs_info_msg_0_}%f%b';
-}
-# Simple zsh prompt (e.g. abdha-lptp@fedora % echo 'hello')
-PS1+=' %n@%m %% '
+# Enable eza aliases (ls, ll, tree) if it is installed
+if type "eza" > /dev/null; then
+  source ~/.config/aliases/eza.zsh
+fi
 
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Do bat things only if bat is installed
+if type "bat" > /dev/null; then
+  # Set theme to gruvbox-dark
+  export BAT_THEME="gruvbox-dark"
+fi
+
+# Enable history based auto-complete (right arrow)
+if [[ -f ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] then
+  source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
