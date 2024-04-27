@@ -1,3 +1,6 @@
+# Environment variables
+DOTNET_CLI_TELEMETRY_OPTOUT=true # disable dotnet telemetry
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
