@@ -12,7 +12,7 @@ return {
     require('neo-tree').setup {
       source_selector = {
         winbar = false,
-        statusline = true,
+        statusline = false,
         separator = { left = '', right = '' },
       },
       filesystem = {
