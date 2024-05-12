@@ -23,9 +23,8 @@ local themes = {
     'sainnhe/gruvbox-material',
     priority = 1000,
     init = function()
-      -- set default theme to gruvbox-material
-      vim.cmd.colorscheme 'gruvbox-material'
-      vim.cmd.hi 'Comment gui=none'
+      -- Enable termguicolors to fix visual issues
+      vim.opt.termguicolors = true
     end,
   },
   {
