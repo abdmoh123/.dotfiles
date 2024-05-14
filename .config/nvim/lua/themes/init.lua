@@ -22,10 +22,6 @@ local themes = {
     -- gruvbox material theme
     'sainnhe/gruvbox-material',
     priority = 1000,
-    init = function()
-      -- Enable termguicolors to fix visual issues
-      vim.opt.termguicolors = true
-    end,
   },
   {
     'folke/tokyonight.nvim',
