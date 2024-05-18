@@ -12,5 +12,16 @@
 -- Make commenting out code easier e.g. "gc" to comment visual regions/lines
 return {
   'numToStr/Comment.nvim',
-  opts = {},
+  opts = {
+    toggler = {
+      ---Block-comment toggle keymap
+      block = 'gcC',
+    },
+    opleader = {
+      ---Line-comment keymap
+      line = 'gc',
+      ---Block-comment keymap
+      block = 'gC',
+    },
+  },
 }
