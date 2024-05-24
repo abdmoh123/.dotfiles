@@ -4,69 +4,26 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
+-- Set default shell to powershell if possible (windows only)
+if vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1 then
+  vim.opt.shell = 'pwsh'
+end
 
--- Enable termguicolors to fix visual issues
-vim.opt.termguicolors = true
+-- [[ General UI settings ]]
+vim.opt.number = true -- Make line numbers default
+vim.opt.relativenumber = true -- Make line numbers relative to cursor
+vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
--- Enable mouse move event, useful for hover events like in bufferline plugin
-vim.opt.mousemoveevent = true
+vim.opt.termguicolors = true -- Enable termguicolors to fix visual issues
 
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.opt.cursorline = false -- Show which line your cursor is on
+vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
 
 -- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
--- [[ Custom settings ]]
--- changes the window separators to be thicker
+-- Changes the window separators to be thicker
 vim.opt.fillchars = {
   horiz = '━',
   horizup = '┻',
@@ -77,6 +34,31 @@ vim.opt.fillchars = {
   verthoriz = '╋',
 }
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- [[ Control settings ]]
+vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example!
+vim.opt.mousemoveevent = true -- Enable mouse move event, useful for hover events like in bufferline plugin
+
+vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
+
+vim.opt.breakindent = true -- Enable break indent
+
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.opt.tabstop = 4 -- tab = 4 spaces
+vim.opt.shiftwidth = 4 -- auto indented tabs = 4 spaces
+vim.opt.expandtab = true -- tabs are replaced with 4 spaces (override with CTRL-V <tab>)
+
+-- [[ Utils and convenience ]]
+vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
+vim.opt.undofile = true -- Save undo history
+
+vim.opt.ignorecase = true -- Case insensitive searching
+vim.opt.smartcase = true -- Become case sensitive if a captial letter is included in the search term
+vim.opt.hlsearch = true -- Set highlight on search
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Clear highlighting on pressing <Esc> in normal mode
+vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
+
+vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
+vim.opt.updatetime = 250 -- Decrease update time
