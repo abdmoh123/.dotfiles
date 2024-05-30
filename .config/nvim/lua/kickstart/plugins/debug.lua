@@ -59,6 +59,25 @@ return {
     -- For more information, see |:help nvim-dap-ui|
     local dapui_opts = {
       icons = { current_frame = '*' },
+      layouts = {
+        {
+          position = 'left',
+          size = 40,
+          elements = {
+            { id = 'scopes', size = 0.3 },
+            { id = 'watches', size = 0.3 },
+            { id = 'stacks', size = 0.2 },
+            { id = 'breakpoints', size = 0.2 },
+          },
+        },
+        {
+          position = 'bottom',
+          size = 10,
+          elements = {
+            { id = 'console', size = 1.0 },
+          },
+        },
+      },
       controls = {
         element = 'console',
         enabled = true,
