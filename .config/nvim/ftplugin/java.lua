@@ -13,8 +13,9 @@ local config = {
   init_options = {
     bundles = {
       -- setup java-debug debugger
-      vim.fn.glob('~/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar', 1),
+      vim.fn.glob('~/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar', true),
     },
   },
 }
+
 require('jdtls').start_or_attach(config)
