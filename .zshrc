@@ -10,7 +10,7 @@ bindkey "^[[1;5D" backward-word
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/var/home/abdha/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 # Enable zsh basic auto-complete (tabs)
 # Must be before setting up zoxide
@@ -49,7 +49,7 @@ PS1+='%n@%m %% '
 # Do fzf things only if fzf is installed
 if type "fzf" > /dev/null; then
   # Enable zsh keybindings and auto-complete to fzf
-  source /usr/share/fzf/shell/key-bindings.zsh
+  source ~/../usr/share/fzf/key-bindings.zsh
   if [[ -f ~/.config/fzf/completion.zsh ]] then
     source ~/.config/fzf/completion.zsh
   fi
@@ -119,7 +119,7 @@ fi
 # Do bat things only if bat is installed
 if type "bat" > /dev/null; then
   # Set theme to gruvbox-dark
-  export BAT_THEME="gruvbox-dark"
+  export BAT_THEME="dracula"
 fi
 
 # Enable history based auto-complete (right arrow)
