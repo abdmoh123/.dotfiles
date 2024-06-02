@@ -50,6 +50,13 @@ vim.opt.tabstop = 4 -- tab = 4 spaces
 vim.opt.shiftwidth = 4 -- auto indented tabs = 4 spaces
 vim.opt.expandtab = true -- tabs are replaced with 4 spaces (override with CTRL-V <tab>)
 
+-- Code folding
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldcolumn = 'auto:3'
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
 -- [[ Utils and convenience ]]
 vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
 vim.opt.undofile = true -- Save undo history
