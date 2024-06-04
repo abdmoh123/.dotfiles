@@ -10,7 +10,7 @@ local themes = {
     -- gruvbox dark and light theme
     'ellisonleao/gruvbox.nvim',
     lazy = false,
-    priority = 1001,
+    priority = 1000,
     config = function()
       require('gruvbox').setup {
         transparent_mode = true,
@@ -22,6 +22,11 @@ local themes = {
     -- gruvbox material theme
     'sainnhe/gruvbox-material',
     priority = 1000,
+    init = function()
+      -- Set default theme to gruvbox-material
+      vim.cmd.colorscheme 'gruvbox-material'
+      vim.cmd.hi 'Comment gui=none'
+    end,
   },
   {
     'folke/tokyonight.nvim',

@@ -69,7 +69,3 @@ require('lazy').setup({
     },
   },
 })
-
--- Set default theme to gruvbox-material
-vim.cmd.colorscheme 'gruvbox-material'
-vim.cmd.hi 'Comment gui=none'
