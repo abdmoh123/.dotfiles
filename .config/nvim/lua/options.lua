@@ -23,8 +23,8 @@ vim.opt.showmode = false -- Don't show the mode, since it's already in the statu
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Changes the window separators to be thicker
 vim.opt.fillchars = {
+  -- thicker window separators
   horiz = '━',
   horizup = '┻',
   horizdown = '┳',
@@ -32,6 +32,13 @@ vim.opt.fillchars = {
   vertleft = '┫',
   vertright = '┣',
   verthoriz = '╋',
+  -- code folding icons
+  fold = ' ', -- no numbers
+  foldopen = '',
+  foldclose = '',
+  foldsep = ' ',
+  -- remove end of line ~ character
+  eob = ' ',
 }
 
 -- [[ Control settings ]]
@@ -51,11 +58,10 @@ vim.opt.shiftwidth = 4 -- auto indented tabs = 4 spaces
 vim.opt.expandtab = true -- tabs are replaced with 4 spaces (override with CTRL-V <tab>)
 
 -- Code folding
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldcolumn = 'auto:3'
+vim.opt.foldcolumn = '1'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
 
 -- [[ Utils and convenience ]]
 vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
