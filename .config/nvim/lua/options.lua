@@ -13,6 +13,7 @@ end
 vim.opt.number = true -- Make line numbers default
 vim.opt.relativenumber = true -- Make line numbers relative to cursor
 vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default
+vim.opt.foldcolumn = 'auto' -- Only 1 column max (can be 0) for code folding icons
 
 vim.opt.termguicolors = true -- Enable termguicolors to fix visual issues
 
@@ -58,7 +59,6 @@ vim.opt.shiftwidth = 4 -- auto indented tabs = 4 spaces
 vim.opt.expandtab = true -- tabs are replaced with 4 spaces (override with CTRL-V <tab>)
 
 -- Code folding
-vim.opt.foldcolumn = '1'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
