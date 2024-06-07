@@ -12,7 +12,7 @@ end
 -- [[ General UI settings ]]
 vim.opt.number = true -- Make line numbers default
 vim.opt.relativenumber = true -- Make line numbers relative to cursor
-vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default
+vim.opt.signcolumn = 'auto:1-3' -- Keep signcolumn on by default
 vim.opt.foldcolumn = 'auto' -- Only 1 column max (can be 0) for code folding icons
 
 vim.opt.termguicolors = true -- Enable termguicolors to fix visual issues
