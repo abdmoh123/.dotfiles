@@ -96,6 +96,8 @@ return {
     }
     local dapui = require 'dapui'
     dapui.setup(dapui_opts)
+    -- set breakpoint symbol
+    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = '', numhl = '' })
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
