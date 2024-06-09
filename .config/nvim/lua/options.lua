@@ -6,7 +6,13 @@
 
 -- Set default shell to powershell if possible (windows only)
 if vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1 then
-  vim.opt.shell = 'pwsh'
+  vim.opt.shell = vim.fn.executable 'pwsh' and 'pwsh' or 'powershell'
+  vim.opt.shellcmdflag =
+    '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+  vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+  vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+  vim.opt.shellquote = ''
+  vim.opt.shellxquote = ''
 end
 
 -- [[ General UI settings ]]
