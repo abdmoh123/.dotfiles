@@ -16,7 +16,7 @@ return {
       offsets = {
         {
           filetype = 'neo-tree',
-          text = '󰉓 Explorer',
+          text = '󰙅 Explorer',
           text_align = 'left',
           separator = '┃',
         },
@@ -27,6 +27,8 @@ return {
         reveal = { 'close' },
       },
       separator_style = { '', '' }, -- disable separators
+      always_show_bufferline = false,
+      auto_toggle_bufferline = true,
     },
   },
 }
