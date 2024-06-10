@@ -22,15 +22,14 @@ local themes = {
     -- gruvbox material theme
     'sainnhe/gruvbox-material',
     priority = 1000,
-    init = function()
-      -- Set default theme to gruvbox-material
-      vim.cmd.colorscheme 'gruvbox-material'
-      vim.cmd.hi 'Comment gui=none'
-    end,
   },
   {
     'sainnhe/everforest',
     priority = 1000,
+    init = function()
+      vim.cmd.colorscheme 'everforest'
+      vim.cmd.hi 'Comment gui=none'
+    end,
   },
   {
     'folke/tokyonight.nvim',
