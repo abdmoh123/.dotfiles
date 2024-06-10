@@ -16,6 +16,8 @@ if vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1 then
 end
 
 -- [[ General UI settings ]]
+vim.opt.background = 'dark'
+
 vim.opt.number = true -- Make line numbers default
 vim.opt.relativenumber = true -- Make line numbers relative to cursor
 vim.opt.signcolumn = 'auto:1-3' -- Keep signcolumn on by default
