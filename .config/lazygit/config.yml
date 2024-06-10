@@ -1,13 +1,13 @@
 # Config relating to the Lazygit UI
 gui:
   # The number of lines you scroll by when scrolling the main window
-  scrollHeight: 2
+  scrollHeight: 4  # neovim parity
 
   # If true, allow scrolling past the bottom of the content in the main window
   scrollPastBottom: true
 
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#scroll-off-margin
-  scrollOffMargin: 2
+  scrollOffMargin: 10  # neovim parity
 
   # One of: 'margin' (default) | 'jump'
   scrollOffBehavior: margin
