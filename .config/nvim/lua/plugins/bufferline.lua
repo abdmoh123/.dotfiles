@@ -5,6 +5,15 @@ return {
   version = '*',
   dependencies = 'nvim-tree/nvim-web-devicons',
   opts = {
+    highlights = {
+      -- Make offset separator match the pane border
+      offset_separator = {
+        bg = {
+          attribute = 'bg',
+          highlight = 'FloatBoarder',
+        },
+      },
+    },
     options = {
       mode = 'buffers',
       themable = true,
