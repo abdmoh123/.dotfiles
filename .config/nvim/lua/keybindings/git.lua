@@ -9,6 +9,9 @@ vim.keymap.set('n', '<leader>gA', '<cmd>Gitsigns stage_buffer<cr>', { desc = '[G
 
 vim.keymap.set('n', '<leader>gr', '<cmd>Gitsigns reset_hunk<cr>', { desc = '[G]it [R]eset current hunk' })
 vim.keymap.set('n', '<leader>gR', '<cmd>Gitsigns reset_buffer<cr>', { desc = '[G]it [R]eset current buffer' })
+
+vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<cr>', { desc = 'Toggle [G]it [B]lame' })
+
 -- git hunk navigation
 vim.keymap.set('n', ']h', '<cmd>Gitsigns next_hunk<cr>', { desc = 'Next Git [H]unk' })
 vim.keymap.set('n', '[h', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'Previous Git [H]unk' })
