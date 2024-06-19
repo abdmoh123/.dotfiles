@@ -17,7 +17,7 @@ return {
       dashboard.button('e', '  New file', '<cmd>ene <CR>'),
       dashboard.button('SPC s f', '󰈞  Find file'),
       dashboard.button('SPC s .', '󰊄  Recently opened files'),
-      -- dashboard.button('SPC s F', '  Frecency/MRU'),
+      dashboard.button('SPC s F', '  Frecency/MRU'),
       dashboard.button('SPC s g', '󰈬  Find word (ripgrep)'),
       dashboard.button('SPC h', '  View harpoon bookmarks'),
       dashboard.button('q', '󰅚  Quit Neovim', ':qa<CR>'),
