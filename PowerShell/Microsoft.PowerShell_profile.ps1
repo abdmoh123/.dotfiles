@@ -4,6 +4,7 @@
 . $PSScriptRoot\Modules\choco\setup.ps1
 
 . $PSScriptRoot\Aliases\eza.ps1
+. $PSScriptRoot\Aliases\zoxide.ps1
 
 # Automatically start ssh agent for github pushing
 # Start-SshAgent -Quiet
