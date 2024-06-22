@@ -18,3 +18,5 @@ $env:FZF_DEFAULT_THEME="
   --prompt='> ' --marker='◆' --pointer='>' --separator='─'
   --scrollbar='│'"
 
+$env:FZF_DEFAULT_OPTS=$env:FZF_DEFAULT_THEME
+
