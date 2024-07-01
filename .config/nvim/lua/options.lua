@@ -32,6 +32,11 @@ vim.opt.showmode = false -- Don't show the mode, since it's already in the statu
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+-- Disable line wrapping
+vim.opt.wrap = false
+-- Set code margin
+vim.opt.colorcolumn = '80'
+
 vim.opt.fillchars = {
   -- thicker window separators
   horiz = '━',
