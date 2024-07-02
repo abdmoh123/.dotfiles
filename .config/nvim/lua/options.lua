@@ -35,7 +35,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Disable line wrapping
 vim.opt.wrap = false
 -- Set code margin
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = '120'
 
 vim.opt.fillchars = {
   -- thicker window separators
