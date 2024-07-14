@@ -1,9 +1,11 @@
 -- File: lua/ftplugin/java.lua
 
 local jdtls_bin = vim.fn.stdpath 'data' .. '\\mason\\bin\\jdtls.cmd'
+local jdtls_bin_linux = vim.fn.stdpath 'data' .. '/mason/bin/jdtls'
 
 local config = {
-  cmd = { jdtls_bin }, -- Windows only
+  -- cmd = { jdtls_bin }, -- Windows only
+  cmd = { jdtls_bin_linux },
   root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
 
   settings = {
