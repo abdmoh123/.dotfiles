@@ -1,6 +1,11 @@
 return {
-  'dstein64/nvim-scrollview',
+  'lewis6991/satellite.nvim',
   opts = {
-    excluded_filetypes = { 'nerdtree', 'neo-tree' },
+    handlers = {
+      gitsigns = {
+        enable = true,
+        signs = { add = '+', change = '~', delete = '_' },
+      },
+    },
   },
 }
