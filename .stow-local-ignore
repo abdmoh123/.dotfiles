@@ -17,8 +17,9 @@ _darcs
 
 \*.log
 \.config/syncthing
-\PowerShell/
-\WindowsPowerShell/
+
+/PowerShell/
+/WindowsPowerShell/
 
 .+~          # emacs backup files
 \#.*\#       # emacs autosave files
