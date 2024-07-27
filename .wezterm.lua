@@ -37,6 +37,7 @@ local config = wezterm.config_builder()
 
 config.win32_system_backdrop = "Acrylic"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
 
 config.max_fps = 120
 config.animation_fps = 60
@@ -72,6 +73,11 @@ config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = false
 
+-- tab bar icons
+local CLOSE_ICON = " " .. wezterm.nerdfonts.cod_chrome_close .. " "
+local MAXIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_maximize .. " "
+local MINIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_minimize .. " "
+
 local bar_background = transparent
 local active_tab_background = black
 local active_tab_foreground = white
@@ -80,6 +86,26 @@ if config.use_fancy_tab_bar == false then
 	bar_background = background
 	active_tab_background = white
 	active_tab_foreground = black
+	config.tab_bar_style = {
+		window_close = wezterm.format({
+			{ Text = CLOSE_ICON },
+		}),
+		window_close_hover = wezterm.format({
+			{ Text = CLOSE_ICON },
+		}),
+		window_maximize = wezterm.format({
+			{ Text = MAXIMISE_ICON },
+		}),
+		window_maximize_hover = wezterm.format({
+			{ Text = MAXIMISE_ICON },
+		}),
+		window_hide = wezterm.format({
+			{ Text = MINIMISE_ICON },
+		}),
+		window_hide_hover = wezterm.format({
+			{ Text = MINIMISE_ICON },
+		}),
+	}
 end
 
 -- tab style (both retro and fancy style)
@@ -108,6 +134,18 @@ config.colors = {
 		-- fancy style only
 		inactive_tab_edge = grey,
 	},
+}
+
+-- [[ Font stuff ]]
+config.font = wezterm.font("JetBrainsMono Nerd Font")
+config.font_size = 11
+
+-- [[ Padding ]]
+config.window_padding = {
+	left = 12,
+	right = 12,
+	top = 12,
+	bottom = 12,
 }
 
 return config
