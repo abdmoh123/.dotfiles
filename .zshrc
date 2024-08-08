@@ -49,7 +49,7 @@ PS1+='%n@%m %% '
 # Do fzf things only if fzf is installed
 if type "fzf" > /dev/null; then
   # Enable zsh keybindings and auto-complete to fzf
-  source ~/../usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/shell/key-bindings.zsh
   if [[ -f ~/.config/fzf/completion.zsh ]] then
     source ~/.config/fzf/completion.zsh
   fi
