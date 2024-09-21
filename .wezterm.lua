@@ -32,6 +32,8 @@ local convertToHex = function(num)
 	return hex_result
 end
 
+-- [[ Main config ]]
+
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
@@ -53,13 +55,21 @@ config.color_scheme = theme_name
 local theme_colours = wezterm.color.get_builtin_schemes()[theme_name]
 local transparent = "rgba(0,0,0,0)"
 local black = theme_colours.ansi[1] -- "#282828"
-local red = theme_colours.ansi[2] -- "#cc241d"
+local maroon = theme_colours.ansi[2] -- "#cc241d"
 local green = theme_colours.ansi[3] -- "#98971a"
-local yellow = theme_colours.ansi[4] -- "#d79921"
-local blue = theme_colours.ansi[5] -- "#458588"
-local magenta = theme_colours.ansi[6] -- "#b16286"
-local aqua = theme_colours.ansi[7] -- "#689d6a"
-local grey = theme_colours.ansi[8] -- "#a89984"
+local olive = theme_colours.ansi[4] -- "#d79921"
+local navy = theme_colours.ansi[5] -- "#458588"
+local purple = theme_colours.ansi[6] -- "#b16286"
+local teal = theme_colours.ansi[7] -- "#689d6a"
+local silver = theme_colours.ansi[8] -- "#a89984"
+
+local grey = theme_colours.brights[1]
+local red = theme_colours.brights[2]
+local lime = theme_colours.brights[3]
+local yellow = theme_colours.brights[4]
+local blue = theme_colours.brights[5]
+local fuschia = theme_colours.brights[6]
+local aqua = theme_colours.brights[7]
 local white = theme_colours.brights[8] -- "#ebdbb2"
 
 local background = theme_colours.background -- "#282828"
@@ -78,14 +88,14 @@ local CLOSE_ICON = " " .. wezterm.nerdfonts.cod_chrome_close .. " "
 local MAXIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_maximize .. " "
 local MINIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_minimize .. " "
 
-local bar_background = transparent
-local active_tab_background = black
-local active_tab_foreground = white
+local bar_background = navy
+local bar_background_hover = aqua
+local bar_foreground = lime
+local bar_foreground_hover = navy
+local active_tab_background = background
+local active_tab_foreground = aqua
 -- only use white background on active tab if using retro style
 if config.use_fancy_tab_bar == false then
-	bar_background = background
-	active_tab_background = white
-	active_tab_foreground = black
 	config.tab_bar_style = {
 		window_close = wezterm.format({
 			{ Text = CLOSE_ICON },
@@ -118,21 +128,25 @@ config.colors = {
 			intensity = "Bold",
 		},
 		inactive_tab = {
-			bg_color = background,
-			fg_color = grey,
+			bg_color = bar_background,
+			fg_color = bar_foreground,
 		},
 		inactive_tab_hover = {
-			bg_color = background,
-			fg_color = grey,
+			bg_color = bar_background_hover,
+			fg_color = bar_foreground_hover,
 			intensity = "Bold",
 		},
 		new_tab = {
 			bg_color = bar_background,
-			fg_color = foreground,
+			fg_color = bar_foreground,
+		},
+		new_tab_hover = {
+			bg_color = bar_background_hover,
+			fg_color = bar_foreground_hover,
 		},
 
 		-- fancy style only
-		inactive_tab_edge = grey,
+		inactive_tab_edge = bar_background,
 	},
 }
 
