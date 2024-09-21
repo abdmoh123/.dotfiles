@@ -1,19 +1,5 @@
 -- File: lua/custom/plugins/bufferline.lua
 
-function dump(o)
-  if type(o) == 'table' then
-    local s = '{'
-    for k, v in pairs(o) do
-      if type(k) ~= 'number' then
-        k = '"' .. k .. '"'
-      end
-      s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
-    end
-    s = s .. '} '
-  else
-    return tostring(o)
-  end
-end
 return {
   'akinsho/bufferline.nvim',
   version = '*',
@@ -73,7 +59,6 @@ return {
       },
       mode = 'buffers',
       themable = true,
-      numbers = 'buffer_id',
       indicator = {
         icon = '▌',
         style = 'icon',
