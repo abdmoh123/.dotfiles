@@ -9,8 +9,7 @@ local themes = {
   {
     -- gruvbox dark and light theme
     'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 1000,
+    event = 'VeryLazy',
     config = function()
       require('gruvbox').setup {
         transparent_mode = true,
@@ -21,11 +20,12 @@ local themes = {
   {
     -- gruvbox material theme
     'sainnhe/gruvbox-material',
-    priority = 1000,
+    event = 'VeryLazy',
   },
   {
     'sainnhe/everforest',
     priority = 1000,
+    lazy = false,
     init = function()
       vim.cmd.colorscheme 'everforest'
       vim.cmd.hi 'Comment gui=none'
@@ -33,11 +33,11 @@ local themes = {
   },
   {
     'folke/tokyonight.nvim',
-    priority = 1000,
+    event = 'VeryLazy',
   },
   {
     'savq/melange-nvim',
-    priority = 1000,
+    event = 'VeryLazy',
   },
 }
 
