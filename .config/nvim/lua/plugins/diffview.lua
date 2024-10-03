@@ -3,5 +3,5 @@
 -- Plugin for easy diff viewing (side-by-side)
 return {
   'sindrets/diffview.nvim',
-  event = 'VeryLazy',
+  event = 'BufReadPre',
 }

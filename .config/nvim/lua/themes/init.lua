@@ -9,7 +9,6 @@ local themes = {
   {
     -- gruvbox dark and light theme
     'ellisonleao/gruvbox.nvim',
-    event = 'VeryLazy',
     config = function()
       require('gruvbox').setup {
         transparent_mode = true,
@@ -20,7 +19,6 @@ local themes = {
   {
     -- gruvbox material theme
     'sainnhe/gruvbox-material',
-    event = 'VeryLazy',
   },
   {
     'sainnhe/everforest',
@@ -33,11 +31,9 @@ local themes = {
   },
   {
     'folke/tokyonight.nvim',
-    event = 'VeryLazy',
   },
   {
     'savq/melange-nvim',
-    event = 'VeryLazy',
   },
 }
 

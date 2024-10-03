@@ -152,7 +152,7 @@ config.colors = {
 
 -- [[ Font stuff ]]
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 11
+config.font_size = 10.5
 
 -- [[ Padding ]]
 config.window_padding = {
