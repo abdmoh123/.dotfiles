@@ -18,5 +18,7 @@ vim.keymap.set('n', '[h', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'Previous Git 
 vim.keymap.set('n', 'gh', '<cmd>Gitsigns next_hunk<cr>', { desc = '[G]oto next Git [H]unk' })
 vim.keymap.set('n', 'gH', '<cmd>Gitsigns prev_hunk<cr>', { desc = '[G]oto previous Git [H]unk' })
 
--- [[ LazyGit keybinding ]]
-vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'Open Lazy[G]it' })
+-- LazyGit keybinding
+vim.keymap.set('n', '<leader>gl', '<cmd>LazyGit<cr>', { desc = 'Open [L]azy git' })
+-- Neogit keybinding
+vim.keymap.set('n', '<leader>gn', '<cmd>Neogit<cr>', { desc = 'Open [N]eogit' })
