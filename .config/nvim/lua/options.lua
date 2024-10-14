@@ -20,8 +20,7 @@ vim.opt.background = 'dark'
 
 vim.opt.number = true -- Make line numbers default
 vim.opt.relativenumber = true -- Make line numbers relative to cursor
-vim.opt.signcolumn = 'auto:1-3' -- Keep signcolumn on by default
-vim.opt.foldcolumn = 'auto' -- Only 1 column max (can be 0) for code folding icons
+vim.opt.signcolumn = 'yes:2' -- Keep signcolumn on by default
 
 vim.opt.termguicolors = true -- Enable termguicolors to fix visual issues
 
@@ -47,10 +46,9 @@ vim.opt.fillchars = {
   vertright = '┣',
   verthoriz = '╋',
   -- code folding icons
-  fold = ' ', -- no numbers
-  foldopen = '',
-  foldclose = '',
-  foldsep = ' ',
+  foldopen = '',
+  foldclose = '',
+  foldsep = '▕',
   -- remove end of line ~ character
   eob = ' ',
 }
@@ -75,6 +73,10 @@ vim.opt.expandtab = true -- tabs are replaced with 4 spaces (override with CTRL-
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
+vim.opt.foldcolumn = 'auto' -- Only 1 column max (can be 0) for code folding icons
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldtext = ''
 
 -- [[ Utils and convenience ]]
 vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
