@@ -47,11 +47,13 @@ return {
 
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
+    vim.keymap.set('n', '<S-F5>', dap.terminate, { desc = 'Debug: Terminate' })
+    vim.keymap.set('n', '<F4>', dap.restart, { desc = 'Debug: Restart' })
     vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
     vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
     vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
-    vim.keymap.set('n', '<C-B>', dap.toggle_breakpoint, { desc = 'Debug: Toggle [B]reakpoint' })
-    vim.keymap.set('n', '<leader><C-B>', function()
+    vim.keymap.set('n', '<A-b>', dap.toggle_breakpoint, { desc = 'Debug: Toggle [B]reakpoint' })
+    vim.keymap.set('n', '<leader><A-B>', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set [B]reakpoint' })
 
@@ -66,8 +68,15 @@ return {
           elements = {
             { id = 'scopes', size = 0.3 },
             { id = 'watches', size = 0.3 },
-            { id = 'stacks', size = 0.2 },
             { id = 'breakpoints', size = 0.2 },
+          },
+        },
+        {
+          position = 'right',
+          size = 40,
+          elements = {
+            { id = 'stacks', size = 0.5 },
+            { id = 'repl', size = 0.5 },
           },
         },
         {
