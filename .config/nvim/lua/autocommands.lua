@@ -12,3 +12,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- disable ufo on neotree
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'neo-tree' },
+  callback = function()
+    require('ufo').detach()
+    vim.opt_local.foldenable = false
+  end,
+})
