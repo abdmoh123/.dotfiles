@@ -182,6 +182,20 @@ return {
           },
         },
       },
+      basedpyright = {
+        settings = {
+          basedpyright = {
+            disableOrganizeImports = true,
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = 'workspace',
+              useLibraryCodeForTypes = true,
+              autoImportCompletions = true,
+            },
+          },
+        },
+      },
+      ruff = {},
     }
 
     -- Ensure the servers and tools above are installed
