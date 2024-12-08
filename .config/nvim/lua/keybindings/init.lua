@@ -3,7 +3,7 @@
 --  See `:help vim.keymap.set()`
 
 require 'keybindings.bufferline'
-require 'keybindings.neo-tree'
+require 'keybindings.file-explorer'
 require 'keybindings.diagnostics'
 require 'keybindings.terminal'
 require 'keybindings.movement'
