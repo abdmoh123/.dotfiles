@@ -8,6 +8,7 @@ return {
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
   },
+  cmd = { 'Neotree' },
   config = function()
     require('neo-tree').setup {
       source_selector = {
