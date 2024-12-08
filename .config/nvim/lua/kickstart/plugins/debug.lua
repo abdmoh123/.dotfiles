@@ -25,6 +25,94 @@ return {
     -- Add your own debuggers here
     'mfussenegger/nvim-dap-python',
   },
+  keys = {
+    -- Basic debugging keymaps, feel free to change to your liking!
+    {
+      '<F1>',
+      function()
+        require('dap').step_into()
+      end,
+      desc = 'Debug: Step Into',
+    },
+    {
+      '<F2>',
+      function()
+        require('dap').step_over()
+      end,
+      desc = 'Debug: Step Over',
+    },
+    {
+      '<F3>',
+      function()
+        require('dap').step_out()
+      end,
+      desc = 'Debug: Step Out',
+    },
+    {
+      '<F4>',
+      function()
+        require('dap').step_back()
+      end,
+      desc = 'Debug: Step back',
+    },
+    {
+      '<F5>',
+      function()
+        require('dap').continue()
+      end,
+      desc = 'Debug: Start/Continue',
+    },
+    {
+      '<C-F5>',
+      function()
+        require('dap').pause()
+      end,
+      desc = 'Debug: Pause',
+    },
+    {
+      '<S-F5>',
+      function()
+        require('dap').terminate()
+      end,
+      desc = 'Debug: Terminate',
+    },
+    {
+      '<A-F5>',
+      function()
+        require('dap').restart()
+      end,
+      desc = 'Debug: Restart',
+    },
+    {
+      '<F6>',
+      function()
+        require('dap').disconnect()
+      end,
+      desc = 'Debug: Disconnect/Detach',
+    },
+    {
+      '<F7>',
+      function()
+        -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception
+        require('dapui').toggle()
+      end,
+      desc = 'Debug: See last session result.',
+    },
+    {
+      '<A-b>',
+      function()
+        require('dap').toggle_breakpoint()
+      end,
+      desc = 'Debug: Toggle Breakpoint',
+    },
+    {
+      '<A-B>',
+      function()
+        require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+      end,
+      desc = 'Debug: Set Breakpoint',
+    },
+  },
   config = function()
     local dap = require 'dap'
 
@@ -42,25 +130,14 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
+        'debugpy',
       },
     }
-
-    -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
-    vim.keymap.set('n', '<S-F5>', dap.terminate, { desc = 'Debug: Terminate' })
-    vim.keymap.set('n', '<F4>', dap.restart, { desc = 'Debug: Restart' })
-    vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
-    vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
-    vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
-    vim.keymap.set('n', '<A-b>', dap.toggle_breakpoint, { desc = 'Debug: Toggle [B]reakpoint' })
-    vim.keymap.set('n', '<A-B>', function()
-      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-    end, { desc = 'Debug: Set [B]reakpoint' })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     local dapui_opts = {
-      icons = { current_frame = '*' },
+      icons = { expanded = '', collapsed = '', current_frame = '*' },
       layouts = {
         {
           position = 'left',
@@ -91,30 +168,41 @@ return {
         element = 'console',
         enabled = true,
         icons = {
-          pause = '',
-          play = '',
           step_into = '',
           step_over = '',
           step_out = '',
           step_back = '',
-          run_last = '',
+          play = '',
+          pause = '',
           terminate = '',
+          restart = '',
           disconnect = '',
         },
       },
     }
     local dapui = require 'dapui'
     dapui.setup(dapui_opts)
-    -- set breakpoint symbol
-    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = '', numhl = '' })
 
-    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
+    -- Change breakpoint icons (fallbacks to hardcoded values)
+    -- set colours for icons
+    local red = string.format('#%06x', vim.api.nvim_get_hl_by_name('red', true).foreground) or '#e51400'
+    local yellow = string.format('#%06x', vim.api.nvim_get_hl_by_name('yellow', true).foreground) or '#ffcc00'
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = red }) -- breakpoint icon colours
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = yellow }) -- arrow when program stops at breakpoint
+    -- set what icons to use
+    local breakpoint_icons = vim.g.have_nerd_font
+      and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = 'Dap' .. type
+      local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- Install python specific config
     require('dap-python').setup 'python'
   end,
 }

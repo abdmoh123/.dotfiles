@@ -82,11 +82,12 @@ vim.opt.foldtext = ''
 vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
 vim.opt.undofile = true -- Save undo history
 
-vim.opt.ignorecase = true -- Case insensitive searching
-vim.opt.smartcase = true -- Become case sensitive if a captial letter is included in the search term
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.hlsearch = true -- Set highlight on search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Clear highlighting on pressing <Esc> in normal mode
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 
-vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
+vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time (displays which key sooner)
 vim.opt.updatetime = 250 -- Decrease update time
