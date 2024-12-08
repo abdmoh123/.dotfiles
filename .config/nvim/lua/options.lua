@@ -46,8 +46,8 @@ vim.opt.fillchars = {
   vertright = '┣',
   verthoriz = '╋',
   -- code folding icons
-  foldopen = '',
-  foldclose = '',
+  foldopen = '',
+  foldclose = '',
   foldsep = '▕',
   -- remove end of line ~ character
   eob = ' ',
