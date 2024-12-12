@@ -1,3 +1,5 @@
+printed = false
+
 return {
   'luukvbaal/statuscol.nvim',
   config = function()
@@ -8,13 +10,23 @@ return {
       ft_ignore = { 'neo-tree' },
       bt_ignore = { 'neo-tree' },
       segments = {
-        { text = { '%s' }, click = 'v:lua.ScSa' },
+        -- diagnostic signs
         {
-          text = { builtin.lnumfunc, ' ' },
-          condition = { true, builtin.not_empty },
+          sign = { namespace = { 'diagnostic/signs' }, colwidth = 2, maxwidth = 1, auto = true, foldclosed = true },
+          click = 'v:lua.ScSa',
+        },
+        -- line numbers
+        {
+          text = { ' ', builtin.lnumfunc, ' ' },
           click = 'v:lua.ScLa',
         },
-        { text = { builtin.foldfunc, ' ' }, click = 'v:lua.ScFa' },
+        -- fold column
+        { text = { builtin.foldfunc, ' ' }, colwidth = 2, maxwidth = 2, click = 'v:lua.ScFa' },
+        -- git signs
+        {
+          sign = { namespace = { 'gitsigns' } },
+          click = 'v:lua.ScSa',
+        },
       },
     }
   end,

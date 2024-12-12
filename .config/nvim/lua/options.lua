@@ -9,7 +9,7 @@ vim.opt.background = 'dark'
 
 vim.opt.number = true -- Make line numbers default
 vim.opt.relativenumber = true -- Make line numbers relative to cursor
-vim.opt.signcolumn = 'yes:2' -- Keep signcolumn on by default
+vim.opt.signcolumn = 'yes:1' -- Keep signcolumn on by default
 
 vim.opt.termguicolors = true -- Enable termguicolors to fix visual issues
 
