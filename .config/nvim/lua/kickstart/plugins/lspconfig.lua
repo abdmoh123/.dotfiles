@@ -179,7 +179,6 @@ return {
     local servers = {
       -- clangd = {},
       -- gopls = {},
-      -- pyright = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -218,7 +217,15 @@ return {
           },
         },
       },
-      ruff = {},
+      ruff = {
+        settings = {
+          configurationPreference = 'filesystemFirst', -- project ruff.toml takes priority
+          lineLength = 120,
+          lint = {
+            extendSelect = { 'E501' },
+          },
+        },
+      },
     }
 
     -- Ensure the servers and tools above are installed
