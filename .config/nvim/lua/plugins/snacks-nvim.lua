@@ -26,5 +26,6 @@ return {
     lazygit = { enabled = true },
     -- speeds up file loading (e.g. nvim foo.txt)
     quickfile = { enabled = true },
+    words = { enabled = true },
   },
 }
