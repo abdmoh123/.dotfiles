@@ -63,8 +63,6 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.foldcolumn = 'auto' -- Only 1 column max (can be 0) for code folding icons
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldtext = ''
 
 -- [[ Utils and convenience ]]
