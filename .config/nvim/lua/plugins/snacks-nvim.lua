@@ -22,5 +22,7 @@ return {
         vim.cmd 'TSBufDisable indent'
       end,
     },
+    -- sets lazygit colorscheme to match neovim's
+    lazygit = {},
   },
 }
