@@ -1,5 +1,5 @@
 return {
-  'MeanderingProgrammer/markdown.nvim',
+  'tadmccorkle/markdown.nvim',
   ft = 'markdown',
   opts = {},
 }
