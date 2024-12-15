@@ -9,7 +9,8 @@
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  event = 'BufReadPost',
+  ft = { 'java', 'python', 'cs', 'c', 'cpp', 'lua' },
+  -- event = 'BufReadPost',
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
@@ -183,15 +184,22 @@ return {
     local dapui = require 'dapui'
     dapui.setup(dapui_opts)
 
-    -- Change breakpoint icons (fallbacks to hardcoded values)
-    -- set colours for icons
-    local red = string.format('#%06x', vim.api.nvim_get_hl_by_name('red', true).foreground) or '#e51400'
-    local yellow = string.format('#%06x', vim.api.nvim_get_hl_by_name('yellow', true).foreground) or '#ffcc00'
-    vim.api.nvim_set_hl(0, 'DapBreak', { fg = red }) -- breakpoint icon colours
-    vim.api.nvim_set_hl(0, 'DapStop', { fg = yellow }) -- arrow when program stops at breakpoint
+    -- Change breakpoint icons (set colours for icons)
+    local red_hl = vim.api.nvim_get_hl_by_name('Error', true)
+    local yellow_hl = vim.api.nvim_get_hl_by_name('WarningMsg', true)
+    local red_hex = string.format('#%06x', red_hl.foreground or red_hl.background)
+    local yellow_hex = string.format('#%06x', yellow_hl.foreground or yellow_hl.background)
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = red_hex }) -- breakpoint icon colours
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = yellow_hex }) -- arrow when program stops at breakpoint
     -- set what icons to use
     local breakpoint_icons = vim.g.have_nerd_font
-      and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+      and {
+        Breakpoint = '',
+        BreakpointCondition = '',
+        BreakpointRejected = '',
+        LogPoint = '',
+        Stopped = '',
+      }
     for type, icon in pairs(breakpoint_icons) do
       local tp = 'Dap' .. type
       local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
