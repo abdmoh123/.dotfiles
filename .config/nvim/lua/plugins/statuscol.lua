@@ -1,12 +1,9 @@
-printed = false
-
 return {
   'luukvbaal/statuscol.nvim',
   config = function()
     local builtin = require 'statuscol.builtin'
     require('statuscol').setup {
       -- configuration goes here, for example:
-      -- relculright = true,
       ft_ignore = { 'neo-tree' },
       bt_ignore = { 'neo-tree' },
       segments = {
@@ -20,12 +17,17 @@ return {
           text = { ' ', builtin.lnumfunc, ' ' },
           click = 'v:lua.ScLa',
         },
-        -- fold column
-        { text = { builtin.foldfunc, ' ' }, colwidth = 2, maxwidth = 2, click = 'v:lua.ScFa' },
         -- git signs
         {
-          sign = { namespace = { 'gitsigns' } },
+          sign = { namespace = { 'gitsigns' }, colwidth = 1, auto = true },
           click = 'v:lua.ScSa',
+        },
+        -- fold column
+        {
+          text = { builtin.foldfunc, ' ' },
+          colwidth = 2,
+          maxwidth = 2,
+          click = 'v:lua.ScFa',
         },
       },
     }
