@@ -4,7 +4,7 @@ return {
     local builtin = require 'statuscol.builtin'
     require('statuscol').setup {
       -- configuration goes here, for example:
-      ft_ignore = { 'neo-tree' },
+      ft_ignore = { 'neo-tree', 'undotree' },
       bt_ignore = { 'neo-tree' },
       segments = {
         -- diagnostic signs
