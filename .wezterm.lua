@@ -48,7 +48,7 @@ config.animation_fps = 60
 config.default_prog = { "pwsh", "-NoLogo" }
 
 -- [[ Colour and appearance ]]
-local theme_name = "Gruvbox Dark (Gogh)"
+local theme_name = "Gruvbox Material (Gogh)"
 config.color_scheme = theme_name
 
 -- get theme's colours as variables
@@ -88,12 +88,12 @@ local CLOSE_ICON = " " .. wezterm.nerdfonts.cod_chrome_close .. " "
 local MAXIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_maximize .. " "
 local MINIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_minimize .. " "
 
-local bar_background = navy
-local bar_background_hover = aqua
-local bar_foreground = lime
-local bar_foreground_hover = navy
+local bar_background = grey
+local bar_background_hover = yellow
+local bar_foreground = silver
+local bar_foreground_hover = black
 local active_tab_background = background
-local active_tab_foreground = aqua
+local active_tab_foreground = yellow
 -- only use white background on active tab if using retro style
 if config.use_fancy_tab_bar == false then
 	config.tab_bar_style = {
