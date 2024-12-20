@@ -41,6 +41,6 @@ return {
     }
   end,
   keys = {
-    { '<leader><Tab>', '<CMD>Neotree float<CR>', desc = 'Reveal Explorer', silent = true },
+    { '<leader><Tab>', '<CMD>Neotree filesystem reveal left<CR>', desc = 'Reveal Explorer', silent = true },
   },
 }
