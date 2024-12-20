@@ -29,4 +29,13 @@ return {
       end,
     },
   },
+  keys = {
+    {
+      '<leader>-',
+      function()
+        require('oil').open_float()
+      end,
+      desc = 'Open directory in oil.nvim',
+    },
+  },
 }

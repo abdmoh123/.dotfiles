@@ -40,4 +40,7 @@ return {
       },
     }
   end,
+  keys = {
+    { '<leader><Tab>', '<CMD>Neotree float<CR>', desc = 'Reveal Explorer', silent = true },
+  },
 }

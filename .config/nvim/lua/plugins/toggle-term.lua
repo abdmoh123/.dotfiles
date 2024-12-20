@@ -14,4 +14,10 @@ return {
       end
     end,
   },
+  keys = {
+    { '<C-t>s', '<CMD>ToggleTerm direction=horizontal<CR>', desc = 'Open [T]erminal' },
+    { '<C-t>v', '<CMD>ToggleTerm direction=vertical<CR>', desc = 'Open [T]erminal [V]ertically' },
+    { '<C-t>f', '<CMD>ToggleTerm direction=float<CR>', desc = 'Open [F]loating [T]erminal' },
+    { '<C-t>t', '<CMD>ToggleTerm direction=tab<CR>', desc = 'Open [T]erminal in new [T]ab' },
+  },
 }

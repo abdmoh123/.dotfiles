@@ -4,6 +4,7 @@ return {
   'akinsho/bufferline.nvim',
   version = '*',
   dependencies = 'nvim-tree/nvim-web-devicons',
+  event = 'VimEnter',
   opts = {
     highlights = {
       -- Make offset separator match the pane border
@@ -15,48 +16,6 @@ return {
       },
     },
     options = {
-      -- groups = {
-      --   options = {
-      --     -- reopens hidden buffer groups when in use
-      --     toggle_hidden_on_enter = true,
-      --   },
-      --   items = {
-      --     {
-      --       name = 'Terminals',
-      --       matcher = function(buf)
-      --         -- stylua: ignore start
-      --         return buf.name:match 'pwsh.EXE'
-      --                or buf.name:match 'cmd'
-      --                or buf.name:match 'bash'
-      --                or buf.name:match 'zsh'
-      --         -- stylua: ignore end
-      --       end,
-      --     },
-      --     {
-      --       name = 'C source files',
-      --       matcher = function(buf)
-      --         -- stylua: ignore start
-      --         return buf.name:match '%.c'
-      --                or buf.name:match '%.cpp'
-      --                or buf.name:match '%.cc'
-      --                or buf.name:match '%.cxx'
-      --         -- stylua: ignore end
-      --       end,
-      --     },
-      --     {
-      --       name = 'C headers',
-      --       matcher = function(buf)
-      --         return buf.name:match '%.h' or buf.name:match '%.hpp'
-      --       end,
-      --     },
-      --     {
-      --       name = 'XML files',
-      --       matcher = function(buf)
-      --         return buf.name:match '%.xml' or buf.name:match '%.xaml' or buf.name:match '%.fxml'
-      --       end,
-      --     },
-      --   },
-      -- },
       mode = 'buffers',
       themable = true,
       indicator = {
@@ -80,5 +39,16 @@ return {
       always_show_bufferline = false,
       auto_toggle_bufferline = true,
     },
+  },
+  keys = {
+    { 'gb', '<Cmd>BufferLineCycleNext<CR>', desc = '[G]oto next [B]uffer' },
+    { 'gB', '<Cmd>BufferLineCyclePrev<CR>', desc = '[G]oto previous [B]uffer' },
+    { '<leader>b>', '<Cmd>BufferLineMoveNext<CR>', desc = 'Move current [B]uffer right' },
+    { '<leader>b<', '<Cmd>BufferLineMovePrev<CR>', desc = 'Move current [B]uffer left' },
+    { '<leader>bdr', '<Cmd>BufferLineCloseRight<CR>', desc = '[D]elete all visible [B]uffers to the [R]ight' },
+    { '<leader>bdl', '<Cmd>BufferLineCloseLeft<CR>', desc = '[D]elete all visible [B]uffers to the [L]eft' },
+    { '<leader>bdd', '<Cmd>BufferLineCloseOthers<CR>', desc = '[D]elete all other visible [B]uffers' },
+    { '<leader>bp', '<Cmd>BufferLinePick<CR>', desc = '[P]ick a [B]uffer' },
+    { '<leader>bD', '<Cmd>BufferLinePickClose<CR>', desc = 'Pick a [B]uffer to [D]elete' },
   },
 }

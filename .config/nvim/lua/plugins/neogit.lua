@@ -13,4 +13,7 @@ return {
     graph_style = 'unicode',
     disable_signs = true,
   },
+  keys = {
+    { '<leader>gn', '<CMD>Neogit<CR>', desc = 'Open Neogit' },
+  },
 }
