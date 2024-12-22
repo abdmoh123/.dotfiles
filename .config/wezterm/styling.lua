@@ -2,21 +2,6 @@ local wezterm = require("wezterm")
 
 local module = {}
 
-local function format_mode_text(mode_text)
-	-- replace underscores with spaces
-	local new_string = string.gsub(mode_text, "_+", " ")
-
-	-- capitalise all letters
-	new_string = string.upper(new_string)
-
-	-- remove 'MODE' from the end of the string
-	if string.sub(new_string, -5) == " MODE" then
-		new_string = string.sub(new_string, 1, -6)
-	end
-
-	return new_string
-end
-
 function module.apply_to_config(config)
 	-- window title bar buttons
 	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
@@ -143,8 +128,22 @@ function module.apply_to_config(config)
 	}
 
 	wezterm.on("update-status", function(window, pane)
-		-- local cwd = pane:get_current_working_dir()
-		-- local cwd_short = cwd:gsub(os.getenv("HOME"), "~")
+		-- [[ Left section ]]
+		-- format the text to be displayed in mode status block (all caps with no underscores)
+		local function format_mode_text(mode_text)
+			-- replace underscores with spaces
+			local new_string = string.gsub(mode_text, "_+", " ")
+
+			-- capitalise all letters
+			new_string = string.upper(new_string)
+
+			-- remove 'MODE' from the end of the string
+			if string.sub(new_string, -5) == " MODE" then
+				new_string = string.sub(new_string, 1, -6)
+			end
+
+			return new_string
+		end
 
 		local mode
 		local mode_bg_colour
@@ -171,7 +170,6 @@ function module.apply_to_config(config)
 			mode_bg_colour = bar_background_hover
 		end
 
-		-- left status (mode)
 		window:set_left_status(wezterm.format({
 			{ Background = { Color = mode_bg_colour } },
 			{ Foreground = { Color = mode_fg_colour } },
@@ -180,6 +178,42 @@ function module.apply_to_config(config)
 			{ Text = mode },
 			{ Text = " " },
 			"ResetAttributes",
+		}))
+
+		-- [[ Right section ]]
+		local workspace_name = window:active_workspace()
+
+		-- only gets the leaf of the directory tree (e.g. /home/user/Documents -> Documents)
+		local basename = function(s)
+			return string.gsub(s, "(.*[/\\])(.*)", "%2")
+		end
+
+		local current_cmd = pane:get_foreground_process_name()
+		-- current command could be nil if none are being run (e.g. when in debug mode through CTRL+SHIFT+L)
+		current_cmd = current_cmd and basename(current_cmd) or " "
+		if current_cmd ~= " " then
+			-- add icon, border and spacing to the text
+			current_cmd = wezterm.nerdfonts.oct_command_palette .. " " .. current_cmd .. " │ "
+		end
+
+		-- NOTE: This doesn't work properly as get_current_working_dir() only returns the home directory
+		--
+		-- local cwd = pane:get_current_working_dir()
+		-- if cwd then
+		-- 	-- add icon, border and spacing to the text
+		-- 	if type(cwd) == "userdata" then
+		-- 		-- newer versions of wezterm return a URL object instead of a string
+		-- 		cwd = cwd.file_path
+		-- 	end
+		-- 	cwd = wezterm.nerdfonts.md_folder .. " " .. cwd .. " │ "
+		-- else
+		-- 	cwd = ""
+		-- end
+
+		window:set_right_status(wezterm.format({
+			-- { Text = cwd },
+			{ Text = current_cmd },
+			{ Text = wezterm.nerdfonts.md_view_dashboard .. " " .. workspace_name .. " " },
 		}))
 	end)
 end
