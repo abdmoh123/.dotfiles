@@ -46,6 +46,7 @@ config.window_background_opacity = opacity
 config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = false
+config.status_update_interval = 1000 -- speed up update
 
 -- tab bar icons
 local CLOSE_ICON = " " .. wezterm.nerdfonts.cod_chrome_close .. " "
@@ -136,6 +137,8 @@ config.keys = {
 
 	-- copy mode
 	{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
+	-- search/find mode
+	{ key = "/", mods = "LEADER", action = act.Search("CurrentSelectionOrEmptyString") },
 
 	-- tab navigation
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
@@ -144,7 +147,9 @@ config.keys = {
 	{ key = "Tab", mods = "LEADER|SHIFT", action = act.ActivateTabRelative(-1) },
 	-- tab creation and deletion
 	{ key = "t", mods = "CTRL|SHIFT", action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "d", mods = "CTRL|SHIFT", action = act.CloseCurrentTab({ confirm = true }) },
+	-- tabs closes when only 1 pane
+	{ key = "d", mods = "CTRL|SHIFT", action = act.CloseCurrentPane({ confirm = true }) },
+	{ key = "x", mods = "CTRL|SHIFT", action = act.CloseCurrentPane({ confirm = true }) },
 
 	-- split panes horizontally or vertically
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) }, -- to right
