@@ -1,50 +1,14 @@
--- [[ Helper functions ]]
-local convertToHex = function(num)
-	-- [[ Convert an alpha float (0-1) into a hex representation (00-FF) ]]
-
-	-- limit output to be between 00 and FF
-	if num > 1.0 then
-		return "FF"
-	end
-	if num < 0.0 then
-		return "00"
-	end
-
-	-- convert 0.0-1.0 float to 0-255 integer
-	local rounded_num = math.floor((num * 255) + 0.5)
-
-	local HEX_VALUES = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" }
-
-	-- calculate the hex representation of the given num
-	local hex_result = ""
-	while rounded_num > 15 do
-		local remainder = math.fmod(rounded_num, 16)
-		rounded_num = math.floor(rounded_num / 16)
-		hex_result = HEX_VALUES[remainder + 1] .. hex_result
-	end
-	hex_result = HEX_VALUES[rounded_num + 1] .. hex_result
-
-	-- ensure result is 2 chars long
-	if string.len(hex_result) < 2 then
-		hex_result = "0" .. hex_result
-	end
-
-	return hex_result
-end
-
--- [[ Main config ]]
-
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.win32_system_backdrop = "Acrylic"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
 
 config.max_fps = 120
 config.animation_fps = 60
 
--- [[ Default shell ]]
+-- [[ Windows related stuff ]]
+config.win32_system_backdrop = "Acrylic"
 config.default_prog = { "pwsh", "-NoLogo" }
 
 -- [[ Colour and appearance ]]
@@ -160,6 +124,122 @@ config.window_padding = {
 	right = 12,
 	top = 12,
 	bottom = 12,
+}
+
+-- [[ Keys ]]
+local act = wezterm.action
+
+config.leader = { key = " ", mods = "CTRL", timeout_milliseconds = 1000 }
+config.keys = {
+	-- leader key passthrough
+	{ key = " ", mods = "CTRL", action = act.SendKey({ key = " ", mods = "CTRL" }) },
+
+	-- copy mode
+	{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
+
+	-- tab navigation
+	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
+	{ key = "Tab", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(-1) },
+	{ key = "Tab", mods = "LEADER", action = act.ActivateTabRelative(1) },
+	{ key = "Tab", mods = "LEADER|SHIFT", action = act.ActivateTabRelative(-1) },
+	-- tab creation and deletion
+	{ key = "t", mods = "CTRL|SHIFT", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "d", mods = "CTRL|SHIFT", action = act.CloseCurrentTab({ confirm = true }) },
+
+	-- split panes horizontally or vertically
+	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) }, -- to right
+	{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) }, -- to bottom
+	-- moving around panes
+	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+
+	-- key tables
+	{ key = "p", mods = "LEADER", action = act.ActivateKeyTable({ name = "pane_mode", one_shot = false }) },
+	{ key = "t", mods = "LEADER", action = act.ActivateKeyTable({ name = "tab_mode", one_shot = false }) },
+
+	-- selecting workspace
+	{ key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+}
+
+-- select tab by number/index position
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "LEADER",
+		action = act.ActivateTab(i - 1),
+	})
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "CTRL",
+		action = act.ActivateTab(i - 1),
+	})
+end
+-- bind tab 0 to tab 10
+table.insert(config.keys, {
+	key = "0",
+	mods = "LEADER",
+	action = act.ActivateTab(9),
+})
+table.insert(config.keys, {
+	key = "0",
+	mods = "CTRL",
+	action = act.ActivateTab(9),
+})
+
+config.key_tables = {
+	pane_mode = {
+		-- split panes horizontally or vertically
+		{ key = "v", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) }, -- to right
+		{ key = "s", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) }, -- to bottom
+		-- close current pane
+		{ key = "x", action = act.CloseCurrentPane({ confirm = true }) },
+		{ key = "d", action = act.CloseCurrentPane({ confirm = true }) },
+		-- rotate panes
+		{ key = "r", action = act.RotatePanes("Clockwise") },
+
+		-- moving around panes
+		{ key = "h", action = act.ActivatePaneDirection("Left") },
+		{ key = "j", action = act.ActivatePaneDirection("Down") },
+		{ key = "k", action = act.ActivatePaneDirection("Up") },
+		{ key = "l", action = act.ActivatePaneDirection("Right") },
+
+		-- resizing panes
+		{ key = "h", mods = "SHIFT", action = act.AdjustPaneSize({ "Left", 1 }) },
+		{ key = "j", mods = "SHIFT", action = act.AdjustPaneSize({ "Down", 1 }) },
+		{ key = "k", mods = "SHIFT", action = act.AdjustPaneSize({ "Up", 1 }) },
+		{ key = "l", mods = "SHIFT", action = act.AdjustPaneSize({ "Right", 1 }) },
+
+		-- allows exit from pane mode
+		{ key = "Escape", action = "PopKeyTable" },
+		{ key = "Enter", action = "PopKeyTable" },
+	},
+	tab_mode = {
+		-- open tab navigator
+		{ key = "t", action = act.ShowTabNavigator },
+
+		-- create new tab
+		{ key = "n", action = act.SpawnTab("CurrentPaneDomain") },
+		-- close current tab
+		{ key = "x", action = act.CloseCurrentTab({ confirm = true }) },
+		{ key = "d", action = act.CloseCurrentTab({ confirm = true }) },
+
+		-- moving around panes
+		{ key = "h", action = act.ActivateTabRelative(-1) },
+		{ key = "l", action = act.ActivateTabRelative(1) },
+
+		-- moving tabs left and right
+		{ key = "<", action = act.MoveTabRelative(-1) },
+		{ key = ">", action = act.MoveTabRelative(1) },
+
+		-- make pane fullscreen
+		{ key = "f", action = act.TogglePaneZoomState },
+
+		-- allows exit from tab mode
+		{ key = "Escape", action = "PopKeyTable" },
+		{ key = "Enter", action = "PopKeyTable" },
+	},
 }
 
 return config
