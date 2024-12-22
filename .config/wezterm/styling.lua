@@ -51,7 +51,7 @@ function module.apply_to_config(config)
 	local black = theme_colours.ansi[1]
 	local maroon = theme_colours.ansi[2]
 	local green = theme_colours.ansi[3]
-	local olive = theme_colours.ansi[4]
+	local olive = theme_colours.ansi[4] -- dark yellow
 	local navy = theme_colours.ansi[5]
 	local purple = theme_colours.ansi[6]
 	local teal = theme_colours.ansi[7]
@@ -148,7 +148,7 @@ function module.apply_to_config(config)
 
 		local mode
 		local mode_bg_colour
-		local mode_fg_colour
+		local mode_fg_colour = grey
 		if window:active_key_table() then
 			mode = format_mode_text(window:active_key_table())
 			if mode == "COPY" then
@@ -163,16 +163,12 @@ function module.apply_to_config(config)
 				-- fallback
 				mode_bg_colour = blue
 			end
-
-			mode_fg_colour = background
 		elseif window:leader_is_active() then
 			mode = "LEADER"
-			mode_bg_colour = green
-			mode_fg_colour = background
+			mode_bg_colour = blue
 		else
 			mode = "NORMAL"
-			mode_bg_colour = silver
-			mode_fg_colour = background
+			mode_bg_colour = green
 		end
 
 		-- left status (mode)
