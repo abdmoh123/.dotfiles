@@ -2,6 +2,21 @@ local wezterm = require("wezterm")
 
 local module = {}
 
+local function format_mode_text(mode_text)
+	-- replace underscores with spaces
+	local new_string = string.gsub(mode_text, "_+", " ")
+
+	-- capitalise all letters
+	new_string = string.upper(new_string)
+
+	-- remove 'MODE' from the end of the string
+	if string.sub(new_string, -5) == " MODE" then
+		new_string = string.sub(new_string, 1, -6)
+	end
+
+	return new_string
+end
+
 function module.apply_to_config(config)
 	-- window title bar buttons
 	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
@@ -63,14 +78,6 @@ function module.apply_to_config(config)
 	local MAXIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_maximize .. " "
 	local MINIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_minimize .. " "
 
-	-- set tab bar colours
-	local bar_background = grey
-	local bar_background_hover = yellow
-	local bar_foreground = silver
-	local bar_foreground_hover = black
-	local active_tab_background = background
-	local active_tab_foreground = yellow
-
 	-- styling for retro tab bar only
 	if config.use_fancy_tab_bar == false then
 		config.tab_bar_style = {
@@ -95,6 +102,14 @@ function module.apply_to_config(config)
 		}
 	end
 
+	-- set tab bar colours
+	local bar_background = grey
+	local bar_foreground = silver
+	local bar_foreground_hover = black
+	local tab_background_hover = yellow
+	local bar_background_hover = silver
+	local active_tab_background = background
+	local active_tab_foreground = yellow
 	-- tab style (both retro and fancy style)
 	config.colors = {
 		tab_bar = {
@@ -109,7 +124,7 @@ function module.apply_to_config(config)
 				fg_color = bar_foreground,
 			},
 			inactive_tab_hover = {
-				bg_color = bar_background_hover,
+				bg_color = tab_background_hover,
 				fg_color = bar_foreground_hover,
 				intensity = "Bold",
 			},
@@ -126,6 +141,51 @@ function module.apply_to_config(config)
 			inactive_tab_edge = bar_background,
 		},
 	}
+
+	wezterm.on("update-status", function(window, pane)
+		-- local cwd = pane:get_current_working_dir()
+		-- local cwd_short = cwd:gsub(os.getenv("HOME"), "~")
+
+		local mode
+		local mode_bg_colour
+		local mode_fg_colour
+		if window:active_key_table() then
+			mode = format_mode_text(window:active_key_table())
+			if mode == "COPY" then
+				mode_bg_colour = red
+			elseif mode == "SEARCH" then
+				mode_bg_colour = aqua
+			elseif mode == "TAB" then
+				mode_bg_colour = yellow
+			elseif mode == "PANE" then
+				mode_bg_colour = purple
+			else
+				-- fallback
+				mode_bg_colour = blue
+			end
+
+			mode_fg_colour = background
+		elseif window:leader_is_active() then
+			mode = "LEADER"
+			mode_bg_colour = green
+			mode_fg_colour = background
+		else
+			mode = "NORMAL"
+			mode_bg_colour = silver
+			mode_fg_colour = background
+		end
+
+		-- left status (mode)
+		window:set_left_status(wezterm.format({
+			{ Background = { Color = mode_bg_colour } },
+			{ Foreground = { Color = mode_fg_colour } },
+			{ Attribute = { Intensity = "Bold" } },
+			{ Text = " " },
+			{ Text = mode },
+			{ Text = " " },
+			"ResetAttributes",
+		}))
+	end)
 end
 
 return module
