@@ -107,7 +107,7 @@ function module.apply_to_config(config)
 	local bar_foreground = silver
 	local bar_foreground_hover = black
 	local tab_background_hover = yellow
-	local bar_background_hover = silver
+	local bar_background_hover = green
 	local active_tab_background = background
 	local active_tab_foreground = yellow
 	-- tab style (both retro and fancy style)
@@ -168,7 +168,7 @@ function module.apply_to_config(config)
 			mode_bg_colour = blue
 		else
 			mode = "NORMAL"
-			mode_bg_colour = green
+			mode_bg_colour = bar_background_hover
 		end
 
 		-- left status (mode)
