@@ -7,8 +7,27 @@ function module.apply_to_config(config)
 	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 	config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
 
+	-- [[ Font stuff ]]
+	config.font = wezterm.font("JetBrainsMono Nerd Font")
+	config.font_size = 10.5
+
+	-- [[ Padding ]]
+	config.window_padding = {
+		left = 12,
+		right = 12,
+		top = 12,
+		bottom = 12,
+	}
+
+	-- desaturate and dim inactive panes
+	config.inactive_pane_hsb = {
+		saturation = 0.75,
+		brightness = 0.5,
+	}
+
 	local theme_name = "Gruvbox Material (Gogh)"
 	config.color_scheme = theme_name
+	config.window_background_opacity = 1.0
 
 	-- [[ Get theme's colours as variables ]]
 	-- WARNING: Some themes may not have ANSI colours
@@ -32,8 +51,6 @@ function module.apply_to_config(config)
 	local white = theme_colours.brights[8]
 	local background = theme_colours.background
 	local foreground = theme_colours.foreground
-
-	config.window_background_opacity = 1.0
 
 	-- [[ Tabs ]]
 	config.enable_tab_bar = true
@@ -108,18 +125,6 @@ function module.apply_to_config(config)
 			-- fancy style only
 			inactive_tab_edge = bar_background,
 		},
-	}
-
-	-- [[ Font stuff ]]
-	config.font = wezterm.font("JetBrainsMono Nerd Font")
-	config.font_size = 10.5
-
-	-- [[ Padding ]]
-	config.window_padding = {
-		left = 12,
-		right = 12,
-		top = 12,
-		bottom = 12,
 	}
 end
 
