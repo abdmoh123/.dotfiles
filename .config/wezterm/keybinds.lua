@@ -91,6 +91,9 @@ function module.apply_to_config(config)
 			{ key = "k", mods = "SHIFT", action = act.AdjustPaneSize({ "Up", 1 }) },
 			{ key = "l", mods = "SHIFT", action = act.AdjustPaneSize({ "Right", 1 }) },
 
+			-- make pane fullscreen
+			{ key = "f", action = act.TogglePaneZoomState },
+
 			-- allows exit from pane mode
 			{ key = "Escape", action = "PopKeyTable" },
 			{ key = "Enter", action = "PopKeyTable" },
@@ -110,11 +113,8 @@ function module.apply_to_config(config)
 			{ key = "l", action = act.ActivateTabRelative(1) },
 
 			-- moving tabs left and right
-			{ key = "<", action = act.MoveTabRelative(-1) },
-			{ key = ">", action = act.MoveTabRelative(1) },
-
-			-- make pane fullscreen
-			{ key = "f", action = act.TogglePaneZoomState },
+			{ key = "<", mods = "SHIFT", action = act.MoveTabRelative(-1) },
+			{ key = ">", mods = "SHIFT", action = act.MoveTabRelative(1) },
 
 			-- allows exit from tab mode
 			{ key = "Escape", action = "PopKeyTable" },
