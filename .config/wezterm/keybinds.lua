@@ -41,6 +41,31 @@ function module.apply_to_config(config)
 
 		-- selecting workspace
 		{ key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+		-- creating new workspaces
+		{
+			key = "w",
+			mods = "LEADER|SHIFT",
+			action = act.PromptInputLine({
+				description = wezterm.format({
+					{ Attribute = { Intensity = "Bold" } },
+					{ Foreground = { AnsiColor = "Fuchsia" } },
+					{ Text = "Enter name for new workspace" },
+				}),
+				action = wezterm.action_callback(function(window, pane, line)
+					-- line will be `nil` if they hit escape without entering anything
+					-- An empty string if they just hit enter
+					-- Or the actual line of text they wrote
+					if line then
+						window:perform_action(
+							act.SwitchToWorkspace({
+								name = line,
+							}),
+							pane
+						)
+					end
+				end),
+			}),
+		},
 	}
 
 	-- select tab by number/index position
@@ -78,6 +103,7 @@ function module.apply_to_config(config)
 			{ key = "d", action = act.CloseCurrentPane({ confirm = true }) },
 			-- rotate panes
 			{ key = "r", action = act.RotatePanes("Clockwise") },
+			{ key = "r", mods = "SHIFT", action = act.RotatePanes("CounterClockwise") },
 
 			-- moving around panes
 			{ key = "h", action = act.ActivatePaneDirection("Left") },
