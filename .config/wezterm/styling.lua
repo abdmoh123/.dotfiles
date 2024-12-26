@@ -92,7 +92,7 @@ function module.apply_to_config(config)
 	local bar_foreground = silver
 	local bar_foreground_hover = black
 	local tab_background_hover = yellow
-	local bar_background_hover = green
+	local bar_background_hover = silver
 	local active_tab_background = background
 	local active_tab_foreground = yellow
 	-- tab style (both retro and fancy style)
@@ -215,6 +215,44 @@ function module.apply_to_config(config)
 			{ Text = current_cmd },
 			{ Text = wezterm.nerdfonts.md_view_dashboard .. " " .. workspace_name .. " " },
 		}))
+	end)
+
+	-- increase tab max width so it's easier to read
+	config.tab_max_width = 32
+	wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+		local function format_tab_title(tab)
+			local title = tab.tab_title
+			-- return manually renamed tab title if it exists
+			if title and #title > 0 then
+				return wezterm.truncate_right(title, max_width - 6)
+			end
+			-- otherwise return the title of the active pane
+			return wezterm.truncate_right(tab.active_pane.title, max_width - 6)
+		end
+
+		local tab_title = format_tab_title(tab)
+		local tab_num_background = bar_foreground
+		local tab_text_intensity = "Normal"
+
+		if tab.is_active then
+			tab_num_background = active_tab_foreground
+		end
+		if hover then
+			tab_num_background = tab_background_hover
+			tab_text_intensity = "Bold"
+		end
+
+		return {
+			{ Background = { Color = bar_background } },
+			{ Text = " " },
+			{ Background = { Color = tab_num_background } },
+			{ Foreground = { Color = background } },
+			{ Attribute = { Intensity = tab_text_intensity } },
+			{ Text = " " .. (tab.tab_index + 1) .. " " },
+			"ResetAttributes",
+			{ Attribute = { Intensity = tab_text_intensity } },
+			{ Text = " " .. tab_title .. " " },
+		}
 	end)
 end
 
