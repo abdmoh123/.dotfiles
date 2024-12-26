@@ -1,8 +1,9 @@
 *.log
+*history*
 
 PowerShell/Help/
 PowerShell/Scripts/
 
+# Specific files to ignore
 .config/lazygit/state.yml
-
-*history*
+.config/scoop/config.json
