@@ -31,3 +31,5 @@ def --env yy [...args] {
 # setup zoxide
 source ~/.zoxide.nu
 
+# aliases
+source ./aliases.nu
