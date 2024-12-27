@@ -17,6 +17,9 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
+# set default editor to neovim
+$env.config.buffer_editor = "nvim"
+
 # carapace
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 mkdir ~/.cache/carapace
