@@ -31,5 +31,8 @@ def --env yy [...args] {
 # setup zoxide
 source ~/.zoxide.nu
 
+# add fzf keybinds
+source ./fzf.nu
+
 # aliases
 source ./aliases.nu
