@@ -1,3 +1,10 @@
+def file_fzf [] {
+    fzf --preview 'bat -n --color=always --line-range :500 {}'
+}
+def dir_fzf [] {
+    fzf --preview 'nu -c "eza --tree --color=always {} | split row \"\n\" | range 0..200 | to text"'
+}
+
 # fzf keybinds
 $env.config.keybindings = [
     {
@@ -7,7 +14,7 @@ $env.config.keybindings = [
         mode: emacs
         event: {
             send: executehostcommand,
-            cmd: "z (fd --type=d --strip-cwd-prefix --hidden --follow --exclude .git | fzf)"
+            cmd: "z (fd --type=d --strip-cwd-prefix --hidden --follow --exclude .git | dir_fzf)"
         }
     }
     {
@@ -17,7 +24,7 @@ $env.config.keybindings = [
         mode: emacs
         event: {
             send: executehostcommand,
-            cmd: "commandline edit -a (fd --type=f --strip-cwd-prefix --hidden --follow --exclude .git | fzf | str trim) | commandline set-cursor -e"
+            cmd: "commandline edit -a (fd --type=f --strip-cwd-prefix --hidden --follow --exclude .git | file_fzf | str trim) | commandline set-cursor -e"
         }
     }
     {
