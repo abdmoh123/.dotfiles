@@ -31,6 +31,9 @@ def --env yy [...args] {
 # setup zoxide
 source ~/.zoxide.nu
 
+# rm command moves to trash by default
+$env.rm_always_trash = true
+
 # add fzf keybinds
 source ./fzf.nu
 
