@@ -6,7 +6,7 @@ config.animation_fps = 60
 
 -- [[ Windows related stuff ]]
 config.win32_system_backdrop = "Acrylic"
-config.default_prog = { "pwsh", "-NoLogo" }
+config.default_prog = { "nu" }
 
 -- [[ Colour and appearance ]]
 local styling = require("styling")
