@@ -31,3 +31,7 @@ zoxide init nushell | save -f ~/.zoxide.nu
 
 # fix bug with wezterm windows scrolling up with every key press
 $env.config.shell_integration.osc133 = false
+
+# starship
+mkdir ~/.cache/starship
+starship init nu | save -f ~/.cache/starship/init.nu

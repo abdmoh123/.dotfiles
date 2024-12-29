@@ -31,6 +31,9 @@ def --env yy [...args] {
 # setup zoxide
 source ~/.zoxide.nu
 
+# setup starship
+use ~/.cache/starship/init.nu
+
 # rm command moves to trash by default
 $env.rm_always_trash = true
 

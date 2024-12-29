@@ -7,6 +7,9 @@
 . $PSScriptRoot\Aliases\eza.ps1
 . $PSScriptRoot\Aliases\zoxide.ps1
 
+# setup starship
+Invoke-Expression (&starship init powershell)
+
 # Automatically start ssh agent for github pushing
 # Start-SshAgent -Quiet
 
