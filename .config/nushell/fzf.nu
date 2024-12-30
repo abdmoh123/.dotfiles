@@ -38,3 +38,8 @@ $env.config.keybindings = [
         }
     }
 ]
+
+# Customise the look of fzf
+$env.FZF_DEFAULT_OPTS = $"
+    --border='rounded' --border-label=' Search' --border-label-pos=2 --preview-window='border-rounded'
+    --prompt='󰐊 ' --marker='◆' --pointer='󰐊' --separator='─' --scrollbar='│'"
