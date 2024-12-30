@@ -30,6 +30,10 @@ alias gc = git commit
 alias gca = git commit -a
 alias gcm = git commit -m
 alias gcam = git commit -a -m
+# pushing and pulling
+alias gpl = git pull
+alias gps = git push
+alias gpsu = git push -u
 # restoring and resetting
 alias gro = git restore
 alias gros = git restore --staged
