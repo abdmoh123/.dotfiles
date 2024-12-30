@@ -203,8 +203,11 @@ return {
           },
         },
       },
-
+      clangd = {
+        filetypes = { 'c', 'cpp', 'cxx', 'h', 'hpp', 'hxx', 'objc', 'objcpp', 'cuda', 'proto' },
+      },
       basedpyright = {
+        filetypes = { 'python' },
         settings = {
           basedpyright = {
             disableOrganizeImports = true,
@@ -218,6 +221,7 @@ return {
         },
       },
       ruff = {
+        filetypes = { 'python' },
         settings = {
           configurationPreference = 'filesystemFirst', -- project ruff.toml takes priority
           lineLength = 120,
