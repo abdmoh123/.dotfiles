@@ -37,8 +37,11 @@ use ~/.cache/starship/init.nu
 # rm command moves to trash by default
 $env.rm_always_trash = true
 
-# add fzf keybinds
+# add fzf config (keybinds + theming)
 source ./fzf.nu
+
+# add bat configs (theme)
+source ./bat.nu
 
 # aliases
 source ./aliases.nu
