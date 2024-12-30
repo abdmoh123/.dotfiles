@@ -133,19 +133,19 @@ disabled = false
 
 [git_commit]
 commit_hash_length = 6
-format = '[\(\#$hash $tag_symbol$tag\)]($style) '
+format = '\([#$hash$tag_symbol$tag]($style)\)(yellow) '
 style = 'bold cyan'
 only_detached = true
 tag_disabled = false
-tag_symbol = ' '
+tag_symbol = '  '
 disabled = false
 
 [git_state]
-rebase = '[REBASE](green)'
-merge = '[MERGING](yellow)'
-revert = '[REVERTING](red)'
-cherry_pick = '[CHERRY-PICKING](purple)'
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
+rebase = '[REBASING](bold green)'
+merge = '[MERGING](bold yellow)'
+revert = '[REVERTING](bold red)'
+cherry_pick = '[CHERRY-PICKING](bold purple)'
+format = '\[[$state( $progress_current/$progress_total)]($style)\]'
 style = 'cyan'
 disabled = false
 
