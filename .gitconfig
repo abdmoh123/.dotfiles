@@ -6,6 +6,7 @@
 
 [delta]
 	navigate = true  # use n and N to move between diff sections
+	syntax-theme = base16
 
 [merge]
 	conflictstyle = zdiff3
