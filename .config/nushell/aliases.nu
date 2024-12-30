@@ -16,3 +16,24 @@ alias tree = eza --tree --level=2 --color=always --icons=always --group-director
 alias treea = eza --tree -a --level=2 --color=always --icons=always --group-directories-first
 alias treel = eza --tree --color=always --icons=always --group-directories-first
 alias treela = eza --tree -a --color=always --icons=always --group-directories-first
+
+# git shortcuts
+alias lz = lazygit
+alias g = git
+alias gs = git status
+alias gco = git checkout
+alias ga = git add
+alias gd = git diff
+alias gl = git log
+# committing
+alias gc = git commit
+alias gca = git commit -a
+alias gcm = git commit -m
+alias gcam = git commit -a -m
+# restoring and resetting
+alias gro = git restore
+alias gros = git restore --staged
+alias grs = git reset
+alias grsm = git reset --mixed
+alias grss = git reset --soft
+# git reset hard is not aliased to discourage its use and prevent mistakes
