@@ -1,5 +1,27 @@
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true  # use n and N to move between diff sections
+
+[merge]
+	conflictstyle = zdiff3
+
 [init]
 	defaultBranch = main
+
 [user]
 	email = abdhawisa@gmail.com
 	name = abdmoh123
+
+[includeIf "gitdir:D:/D Documents/Projects/Coding/Work Projects/"]
+	path = "D:/D Documents/Projects/Coding/Work Projects/.gitconfig"
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
