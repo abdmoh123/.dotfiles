@@ -28,14 +28,17 @@ def --env yy [...args] {
 	rm -fp $tmp
 }
 
-# setup zoxide
-source ~/.zoxide.nu
-
 # setup starship
 use ~/.cache/starship/init.nu
 
 # rm command moves to trash by default
 $env.rm_always_trash = true
+
+# disable dotnet telemetry
+$env.DOTNET_CLI_TELEMETRY_OPTOUT = true
+
+# setup zoxide
+source ~/.zoxide.nu
 
 # add fzf config (keybinds + theming)
 source ./fzf.nu
