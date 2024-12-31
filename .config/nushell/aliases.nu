@@ -1,10 +1,14 @@
-# zoxide -> cd
-alias nucd = cd  # keep original function
-alias cd = z
-alias cdi = zi
+# Zoxide aliases
+# ===============================================
 
-# eza -> ls
-alias nuls = ls  # keep original function
+alias nucd = cd  # Original nushell cd
+alias cd = z     # cd with zoxide
+alias cdi = zi   # zoxide cd with fzf integration
+
+# Eza aliases
+# =====================================================================================================================
+
+alias nuls = ls  # Original nushell ls (outputs table)
 alias ls = eza --color=always --icons=always --group-directories-first
 alias la = eza -a --color=always --icons=always --group-directories-first
 alias lsa = la
@@ -17,28 +21,31 @@ alias treea = eza --tree -a --level=2 --color=always --icons=always --group-dire
 alias treel = eza --tree --color=always --icons=always --group-directories-first
 alias treela = eza --tree -a --color=always --icons=always --group-directories-first
 
-# git shortcuts
-alias lz = lazygit
+# Git shortcuts
+# ==============================================================================
 
-alias g = git
-alias gs = git status
-alias gco = git checkout
-alias ga = git add
-alias gd = git diff
-alias gl = git log
+alias lz = lazygit                   # Lazygit alias
 
-alias gc = git commit
-alias gca = git commit -a
-alias gcm = git commit -m
-alias gcam = git commit -a -m
+alias g = git                        # Git alias
+alias gs = git status                # git status
+alias gco = git checkout             # git checkout
+alias ga = git add                   # git add
+alias gd = git diff                  # git diff
+alias gl = git log                   # git log
 
-alias gpl = git pull  # Git pull
-alias gpsh = git push  # Git push
-alias gpshu = git push -u  # Git push + set upstream
+alias gc = git commit                # git commit
+alias gca = git commit -a            # git commit -a
+alias gcm = git commit -m            # git commit -m
+alias gcam = git commit -a -m        # git commit -a -m
 
-alias grsto = git restore  # Git restore
-alias grstos = git restore --staged  # Git restore --staged
-alias grst = git reset  # Git reset
-alias grstm = git reset --mixed  # Git reset --mixed
-alias grsts = git reset --soft  # Git reset --soft
-# git reset hard is not aliased to discourage its use and prevent mistakes
+alias gpl = git pull                 # git pull
+alias gpsh = git push                # git push
+alias gpshu = git push -u            # git push + set upstream
+
+alias grsto = git restore            # git restore
+alias grstos = git restore --staged  # git restore --staged
+
+alias grst = git reset               # git reset
+alias grstm = git reset --mixed      # git reset --mixed
+alias grsts = git reset --soft       # git reset --soft
+# NOTE: git reset hard is not aliased to discourage its use and prevent mistakes
