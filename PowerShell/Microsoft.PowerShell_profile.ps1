@@ -10,6 +10,9 @@
 # setup starship
 Invoke-Expression (&starship init powershell)
 
+$env:POWERSHELL_TELEMETRY_OPTOUT = 1
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = 1
+
 # Automatically start ssh agent for github pushing
 # Start-SshAgent -Quiet
 
