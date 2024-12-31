@@ -24,7 +24,7 @@ tab_inactive = { fg = "#a89984", bg = "#3c3836" }
 tab_width    = 1
 
 # Border
-border_symbol = "┃"
+border_symbol = "│"
 border_style  = { fg = "#665c54" }
 
 # Highlighting
