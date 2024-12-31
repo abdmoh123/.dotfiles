@@ -19,25 +19,26 @@ alias treela = eza --tree -a --color=always --icons=always --group-directories-f
 
 # git shortcuts
 alias lz = lazygit
+
 alias g = git
 alias gs = git status
 alias gco = git checkout
 alias ga = git add
 alias gd = git diff
 alias gl = git log
-# committing
+
 alias gc = git commit
 alias gca = git commit -a
 alias gcm = git commit -m
 alias gcam = git commit -a -m
-# pushing and pulling
-alias gpl = git pull
-alias gps = git push
-alias gpsu = git push -u
-# restoring and resetting
-alias gro = git restore
-alias gros = git restore --staged
-alias grs = git reset
-alias grsm = git reset --mixed
-alias grss = git reset --soft
+
+alias gpl = git pull  # Git pull
+alias gpsh = git push  # Git push
+alias gpshu = git push -u  # Git push + set upstream
+
+alias grsto = git restore  # Git restore
+alias grstos = git restore --staged  # Git restore --staged
+alias grst = git reset  # Git reset
+alias grstm = git reset --mixed  # Git reset --mixed
+alias grsts = git reset --soft  # Git reset --soft
 # git reset hard is not aliased to discourage its use and prevent mistakes
