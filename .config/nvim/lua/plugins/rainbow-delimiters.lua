@@ -1,6 +1,7 @@
 return {
   'HiPhish/rainbow-delimiters.nvim',
   dependencies = { 'lukas-reineke/indent-blankline.nvim' },
+  event = { 'BufReadPost', 'BufNewFile' },
   ---@type rainbow_delimiters.config
   config = function()
     local rainbow_delimiters = require 'rainbow-delimiters'
