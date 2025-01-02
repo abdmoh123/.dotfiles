@@ -7,3 +7,4 @@ PowerShell/Scripts/
 # Specific files to ignore
 .config/lazygit/state.yml
 .config/scoop/config.json
+.config/github-copilot/apps.json
