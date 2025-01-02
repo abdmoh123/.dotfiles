@@ -3,6 +3,9 @@
 -- adds a border around the entire file explorer
 require("full-border"):setup()
 
+-- sets custom folder rules (e.g. sort by date modified in Downloads folder)
+require("folder-rules"):setup()
+
 -- adds size and modified time to right of file/dir row
 function Linemode:size_and_mtime()
 	local time = math.floor(self._file.cha.mtime or 0)
