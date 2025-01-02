@@ -125,7 +125,7 @@ repo_root_style = 'bold yellow'
 [git_branch]
 format = " on [$symbol $branch(:$remote_branch)]($style)"
 symbol = "[](bold yellow)"
-style = "italic yellow"
+style = "yellow"
 truncation_symbol = "…"
 truncation_length = 12
 only_attached = false
@@ -157,17 +157,17 @@ ignore_submodules = true
 disabled = false
 
 [git_status]
-style = "bold italic blue"
+style = "bold blue"
 format = "[$ahead_behind$staged$modified$renamed$deleted$untracked$conflicted]($style)"
-conflicted = "[  $count](italic bold red)"
-ahead = "[  $count](italic green)"
-behind = "[  $count](italic red)"
-diverged = "[ 󱡷 +┤[${ahead_count}](regular white)-┤[${behind_count}](regular white)](italic bright-magenta)"
-untracked = "[ ◌ $count](italic dimmed white)"
-modified = "[ 󰜥 $count](italic bold cyan)"
-staged = "[  $count](italic bold green)"
-renamed = "[ 󰁔 $count](italic bold cyan)"
-deleted = "[  $count](italic bold red)"
+conflicted = "[  $count](bold red)"
+ahead = "[ $count](green)"
+behind = "[ $count](red)"
+diverged = "[ 󱡷 +┤[${ahead_count}](regular white)-┤[${behind_count}](regular white)](bright-magenta)"
+untracked = "[  $count](dimmed white)"
+modified = "[  $count](bold cyan)"
+staged = "[  $count](bold green)"
+renamed = "[  $count](bold cyan)"
+deleted = "[  $count](bold red)"
 disabled = false
 
 [time]
