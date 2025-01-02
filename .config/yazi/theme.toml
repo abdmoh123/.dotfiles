@@ -1,2 +1,106 @@
-[flavor]
-use = 'gruvbox'
+# [flavor]
+# dark = "gruvbox-dark"
+# use = "gruvbox-dark"
+
+# : Manager {{{
+
+[manager]
+cwd = { fg = "blue" }
+
+# Hovered
+hovered         = { reversed = true }
+preview_hovered = { underline = true }
+
+# Find
+find_keyword  = { fg = "green", italic = true }
+find_position = { fg = "blue", bg = "reset", italic = false }
+
+# Marker
+marker_copied   = { fg = "green", bg = "green" }
+marker_cut      = { fg = "red", bg = "red" }
+marker_marked   = { fg = "blue", bg = "blue" }
+marker_selected = { fg = "cyan", bg = "cyan" }
+
+# Count
+count_copied   = { fg = "black", bg = "green" }
+count_cut      = { fg = "black", bg = "red" }
+count_selected = { fg = "black", bg = "blue" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "darkgray" }
+
+# : }}}
+
+# : Mode {{{
+
+[mode]
+normal_main = { fg = "black", bg = "silver", bold = true }
+select_main = { fg = "black", bg = "red", bold = true }
+unset_main  = { fg = "black", bg = "green", bold = true }
+
+normal_alt = { fg = "white", bg = "darkgray", bold = true }
+select_alt = { fg = "white", bg = "darkgray", bold = true }
+unset_alt  = { fg = "white", bg = "darkgray", bold = true }
+
+# : }}}
+
+# : Status {{{
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "darkgray", bg = "darkgray" }
+
+# Progress
+progress_label  = { bold = true }
+# for some reason fg and bg are flipped
+progress_normal = { bg = "black", fg = "blue" }
+progress_error  = { bg = "black", fg = "red" }
+
+# Permissions
+permissions_type  = { fg = "blue" }
+permissions_read  = { fg = "green" }
+permissions_write = { fg = "yellow" }
+permissions_exec  = { fg = "red" }
+permissions_sep   = { fg = "darkgray" }
+
+# : }}}
+
+# : Notify {{{
+
+[notify]
+title_info  = { fg = "blue" }
+title_warn  = { fg = "yellow" }
+title_error = { fg = "red" }
+
+# Icons
+icon_info  = ""
+icon_warn  = ""
+icon_error = ""
+
+# : }}}
+
+# : File-specific styles {{{
+
+[filetype]
+rules = [
+	# Images
+	{ mime = "image/*", fg = "magenta" },
+
+	# Media
+	{ mime = "{audio,video}/*", fg = "cyan" },
+
+	# Archives
+	{ mime = "application/*zip", fg = "red" },
+	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "red" },
+
+	# Documents
+	{ mime = "application/{pdf,doc,ppt,rtf,vnd.*}", fg = "green" },
+
+	# Fallback
+	{ name = "*", fg = "white" },
+	{ name = "*/", fg = "blue" }
+]
+
+# : }}}
