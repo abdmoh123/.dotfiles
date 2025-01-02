@@ -28,7 +28,7 @@ count_selected = { fg = "black", bg = "blue" }
 
 # Border
 border_symbol = "│"
-border_style  = { fg = "darkgray" }
+border_style  = { fg = "silver" }
 
 # : }}}
 

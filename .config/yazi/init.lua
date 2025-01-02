@@ -1,5 +1,8 @@
 -- ~/.config/yazi/init.lua
 
+-- adds a border around the entire file explorer
+require("full-border"):setup()
+
 -- adds size and modified time to right of file/dir row
 function Linemode:size_and_mtime()
 	local time = math.floor(self._file.cha.mtime or 0)
