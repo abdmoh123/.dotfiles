@@ -19,5 +19,9 @@ return {
     { '<C-t>v', '<CMD>ToggleTerm direction=vertical<CR>', desc = 'Open [T]erminal [V]ertically' },
     { '<C-t>f', '<CMD>ToggleTerm direction=float<CR>', desc = 'Open [F]loating [T]erminal' },
     { '<C-t>t', '<CMD>ToggleTerm direction=tab<CR>', desc = 'Open [T]erminal in new [T]ab' },
+    -- Exit terminal mode by double tapping escape
+    -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+    -- or just use <C-\><C-n> to exit terminal mode
+    { '<Esc><Esc>', '<C-\\><C-n>', mode = 't', desc = 'Exit terminal mode' },
   },
 }

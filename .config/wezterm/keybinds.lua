@@ -29,17 +29,12 @@ function module.apply_to_config(config)
 		-- split panes horizontally or vertically
 		{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) }, -- to right
 		{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) }, -- to bottom
-		-- moving around panes
-		{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
-		{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
-		{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-		{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
 
 		-- key tables
 		{ key = "p", mods = "LEADER", action = act.ActivateKeyTable({ name = "pane_mode", one_shot = false }) },
 		{ key = "t", mods = "LEADER", action = act.ActivateKeyTable({ name = "tab_mode", one_shot = false }) },
 
-		-- selecting workspace
+		-- selecting workspace (can also create workspaces with random names)
 		{ key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
 		-- creating new workspaces
 		{
