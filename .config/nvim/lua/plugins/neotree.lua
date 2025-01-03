@@ -10,17 +10,6 @@ return {
   },
   cmd = { 'Neotree' },
   opts = function(_, opts)
-    -- lsp rename but for files in Neotree using snacks.nvim
-    local function on_move(data)
-      Snacks.rename.on_rename_file(data.source, data.destination)
-    end
-    local events = require 'neo-tree.events'
-    opts.event_handlers = opts.event_handlers or {}
-    vim.list_extend(opts.event_handlers, {
-      { event = events.FILE_MOVED, handler = on_move },
-      { event = events.FILE_RENAMED, handler = on_move },
-    })
-
     require('neo-tree').setup {
       source_selector = {
         winbar = false,
@@ -38,7 +27,21 @@ return {
           with_expanders = true,
         },
       },
+      nesting_rules = {
+        ['xaml'] = { 'xaml.cs' },
+        ['fxml'] = { 'java' },
+      },
     }
+
+    local function on_move(data)
+      Snacks.rename.on_rename_file(data.source, data.destination)
+    end
+    local events = require 'neo-tree.events'
+    opts.event_handlers = opts.event_handlers or {}
+    vim.list_extend(opts.event_handlers, {
+      { event = events.FILE_MOVED, handler = on_move },
+      { event = events.FILE_RENAMED, handler = on_move },
+    })
   end,
   keys = {
     { '<leader><Tab>', '<CMD>Neotree filesystem reveal left<CR>', desc = 'Reveal Explorer', silent = true },
