@@ -4,7 +4,7 @@
 return {
   'neovim/nvim-lspconfig',
   event = { 'BufReadPost', 'BufNewFile' },
-  cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
+  cmd = { 'LspInfo', 'LspInstall', 'LspUninstall', 'Mason' },
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     'williamboman/mason.nvim',
@@ -95,7 +95,7 @@ return {
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        map('<leader>rs', vim.lsp.buf.rename, '[R]ename [S]ymbol')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
@@ -230,7 +230,9 @@ return {
           },
         },
       },
-      jdtls = {},
+      jdtls = {
+        filetypes = { 'java', 'fxml' },
+      },
     }
 
     -- Ensure the servers and tools above are installed
@@ -259,6 +261,8 @@ return {
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
         end,
+        -- required to prevent 2 jdtls lsps from starting
+        ['jdtls'] = function() end,
       },
     }
   end,
