@@ -80,6 +80,13 @@ return {
       desc = 'Previous Reference',
       mode = { 'n', 't' },
     },
+    {
+      '<leader>bx',
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = 'Delete current buffer',
+    },
   },
   init = function()
     vim.api.nvim_create_autocmd('User', {
