@@ -4,8 +4,18 @@ return {
     local builtin = require 'statuscol.builtin'
     require('statuscol').setup {
       -- configuration goes here, for example:
-      ft_ignore = { 'neo-tree', 'undotree' },
-      bt_ignore = { 'neo-tree' },
+      ft_ignore = {
+        'neo-tree',
+        'undotree',
+        'diff',
+        'alpha',
+        'dapui_scopes',
+        'dapui_watches',
+        'dapui_breakpoints',
+        'dapui_console',
+        'dapui_stacks',
+        'dap-repl',
+      },
       segments = {
         -- diagnostic signs
         {
