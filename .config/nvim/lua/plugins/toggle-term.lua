@@ -7,11 +7,27 @@ return {
     shell = function()
       if vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1 then
         -- use pwsh if windows
-        return 'pwsh -NoLogo'
+        return 'nu'
       else
         -- use bash if linux
         return '/bin/bash'
       end
+    end,
+    size = function(term)
+      if term.direction == 'horizontal' then
+        return vim.o.lines * 0.35
+      elseif term.direction == 'vertical' then
+        return vim.o.columns * 0.45
+      else
+        return 20
+      end
+    end,
+    shade_terminals = false,
+    -- fix barbecue bug where winbar isn't disabled until you exit terminal mode
+    on_open = function(term)
+      vim.defer_fn(function()
+        vim.wo[term.window].winbar = ''
+      end, 0)
     end,
   },
   keys = {
