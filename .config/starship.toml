@@ -6,7 +6,7 @@ add_newline = true
 
 continuation_prompt = "[:::](dimmed white)"
 
-format = """$directory\
+format = """$shell$directory\
 $git_branch$git_commit$git_state$git_status$git_metrics\
 (\
 $nix_shell\
@@ -67,7 +67,6 @@ $env_var\
 $jobs\
 $sudo\
 $username\
-$shell\
 $character"""
 
 right_format = """$singularity\
@@ -90,13 +89,14 @@ $cmd_duration\
 symbol = '─'
 
 [shell]
-zsh_indicator = '%'
-bash_indicator = ''
-fish_indicator = '󰈺'
-nu_indicator = '󰟆'
-cmd_indicator = ''
-pwsh_indicator = '󰨊'
-style = 'bold green'
+zsh_indicator = '[% zsh](bg:green fg:black)'
+bash_indicator = '[ bash](bg:green fg:black)'
+fish_indicator = '[󰈺 fsh](bg:green fg:black)'
+nu_indicator = '[󰟆 nu](bg:green fg:black)'
+cmd_indicator = '[ cmd](bg:green fg:black)'
+pwsh_indicator = '[󰨊 pwsh](bg:green fg:black)'
+style = 'bold fg:green'
+format = '[$indicator]($style) '
 disabled = false
 
 [username]
@@ -106,9 +106,10 @@ style_root = 'bold red'
 disabled = false
 
 [character] # The name of the module we are configuring is 'character'
-success_symbol = "[󰐊](bold green)"
-error_symbol = "[󰀩](bold red)"
-vimcmd_symbol = "[■](dimmed green)"
+format = '[$symbol]($style) '
+success_symbol = "[](bold green)"
+error_symbol = "[](bold red)"
+vimcmd_symbol = "[](bold green)" # only supported in cmd, fish and zsh
 
 [directory]
 truncation_length = 3
@@ -150,7 +151,7 @@ style = 'cyan'
 disabled = false
 
 [git_metrics]
-format = '([ $added]($added_style))([ $deleted]($deleted_style))'
+format = '([ 󰅃$added]($added_style))([ 󰅀$deleted]($deleted_style))'
 added_style = 'italic dimmed green'
 deleted_style = 'italic dimmed red'
 ignore_submodules = true
@@ -160,8 +161,8 @@ disabled = false
 style = "bold blue"
 format = "[$ahead_behind$staged$modified$renamed$deleted$untracked$conflicted]($style)"
 conflicted = "[  $count](bold red)"
-ahead = "[ $count](green)"
-behind = "[ $count](red)"
+ahead = "[  $count](green)"
+behind = "[  $count](red)"
 diverged = "[ 󱡷 +┤[${ahead_count}](regular white)-┤[${behind_count}](regular white)](bright-magenta)"
 untracked = "[  $count](dimmed white)"
 modified = "[  $count](bold cyan)"
@@ -172,10 +173,10 @@ disabled = false
 
 [time]
 disabled = false
-format = "[ $time]($style)"
+format = "[ $time]($style)"
 time_format = "%R"
 utc_time_offset = "local"
-style = "italic dimmed white"
+style = "bold bg:white fg:black"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
