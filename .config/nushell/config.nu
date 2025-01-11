@@ -17,6 +17,9 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
+# stop showing the banner
+$env.config.show_banner = false
+
 # vi mode stuff
 $env.config.edit_mode = 'vi'
 $env.PROMPT_INDICATOR_VI_NORMAL = '󰝤 '
