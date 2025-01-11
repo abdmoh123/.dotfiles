@@ -62,6 +62,13 @@ return {
           winhighlight = 'Normal:Normal,FloatBorder:Normal,FloatTitle:Normal',
         },
       },
+      lazygit = {
+        border = 'rounded',
+        wo = {
+          winblend = 0,
+          winhighlight = 'Normal:Normal,FloatBorder:Normal,FloatTitle:Normal',
+        },
+      },
     },
   },
   keys = {
