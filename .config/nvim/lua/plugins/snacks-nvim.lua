@@ -41,8 +41,44 @@ return {
     },
     quickfile = { enabled = true }, -- speeds up inputted file loading (e.g. nvim foo.txt)
     words = { enabled = true }, -- allow jumping between references of a symbol (e.g. variable)
+    notifier = { -- prettier notifications
+      timeout = 2500, -- 2.5s
+      -- all notifications are stored in history
+      level = vim.log.levels.TRACE,
+      ---@type snacks.notifier.style
+      style = 'compact',
+    },
+    styles = {
+      notification = {
+        ft = 'markdown',
+        wo = { wrap = true }, -- Wrap notifications
+      },
+      notification_history = {
+        border = 'rounded',
+        ft = 'markdown',
+        wo = {
+          wrap = true, -- Wrap notifications
+          colorcolumn = '',
+          winhighlight = 'Normal:Normal,FloatBorder:Normal,FloatTitle:Normal',
+        },
+      },
+    },
   },
   keys = {
+    {
+      '<leader>nd',
+      function()
+        Snacks.notifier.hide()
+      end,
+      desc = 'Dismiss notifications',
+    },
+    {
+      '<leader>nh',
+      function()
+        Snacks.notifier.show_history()
+      end,
+      desc = 'Notification history',
+    },
     {
       '<leader>gl',
       function()
