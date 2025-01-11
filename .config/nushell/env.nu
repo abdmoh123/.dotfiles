@@ -24,13 +24,15 @@ $env.config.buffer_editor = "nvim"
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 mkdir ~/.cache/carapace
 carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
-source ~/.cache/carapace/init.nu
 
 # zoxide
 zoxide init nushell | save -f ~/.zoxide.nu
 
 # fix bug with wezterm windows scrolling up with every key press
 $env.config.shell_integration.osc133 = false
+
+# rm command moves to trash by default
+$env.rm_always_trash = true
 
 # starship
 mkdir ~/.cache/starship

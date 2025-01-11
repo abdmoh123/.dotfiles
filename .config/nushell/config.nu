@@ -17,6 +17,11 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
+# vi mode stuff
+$env.config.edit_mode = 'vi'
+$env.PROMPT_INDICATOR_VI_NORMAL = '󰝤 '
+$env.PROMPT_INDICATOR_VI_INSERT = '󱗼 '
+
 # setup yazi to allow cwd to change (yy alias)
 def --env yy [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
@@ -28,11 +33,11 @@ def --env yy [...args] {
 	rm -fp $tmp
 }
 
+# setup carapace auto-complete
+source ~/.cache/carapace/init.nu
+
 # setup starship
 use ~/.cache/starship/init.nu
-
-# rm command moves to trash by default
-$env.rm_always_trash = true
 
 # disable dotnet telemetry
 $env.DOTNET_CLI_TELEMETRY_OPTOUT = true
