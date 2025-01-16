@@ -166,22 +166,27 @@ function module.apply_to_config(config)
 		if window:active_key_table() then
 			mode = format_mode_text(window:active_key_table())
 			if mode == "COPY" then
+				mode = wezterm.nerdfonts.md_content_copy .. " " .. mode
 				mode_bg_colour = red
 			elseif mode == "SEARCH" then
+				mode = wezterm.nerdfonts.fa_search .. " " .. mode
 				mode_bg_colour = aqua
 			elseif mode == "TAB" then
+				mode = wezterm.nerdfonts.md_tab .. " " .. mode
 				mode_bg_colour = yellow
 			elseif mode == "PANE" then
+				mode = wezterm.nerdfonts.fa_square_o .. " " .. mode
 				mode_bg_colour = purple
 			else
 				-- fallback
+				mode = wezterm.nerdfonts.fa_question_circle_o .. " " .. mode
 				mode_bg_colour = blue
 			end
 		elseif window:leader_is_active() then
-			mode = "LEADER"
+			mode = wezterm.nerdfonts.fa_dot_circle_o .. " LEADER"
 			mode_bg_colour = blue
 		else
-			mode = "NORMAL"
+			mode = wezterm.nerdfonts.fa_circle_o .. " NORMAL"
 			mode_bg_colour = bar_background_hover
 		end
 
