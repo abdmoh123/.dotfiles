@@ -11,14 +11,6 @@ function module.apply_to_config(config)
 	config.font = wezterm.font("JetBrainsMono Nerd Font")
 	config.font_size = 10.5
 
-	-- [[ Padding ]]
-	config.window_padding = {
-		left = 12,
-		right = 12,
-		top = 12,
-		bottom = 12,
-	}
-
 	-- desaturate and dim inactive panes
 	config.inactive_pane_hsb = {
 		saturation = 0.75,
@@ -63,14 +55,36 @@ function module.apply_to_config(config)
 	local MAXIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_maximize .. " "
 	local MINIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_minimize .. " "
 
+	-- [[ Padding ]]
+	local padding_val = 1.0
+	local conv_to_cell = function(val)
+		return val .. "cell"
+	end
+	config.window_padding = {
+		left = 0,
+		right = 0,
+		top = conv_to_cell(padding_val / 2.0),
+		bottom = 0,
+	}
+	config.window_frame = {
+		border_top_height = conv_to_cell(padding_val / 2.0),
+		border_bottom_height = conv_to_cell(padding_val / 2.0),
+		border_left_width = conv_to_cell(padding_val),
+		border_right_width = conv_to_cell(padding_val),
+		border_top_color = background,
+		border_bottom_color = background,
+		border_left_color = background,
+		border_right_color = background,
+	}
+
 	-- styling for retro tab bar only
 	if config.use_fancy_tab_bar == false then
 		config.tab_bar_style = {
 			window_close = wezterm.format({
-				{ Text = CLOSE_ICON },
+				{ Text = CLOSE_ICON .. " " },
 			}),
 			window_close_hover = wezterm.format({
-				{ Text = CLOSE_ICON },
+				{ Text = CLOSE_ICON .. " " },
 			}),
 			window_maximize = wezterm.format({
 				{ Text = MAXIMISE_ICON },
@@ -88,13 +102,14 @@ function module.apply_to_config(config)
 	end
 
 	-- set tab bar colours
-	local bar_background = grey
+	local bar_background = background
 	local bar_foreground = silver
 	local bar_foreground_hover = black
+	local tab_background = black
 	local tab_background_hover = yellow
 	local bar_background_hover = silver
-	local active_tab_background = background
-	local active_tab_foreground = yellow
+	local active_tab_background = yellow
+	local active_tab_foreground = black
 	-- tab style (both retro and fancy style)
 	config.colors = {
 		tab_bar = {
@@ -105,7 +120,7 @@ function module.apply_to_config(config)
 				intensity = "Bold",
 			},
 			inactive_tab = {
-				bg_color = bar_background,
+				bg_color = tab_background,
 				fg_color = bar_foreground,
 			},
 			inactive_tab_hover = {
@@ -171,12 +186,16 @@ function module.apply_to_config(config)
 		end
 
 		window:set_left_status(wezterm.format({
+			{ Background = { Color = mode_fg_colour } },
+			{ Foreground = { Color = mode_bg_colour } },
+			{ Text = " " },
 			{ Background = { Color = mode_bg_colour } },
 			{ Foreground = { Color = mode_fg_colour } },
 			{ Attribute = { Intensity = "Bold" } },
-			{ Text = " " },
 			{ Text = mode },
-			{ Text = " " },
+			{ Background = { Color = mode_fg_colour } },
+			{ Foreground = { Color = mode_bg_colour } },
+			{ Text = " " },
 			"ResetAttributes",
 		}))
 
@@ -193,7 +212,7 @@ function module.apply_to_config(config)
 		current_cmd = current_cmd and basename(current_cmd) or " "
 		if current_cmd ~= " " then
 			-- add icon, border and spacing to the text
-			current_cmd = wezterm.nerdfonts.oct_command_palette .. " " .. current_cmd .. " │ "
+			current_cmd = wezterm.nerdfonts.oct_command_palette .. " " .. current_cmd
 		end
 
 		-- NOTE: This doesn't work properly as get_current_working_dir() only returns the home directory
@@ -212,46 +231,55 @@ function module.apply_to_config(config)
 
 		window:set_right_status(wezterm.format({
 			-- { Text = cwd },
-			{ Text = current_cmd },
+			{ Text = current_cmd .. " │ " },
 			{ Text = wezterm.nerdfonts.md_view_dashboard .. " " .. workspace_name .. " " },
 		}))
 	end)
 
 	-- increase tab max width so it's easier to read
 	config.tab_max_width = 32
-	wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-		local function format_tab_title(tab)
-			local title = tab.tab_title
+	wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
+		local function format_tab_title(tab_in)
+			local title = tab_in.tab_title
 			-- return manually renamed tab title if it exists
 			if title and #title > 0 then
 				return wezterm.truncate_right(title, max_width - 6)
 			end
 			-- otherwise return the title of the active pane
-			return wezterm.truncate_right(tab.active_pane.title, max_width - 6)
+			return wezterm.truncate_right(tab_in.active_pane.title, max_width - 6)
 		end
 
 		local tab_title = format_tab_title(tab)
 		local tab_num_background = bar_foreground
+		local tab_num_foreground = tab_background
 		local tab_text_intensity = "Normal"
+		local border_right_foreground = tab_background
 
 		if tab.is_active then
-			tab_num_background = active_tab_foreground
+			tab_num_background = active_tab_background
+			tab_num_foreground = active_tab_foreground
+			border_right_foreground = active_tab_background
 		end
 		if hover then
 			tab_num_background = tab_background_hover
+			border_right_foreground = active_tab_background
 			tab_text_intensity = "Bold"
 		end
 
 		return {
-			{ Background = { Color = bar_background } },
-			{ Text = " " },
+			{ Background = { Color = tab_num_foreground } },
+			{ Foreground = { Color = tab_num_background } },
+			{ Text = "" },
 			{ Background = { Color = tab_num_background } },
-			{ Foreground = { Color = background } },
+			{ Foreground = { Color = tab_num_foreground } },
 			{ Attribute = { Intensity = tab_text_intensity } },
-			{ Text = " " .. (tab.tab_index + 1) .. " " },
+			{ Text = (tab.tab_index + 1) .. "▕" },
 			"ResetAttributes",
 			{ Attribute = { Intensity = tab_text_intensity } },
-			{ Text = " " .. tab_title .. " " },
+			{ Text = " " .. tab_title },
+			{ Background = { Color = background } },
+			{ Foreground = { Color = border_right_foreground } },
+			{ Text = " " },
 		}
 	end)
 end
