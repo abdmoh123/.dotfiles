@@ -29,9 +29,11 @@ return {
         vim.wo[term.window].winbar = ''
       end, 0)
     end,
+    -- toggle terminal
+    open_mapping = [[<C-\>]],
   },
   keys = {
-    { '<C-t>s', '<CMD>ToggleTerm direction=horizontal<CR>', desc = 'Open [T]erminal' },
+    { '<C-t>s', '<CMD>ToggleTerm direction=horizontal<CR>', desc = 'Open [T]erminal pane below' },
     { '<C-t>v', '<CMD>ToggleTerm direction=vertical<CR>', desc = 'Open [T]erminal [V]ertically' },
     { '<C-t>f', '<CMD>ToggleTerm direction=float<CR>', desc = 'Open [F]loating [T]erminal' },
     { '<C-t>t', '<CMD>ToggleTerm direction=tab<CR>', desc = 'Open [T]erminal in new [T]ab' },
