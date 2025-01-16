@@ -162,7 +162,7 @@ function module.apply_to_config(config)
 
 		local mode
 		local mode_bg_colour
-		local mode_fg_colour = grey
+		local mode_fg_colour = background
 		if window:active_key_table() then
 			mode = format_mode_text(window:active_key_table())
 			if mode == "COPY" then
@@ -272,7 +272,7 @@ function module.apply_to_config(config)
 		end
 
 		return {
-			{ Background = { Color = tab_num_foreground } },
+			{ Background = { Color = background } },
 			{ Foreground = { Color = tab_num_background } },
 			{ Text = "" },
 			{ Background = { Color = tab_num_background } },
