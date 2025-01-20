@@ -220,22 +220,7 @@ function module.apply_to_config(config)
 			current_cmd = wezterm.nerdfonts.oct_command_palette .. " " .. current_cmd
 		end
 
-		-- NOTE: This doesn't work properly as get_current_working_dir() only returns the home directory
-		--
-		-- local cwd = pane:get_current_working_dir()
-		-- if cwd then
-		-- 	-- add icon, border and spacing to the text
-		-- 	if type(cwd) == "userdata" then
-		-- 		-- newer versions of wezterm return a URL object instead of a string
-		-- 		cwd = cwd.file_path
-		-- 	end
-		-- 	cwd = wezterm.nerdfonts.md_folder .. " " .. cwd .. " │ "
-		-- else
-		-- 	cwd = ""
-		-- end
-
 		window:set_right_status(wezterm.format({
-			-- { Text = cwd },
 			{ Text = current_cmd .. " │ " },
 			{ Text = wezterm.nerdfonts.md_view_dashboard .. " " .. workspace_name .. " " },
 		}))
@@ -243,15 +228,24 @@ function module.apply_to_config(config)
 
 	-- increase tab max width so it's easier to read
 	config.tab_max_width = 32
-	wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
+	wezterm.on("format-tab-title", function(tab, _, panes, _, hover, max_width)
 		local function format_tab_title(tab_in)
 			local title = tab_in.tab_title
 			-- return manually renamed tab title if it exists
 			if title and #title > 0 then
 				return wezterm.truncate_right(title, max_width - 6)
 			end
-			-- otherwise return the title of the active pane
-			return wezterm.truncate_right(tab_in.active_pane.title, max_width - 6)
+
+			title = tab_in.active_pane.title .. "\\"
+			-- get only the current directory name (+ running command)
+			local split_str = {}
+			for str in title:gmatch("(.-)\\") do
+				table.insert(split_str, str)
+			end
+			local dir_name = split_str[#split_str] -- get final element
+
+			-- truncate the folder name if required
+			return wezterm.truncate_right(dir_name, max_width - 6)
 		end
 
 		local tab_title = format_tab_title(tab)
