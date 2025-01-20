@@ -14,7 +14,7 @@ function module.apply_to_config(config)
 	-- desaturate and dim inactive panes
 	config.inactive_pane_hsb = {
 		saturation = 0.75,
-		brightness = 0.5,
+		brightness = 0.85,
 	}
 
 	local theme_name = "Gruvbox Material (Gogh)"
