@@ -19,7 +19,28 @@ return {
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
 
-    -- ... and there is more!
-    --  Check out: https://github.com/echasnovski/mini.nvim
+    -- mini files
+    require('mini.files').setup {
+      mappings = {
+        close = 'q',
+        go_in = '<Enter>',
+        go_in_plus = 'L',
+        go_out = '-',
+        go_out_plus = 'H',
+        mark_goto = "'",
+        mark_set = 'm',
+        reset = '_',
+        reveal_cwd = '@',
+        show_help = 'g?',
+        synchronize = '=',
+        trim_left = '<',
+        trim_right = '>',
+      },
+      windows = { preview = true },
+    }
+
+    vim.keymap.set('n', '-', function()
+      MiniFiles.open()
+    end, { desc = 'Open MiniFiles tree' })
   end,
 }

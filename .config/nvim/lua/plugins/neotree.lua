@@ -41,6 +41,7 @@ return {
         ['xaml'] = { 'xaml.cs' },
         ['fxml'] = { 'java' },
       },
+      popup_border_style = 'rounded',
     }
   end,
   keys = {
