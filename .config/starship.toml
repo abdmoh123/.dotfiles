@@ -9,7 +9,7 @@ continuation_prompt = "[:::](dimmed white)"
 format = """$shell$directory\
 $git_branch$git_commit$git_state$git_status$git_metrics\
 (\
-$nix_shell\
+$nix_shell \
 $container \
 $fill \
 $package\
@@ -177,6 +177,10 @@ format = "[ $time]($style)"
 time_format = "%R"
 utc_time_offset = "local"
 style = "bold bg:white fg:black"
+
+[container]
+symbol = '⬢'
+format = '[$symbol <$name>]($style) '
 
 # Disable the package module, hiding it from the prompt completely
 [package]
