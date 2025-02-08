@@ -40,6 +40,9 @@ return {
       nesting_rules = {
         ['xaml'] = { 'xaml.cs' },
         ['fxml'] = { 'java' },
+        ['h'] = { 'c', 'cpp', 'cxx' },
+        ['hpp'] = { 'cpp', 'cxx' },
+        ['hxx'] = { 'cxx' },
       },
       popup_border_style = 'rounded',
     }
