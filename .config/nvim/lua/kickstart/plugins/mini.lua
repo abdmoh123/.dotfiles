@@ -54,7 +54,10 @@ return {
       end,
     })
 
-        -- make '_' key reset to project cwd like oil.nvim
+    -- make '_' key reset to project cwd like oil.nvim
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MiniFilesExplorerOpen',
+      callback = function()
         vim.keymap.set('n', '_', function()
           MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
         end, { desc = 'Reset to project cwd' })
