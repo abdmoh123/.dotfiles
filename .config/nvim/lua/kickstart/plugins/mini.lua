@@ -47,11 +47,14 @@ return {
       end, 30)
     end, { desc = 'Open MiniFiles tree' })
 
+    -- add relative numbers to MiniFiles window
     vim.api.nvim_create_autocmd('User', {
       pattern = 'MiniFilesWindowUpdate',
       callback = function(args)
-        -- add relative numbers to MiniFiles window
         vim.wo[args.data.win_id].relativenumber = true
+        vim.wo[args.data.win_id].number = true
+      end,
+    })
 
         -- make '_' key reset to project cwd like oil.nvim
         vim.keymap.set('n', '_', function()
