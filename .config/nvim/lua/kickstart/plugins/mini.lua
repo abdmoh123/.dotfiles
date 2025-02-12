@@ -19,17 +19,17 @@ return {
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
 
-    -- mini files
+    -- mini files (oil.nvim like file tree)
     require('mini.files').setup {
       mappings = {
         close = 'q',
-        go_in = '<Enter>',
-        go_in_plus = 'L',
-        go_out = '-',
-        go_out_plus = 'H',
+        go_in = 'L', -- doesn't open files
+        go_in_plus = '<Enter>', -- opens files
+        go_out = 'H',
+        go_out_plus = '-',
         mark_goto = "'",
         mark_set = 'm',
-        reset = '_',
+        reset = '', -- disable in favour of autocmd below
         reveal_cwd = '@',
         show_help = 'g?',
         synchronize = '=',
@@ -39,8 +39,25 @@ return {
       windows = { preview = true },
     }
 
+    -- open MiniFiles at current file directory like oil.nvim
     vim.keymap.set('n', '-', function()
-      MiniFiles.open()
+      MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+      vim.defer_fn(function()
+        MiniFiles.reveal_cwd()
+      end, 30)
     end, { desc = 'Open MiniFiles tree' })
+
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MiniFilesWindowUpdate',
+      callback = function(args)
+        -- add relative numbers to MiniFiles window
+        vim.wo[args.data.win_id].relativenumber = true
+
+        -- make '_' key reset to project cwd like oil.nvim
+        vim.keymap.set('n', '_', function()
+          MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+        end, { desc = 'Reset to project cwd' })
+      end,
+    })
   end,
 }
