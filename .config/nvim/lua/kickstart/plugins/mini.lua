@@ -42,9 +42,7 @@ return {
     -- open MiniFiles at current file directory like oil.nvim
     vim.keymap.set('n', '-', function()
       MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-      vim.defer_fn(function()
-        MiniFiles.reveal_cwd()
-      end, 30)
+      MiniFiles.reveal_cwd()
     end, { desc = 'Open MiniFiles tree' })
 
     -- add relative numbers to MiniFiles window
