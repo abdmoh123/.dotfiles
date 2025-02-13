@@ -32,3 +32,12 @@ vim.api.nvim_create_autocmd('User', {
     end
   end),
 })
+
+-- enable spell checker on markdown and text files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'markdown', 'text' },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt.spelllang:append 'en_us'
+  end,
+})
