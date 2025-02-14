@@ -78,3 +78,11 @@ vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 
 vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time (displays which key sooner)
 vim.opt.updatetime = 250 -- Decrease update time
+
+-- [[ Miscellaneous ]]
+-- treat xaml files as xml
+vim.filetype.add {
+  extension = {
+    xaml = 'xml',
+  },
+}
