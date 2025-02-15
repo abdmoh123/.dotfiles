@@ -1,24 +1,17 @@
 return {
   'github/copilot.vim',
   init = function()
-    -- Allow CTRL-Y to accept copilot suggestions
+    -- Tab is used to accept copilot suggestion
+    -- Allow ALT-P and ALT-N to navigate through copilot suggestions
     vim.keymap.set(
       'i',
-      '<C-y>',
-      'copilot#Accept()',
-      { desc = 'Accept copilot', replace_keycodes = false, expr = true, silent = true, noremap = false }
-    )
-
-    -- Allow CTRL-P and CTRL-N to navigate through copilot suggestions
-    vim.keymap.set(
-      'i',
-      '<C-n>',
+      '<A-n>',
       'copilot#Next()',
       { desc = 'Next copilot suggestion', replace_keycodes = false, expr = true, silent = true, noremap = false }
     )
     vim.keymap.set(
       'i',
-      '<C-p>',
+      '<A-p>',
       'copilot#Previous()',
       { desc = 'Next copilot suggestion', replace_keycodes = false, expr = true, silent = true, noremap = false }
     )
