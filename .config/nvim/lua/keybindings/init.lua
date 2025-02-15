@@ -3,3 +3,4 @@
 --  See `:help vim.keymap.set()`
 
 require 'keybindings.diagnostics'
+require 'keybindings.extra-motions'
