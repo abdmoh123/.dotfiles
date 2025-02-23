@@ -25,8 +25,6 @@ require('lazy').setup({
   require 'kickstart.plugins.lspconfig',
   -- Autoformat
   require 'kickstart.plugins.conform',
-  -- Autocompletion
-  require 'kickstart.plugins.nvim-comp',
   -- Highlight todo, notes, etc in comments
   require 'kickstart.plugins.todo-comments',
   -- Collection of various small independent plugins/modules

@@ -19,6 +19,8 @@ return {
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
 
+    require('mini.pairs').setup()
+
     -- mini files (oil.nvim like file tree)
     require('mini.files').setup {
       mappings = {
