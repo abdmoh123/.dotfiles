@@ -47,7 +47,7 @@ return {
         lazydev = {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
-          group_index = 100,
+          score_offset = 100,
         },
       },
     },
