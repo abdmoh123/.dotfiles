@@ -98,6 +98,7 @@ gui:
         # Default text color
         defaultFgColor:
             - default
+
     # Config relating to the commit length indicator
     commitLength:
         # If true, show an indicator of commit message length
@@ -154,8 +155,8 @@ gui:
 
     # One of 'auto' (default) | 'always' | 'never'
     portraitMode: auto
-    # How things are filtered when typing '/'.
 
+    # How things are filtered when typing '/'.
     # One of 'substring' (default) | 'fuzzy'
     filterMode: substring
     # Config relating to the spinner.
@@ -168,10 +169,11 @@ gui:
             - \
         # The "speed" of the spinner in milliseconds.
         rate: 50
-    # Status panel view.
 
+    # Status panel view.
     # One of 'dashboard' (default) | 'allBranchesLog'
     statusPanelView: dashboard
+
 # Config relating to git
 git:
     # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
@@ -262,12 +264,14 @@ git:
 
     # length. Set to 40 to disable truncation.
     truncateCopiedCommitHashesTo: 12
+
 # Periodic update checks
 update:
     # One of: 'prompt' (default) | 'background' | 'never'
     method: prompt
     # Period in days between update checks
     days: 14
+
 # Background refreshes
 refresher:
     # File/submodule refresh interval in seconds.
@@ -278,10 +282,12 @@ refresher:
 
     # Auto-fetch can be disabled via option 'git.autoFetch'.
     fetchInterval: 60
+
 # If true, show a confirmation popup before quitting Lazygit
 confirmOnQuit: false
 # If true, exit Lazygit when the user presses escape in a context where there is nothing to cancel/close
 quitOnTopLevelReturn: false
+
 # Config relating to things outside of Lazygit like how files are opened, copying to clipboard, etc
 os:
     # Command for editing a file. Should contain "{{filename}}".
@@ -310,8 +316,10 @@ os:
 
     # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-command-for-copying-to-clipboard
     copyToClipboardCmd: ""
+
 # If true, don't display introductory popups upon opening Lazygit.
 disableStartupPopups: false
+
 # What to do when opening Lazygit outside of a git repo.
 
 # - 'prompt': (default) ask whether to initialize a new repo or open in the most recent repo
@@ -322,8 +330,10 @@ disableStartupPopups: false
 
 # - 'quit': exit Lazygit
 notARepository: prompt
+
 # If true, display a confirmation when subprocess terminates. This allows you to view the output of the subprocess before returning to Lazygit.
 promptToReturnFromSubprocess: true
+
 # Keybindings
 keybinding:
     universal:
