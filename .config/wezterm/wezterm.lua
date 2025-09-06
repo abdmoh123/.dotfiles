@@ -4,9 +4,12 @@ local config = wezterm.config_builder()
 config.max_fps = 120
 config.animation_fps = 60
 
--- [[ Windows related stuff ]]
-config.win32_system_backdrop = "Acrylic"
-config.default_prog = { "nu" }
+-- [[ OS related stuff ]]
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- windows specific
+	config.win32_system_backdrop = "Acrylic"
+elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then -- linux specific
+	config.enable_wayland = true
+end
 
 -- [[ Colour and appearance ]]
 local styling = require("styling")
