@@ -179,7 +179,7 @@ utc_time_offset = "local"
 style = "bold bg:white fg:black"
 
 [container]
-symbol = '⬢'
+symbol = ''
 format = '[$symbol <$name>]($style) '
 
 # Disable the package module, hiding it from the prompt completely
