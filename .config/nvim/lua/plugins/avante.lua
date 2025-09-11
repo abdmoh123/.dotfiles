@@ -7,7 +7,6 @@ return {
     'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
     'folke/snacks.nvim', -- for input provider snacks
     'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
-    'zbirenbaum/copilot.lua', -- for providers='copilot'
     {
       -- support for image pasting
       'HakonHarnes/img-clip.nvim',
@@ -46,7 +45,19 @@ return {
     -- add any opts here
     -- this file can contain specific instructions for your project
     instructions_file = 'avante.md',
-    -- for example
+    behaviour = {
+      auto_suggestions = false, -- Experimental stage
+      auto_set_highlight_group = true,
+      auto_set_keymaps = true,
+      auto_apply_diff_after_generation = false,
+      support_paste_from_clipboard = true,
+      minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+      enable_token_counting = true, -- Whether to enable token counting. Default to true.
+      auto_approve_tool_permissions = false, -- Default: show permission prompts for all tools
+      -- Examples:
+      -- auto_approve_tool_permissions = true,                -- Auto-approve all tools (no prompts)
+      -- auto_approve_tool_permissions = {"bash", "replace_in_file"}, -- Auto-approve specific tools only
+    },
     provider = 'ollama',
     providers = {
       claude = {
@@ -60,7 +71,12 @@ return {
       },
       ollama = {
         endpoint = 'http://localhost:11434',
-        model = 'phi4',
+        model = 'qwen2.5-coder:7b',
+        -- disabled_tools = { 'attempt_completion' },
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 4096,
+        },
       },
     },
   },
