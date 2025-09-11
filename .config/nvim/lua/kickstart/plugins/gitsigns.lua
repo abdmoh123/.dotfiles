@@ -18,7 +18,6 @@ return {
     { '<leader>gA', '<cmd>Gitsigns stage_buffer<cr>', desc = '[G]it [A]dd/stage current buffer' },
     { '<leader>gr', '<cmd>Gitsigns reset_hunk<cr>', desc = '[G]it [R]eset current hunk' },
     { '<leader>gR', '<cmd>Gitsigns reset_buffer<cr>', desc = '[G]it [R]eset current buffer' },
-    { '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<cr>', desc = 'Toggle [G]it [B]lame' },
     { ']h', '<cmd>Gitsigns next_hunk<cr>', desc = 'Next Git [H]unk' },
     { '[h', '<cmd>Gitsigns prev_hunk<cr>', desc = 'Previous Git [H]unk' },
     { 'gh', '<cmd>Gitsigns next_hunk<cr>', desc = '[G]oto next Git [H]unk' },
