@@ -37,3 +37,6 @@ $env.rm_always_trash = true
 # starship
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
+
+# api keys
+$env.AVANTE_ANTHROPIC_API_KEY = (open ~/.dotfiles/secrets/ai-api-keys/claude/nvim-personal-key.env | str trim)

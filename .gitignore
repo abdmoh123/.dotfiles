@@ -8,3 +8,6 @@ PowerShell/Scripts/
 .config/lazygit/state.yml
 .config/scoop/config.json
 .config/github-copilot/apps.json
+
+# Secret environment files like API keys
+secrets/
