@@ -11,7 +11,8 @@ return {
       prev = 'p',
     },
   },
-  config = function()
+  config = true,
+  init = function()
     vim.keymap.set('n', '<leader>gc', '<cmd>GitConflictListQf<cr>', { desc = 'Open Git conflict quick fix list' })
   end,
 }
