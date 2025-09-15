@@ -39,4 +39,7 @@ mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
 
 # api keys
-$env.AVANTE_ANTHROPIC_API_KEY = (open ~/.dotfiles/secrets/ai-api-keys/claude/nvim-personal-key.env | str trim)
+
+if ("~/.dotfiles/secrets/ai-api-keys/claude/nvim-personal-key.env" | path exists) {
+	$env.AVANTE_ANTHROPIC_API_KEY = (open ~/.dotfiles/secrets/ai-api-keys/claude/nvim-personal-key.env | str trim)
+}
