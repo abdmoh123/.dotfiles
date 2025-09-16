@@ -1,8 +1,10 @@
 -- File: lua/ftplugin/java.lua
 
+local os_utils = require 'utils.os-utils'
+
 local function get_jdtls_path()
   -- returns path using windows back slashes if required
-  if vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1 then
+  if os_utils.is_windows() then
     return vim.fn.stdpath 'data' .. '\\mason\\bin\\jdtls.cmd'
   else
     return vim.fn.stdpath 'data' .. '/mason/bin/jdtls'

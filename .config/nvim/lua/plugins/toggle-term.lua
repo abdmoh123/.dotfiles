@@ -1,3 +1,5 @@
+local os_utils = require 'utils.os-utils'
+
 return {
   'akinsho/toggleterm.nvim',
   event = 'VeryLazy',
@@ -5,7 +7,7 @@ return {
   config = true,
   opts = {
     shell = function()
-      if vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1 then
+      if os_utils.is_windows() then
         -- use pwsh if windows
         return 'nu'
       else
