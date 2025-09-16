@@ -46,6 +46,8 @@ vim.opt.fillchars = {
 vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mousemoveevent = true -- Enable mouse move event, useful for hover events like in bufferline plugin
 
+vim.opt.clipboard = 'unnamedplus' -- Always save yank to clipboard
+
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
 
 vim.opt.breakindent = true -- Enable break indent
