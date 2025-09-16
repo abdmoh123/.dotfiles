@@ -25,17 +25,6 @@ $env.config.edit_mode = 'vi'
 $env.PROMPT_INDICATOR_VI_NORMAL = '󰝤 '
 $env.PROMPT_INDICATOR_VI_INSERT = '󱗼 '
 
-# setup yazi to allow cwd to change (yy alias)
-def --env yy [...args] {
-	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-	yazi ...$args --cwd-file $tmp
-	let cwd = (open $tmp)
-	if $cwd != "" and $cwd != $env.PWD {
-		cd $cwd
-	}
-	rm -fp $tmp
-}
-
 # setup carapace auto-complete
 source ~/.cache/carapace/init.nu
 
@@ -47,6 +36,9 @@ $env.DOTNET_CLI_TELEMETRY_OPTOUT = true
 
 # setup zoxide
 source ~/.zoxide.nu
+
+# setup yazi
+source ./yazi.nu
 
 # add fzf config (keybinds + theming)
 source ./fzf.nu
