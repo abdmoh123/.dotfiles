@@ -19,12 +19,17 @@ return {
       segments = {
         -- diagnostic signs
         {
-          sign = { namespace = { 'diagnostic/signs' }, colwidth = 2, maxwidth = 1, auto = true, foldclosed = true },
+          sign = { namespace = { 'diagnostic.signs' }, colwidth = 2, maxwidth = 1, auto = true, foldclosed = true },
           click = 'v:lua.ScSa',
+        },
+        -- debug icons (e.g. breakpoint)
+        {
+          sign = { name = { 'Dap*' }, maxwidth = 1 },
+          click = 'v:lua.ScLa',
         },
         -- line numbers
         {
-          text = { ' ', builtin.lnumfunc, ' ' },
+          text = { builtin.lnumfunc, ' ' },
           click = 'v:lua.ScLa',
         },
         -- git signs
