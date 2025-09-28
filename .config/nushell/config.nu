@@ -40,6 +40,9 @@ source ~/.zoxide.nu
 # setup yazi
 source ./yazi.nu
 
+# setup fast node manager (fnm)
+source ./fnm.nu
+
 # add fzf config (keybinds + theming)
 source ./fzf.nu
 
