@@ -20,7 +20,6 @@ return {
       dashboard.button('SPC s .', '󰋚  Recently opened files'),
       dashboard.button('SPC s F', '󰑖  Frecency/MRU'),
       dashboard.button('SPC s g', '󰦨  Find word (ripgrep)'),
-      dashboard.button('SPC h', '󰃀  View harpoon bookmarks'),
       dashboard.button('?', '󰋗  Neovim help', ':h nvim<CR>'),
       dashboard.button('q', '󰅙  Quit Neovim', ':qa<CR>'),
     }
