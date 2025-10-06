@@ -39,7 +39,7 @@ return {
   -- ⚠️ must add this setting! ! !
   build = os_utils.is_windows() and 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
     or 'make',
-  event = 'VeryLazy',
+  event = { 'BufReadPost', 'BufNewFile' },
   version = false, -- Never set this value to "*"! Never!
   ---@module 'avante'
   ---@type avante.Config
