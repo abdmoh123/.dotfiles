@@ -39,8 +39,13 @@ mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
 
 # api keys
-
-const claude_api_key = "~/.dotfiles/secrets/ai-api-keys/claude/nvim-personal-key.env"
-if (echo claude_api_key | path exists) {
+const claude_api_key_path = "~/.dotfiles/secrets/ai-api-keys/claude.env"
+if (echo claude_api_key_path | path exists) {
 	$env.AVANTE_ANTHROPIC_API_KEY = (open claude_api_key | str trim)
+}
+
+const gemini_api_key_path = "~/.dotfiles/secrets/ai-api-keys/gemini.env"
+if (echo gemini_api_key_path | path exists) {
+	$env.AVANTE_GEMINI_API_KEY = (open gemini_api_key | str trim)
+	$env.GEMINI_API_KEY = (open gemini_api_key | str trim)
 }
