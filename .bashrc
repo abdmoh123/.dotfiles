@@ -21,6 +21,12 @@ if [ -d ~/.bashrc.d ]; then
             . "$rc"
         fi
     done
+    # apply aliases
+    for rc in ~/.bashrc.d/aliases/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
 fi
 unset rc
 
