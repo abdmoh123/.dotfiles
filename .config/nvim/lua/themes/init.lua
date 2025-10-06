@@ -3,9 +3,17 @@
 -- import any theme configs
 require 'themes.configs'
 
+local M = {}
+
+-- apply the default theme
+function M.init()
+  vim.cmd.colorscheme 'everforest'
+  vim.cmd.hi 'Comment gui=none'
+end
+
 -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 -- list of themes shown below
-local themes = {
+M.themes = {
   {
     -- gruvbox dark and light theme
     'ellisonleao/gruvbox.nvim',
@@ -24,10 +32,6 @@ local themes = {
     'sainnhe/everforest',
     priority = 1000,
     lazy = false,
-    init = function()
-      vim.cmd.colorscheme 'everforest'
-      vim.cmd.hi 'Comment gui=none'
-    end,
   },
   {
     'folke/tokyonight.nvim',
@@ -37,4 +41,4 @@ local themes = {
   },
 }
 
-return themes
+return M

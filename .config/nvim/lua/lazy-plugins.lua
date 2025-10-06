@@ -1,3 +1,5 @@
+local theme_manager = require 'themes'
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -11,7 +13,7 @@
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- Import all custom themes (e.g. gruvbox-material)
-  require 'themes',
+  theme_manager.themes,
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/plugins/*.lua`
   --    This is the easiest way to modularize your config.
@@ -41,3 +43,6 @@ require('lazy').setup({
     },
   },
 })
+
+-- set the theme
+theme_manager.init()
