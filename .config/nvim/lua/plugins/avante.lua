@@ -26,14 +26,6 @@ return {
         },
       },
     },
-    {
-      -- Make sure to set this up properly if you have lazy=true
-      'MeanderingProgrammer/render-markdown.nvim',
-      opts = {
-        file_types = { 'markdown', 'Avante' },
-      },
-      ft = { 'markdown', 'Avante' },
-    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   -- ⚠️ must add this setting! ! !
@@ -71,6 +63,14 @@ return {
           max_tokens = 4096,
         },
       },
+      gemini = {
+        model = 'gemini-2.5-flash-preview',
+        timeout = 30000,
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 4096,
+        },
+      },
       ollama = {
         endpoint = 'http://localhost:11434',
         model = 'qwen2.5-coder:7b',
@@ -78,6 +78,16 @@ return {
         extra_request_body = {
           temperature = 0.75,
           max_tokens = 4096,
+        },
+      },
+    },
+    acp_providers = {
+      ['gemini-cli'] = {
+        command = 'gemini',
+        args = { '--experimental-acp' },
+        env = {
+          NODE_NO_WARNINGS = '1',
+          GEMINI_API_KEY = os.getenv 'GEMINI_API_KEY',
         },
       },
     },
