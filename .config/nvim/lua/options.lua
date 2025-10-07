@@ -6,7 +6,6 @@
 
 -- [[ General UI settings ]]
 vim.opt.background = 'dark'
-
 vim.opt.number = true -- Make line numbers default
 vim.opt.relativenumber = true -- Make line numbers relative to cursor
 vim.opt.signcolumn = 'yes:1' -- Keep signcolumn on by default
@@ -41,6 +40,9 @@ vim.opt.fillchars = {
   -- remove end of line ~ character
   eob = ' ',
 }
+
+-- ensure filetype and highlighting work properly with autosession
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 -- [[ Control settings ]]
 vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example!
