@@ -6,8 +6,6 @@ local config = wezterm.config_builder()
 config.max_fps = 120
 config.animation_fps = 60
 
-config.term = "wezterm"
-
 local nushell_cmd = { "nu", "--login" }
 local pwsh_cmd = { "pwsh", "-NoLogo" }
 local powershell_cmd = { "powershell", "-NoLogo" }
