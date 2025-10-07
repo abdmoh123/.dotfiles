@@ -1,7 +1,36 @@
 -- File: lua/keybindings/diagnostics.lua
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+local M = {}
+
+M.keymaps = {
+  {
+    mode = 'n',
+    lhs = '[d',
+    rhs = function()
+      vim.diagnostic.jump { count = -1, float = true }
+    end,
+    opts = { desc = 'Go to previous [D]iagnostic message' },
+  },
+  {
+    mode = 'n',
+    lhs = ']d',
+    rhs = function()
+      vim.diagnostic.jump { count = 1, float = true }
+    end,
+    opts = { desc = 'Go to next [D]iagnostic message' },
+  },
+  {
+    mode = 'n',
+    lhs = '<leader>e',
+    rhs = vim.diagnostic.open_float,
+    opts = { desc = 'Show diagnostic [E]rror messages' },
+  },
+  {
+    mode = 'n',
+    lhs = '<leader>q',
+    rhs = vim.diagnostic.setloclist,
+    opts = { desc = 'Open diagnostic [Q]uickfix list' },
+  },
+}
+
+return M

@@ -1,5 +1,11 @@
 -- File: lua/keybindings/extra-motions.lua
 
-vim.keymap.set('i', '<A-BS>', '<C-w>', { desc = 'Delete word before the cursor' })
-vim.keymap.set('i', '<A-Delete>', '<C-o>dw', { desc = 'Delete word after the cursor' })
-vim.keymap.set('i', '<C-Delete>', '<C-o>dw', { desc = 'Delete word after the cursor' })
+local M = {}
+
+M.keymaps = {
+  { mode = 'i', lhs = '<A-BS>', rhs = '<C-w>', opts = { desc = 'Delete word before the cursor' } },
+  { mode = 'i', lhs = '<A-Delete>', rhs = '<C-o>dw', opts = { desc = 'Delete word after the cursor' } },
+  { mode = 'i', lhs = '<C-Delete>', rhs = '<C-o>dw', opts = { desc = 'Delete word after the cursor' } },
+}
+
+return M
