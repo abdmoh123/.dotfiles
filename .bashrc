@@ -36,3 +36,13 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
 fi
+
+# # starship
+# if command -v starship &>/dev/null; then
+#   eval "$(starship init bash)"
+# fi
+
+# zoxide
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init bash)"
+fi
