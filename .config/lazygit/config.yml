@@ -218,8 +218,6 @@ git:
   fetchAll: true
   # Command used when displaying the current branch git log in the main window
   branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
-  # Command used to display git log of all branches in the main window
-  allBranchesLogCmd: git log --graph --all --color=always --abbrev-commit --decorate --date=relative --oneline
   # If true, do not spawn a separate process when using GPG
   overrideGpg: false
   # If true, do not allow force pushes
@@ -260,6 +258,8 @@ git:
 
   # length. Set to 40 to disable truncation.
   truncateCopiedCommitHashesTo: 12
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative --oneline
 # Periodic update checks
 update:
   # One of: 'prompt' (default) | 'background' | 'never'
