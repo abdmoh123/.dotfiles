@@ -50,5 +50,5 @@ source ./fzf.nu
 source ./bat.nu
 
 # aliases
-source ./generated-aliases.nu
-rm ./generated-aliases.nu
+source $"($nu.default-config-dir)/generated-aliases.nu"
+rm $"($nu.default-config-dir)/generated-aliases.nu"
