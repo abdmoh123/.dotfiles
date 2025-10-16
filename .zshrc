@@ -110,13 +110,13 @@ fi
 
 # Do zoxide things only if zoxide is installed
 if type "zoxide" > /dev/null; then
-  source ~/.config/aliases/zoxide.zsh
+  source ~/.config/zsh/aliases/zoxide.zsh
   eval "$(zoxide init zsh)"
 fi
 
 # Enable eza aliases (ls, ll, tree) if it is installed
 if type "eza" > /dev/null; then
-  source ~/.config/aliases/eza.zsh
+  source ~/.config/zsh/aliases/eza.zsh
 fi
 
 # Do bat things only if bat is installed
