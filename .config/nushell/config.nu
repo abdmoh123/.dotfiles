@@ -51,3 +51,4 @@ source ./bat.nu
 
 # aliases
 source ./generated-aliases.nu
+rm ./generated-aliases.nu
