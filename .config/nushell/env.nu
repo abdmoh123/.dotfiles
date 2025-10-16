@@ -49,3 +49,6 @@ if (echo gemini_api_key_path | path exists) {
 	$env.AVANTE_GEMINI_API_KEY = (open gemini_api_key | str trim)
 	$env.GEMINI_API_KEY = (open gemini_api_key | str trim)
 }
+
+# create generated alias file
+source $"($nu.default-config-dir)/alias-generator.nu"

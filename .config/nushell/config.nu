@@ -50,4 +50,4 @@ source ./fzf.nu
 source ./bat.nu
 
 # aliases
-source ./aliases.nu
+source ./generated-aliases.nu
