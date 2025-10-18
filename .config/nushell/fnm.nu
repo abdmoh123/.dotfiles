@@ -5,7 +5,7 @@ if not ($fnm_path | path exists) {
 	return
 }
 
-$env.PATH = ($env.PATH | prepend fnm_path)
+$env.PATH = ($env.PATH | prepend $fnm_path)
 
 load-env (fnm env --shell bash
 	| lines
