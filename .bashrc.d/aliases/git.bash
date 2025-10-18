@@ -21,3 +21,7 @@ alias grst="git reset"               # git reset
 alias grstm="git reset --mixed"      # git reset --mixed
 alias grsts="git reset --soft"       # git reset --soft
 # NOTE: git reset hard is not aliased to discourage its use and prevent mistakes
+
+if command -v lazygit &>/dev/null; then
+    alias lz="lazygit"
+fi
