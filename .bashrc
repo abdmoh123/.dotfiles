@@ -31,7 +31,7 @@ fi
 unset rc
 
 # fnm
-FNM_PATH="/var/home/abdha/.local/share/fnm"
+FNM_PATH="~/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
