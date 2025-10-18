@@ -46,3 +46,14 @@ fi
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init bash)"
 fi
+
+# yazi setup
+if command -v yazi &>/dev/null; then
+    function yy() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d '' cwd < "$tmp"
+        [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+        rm -f -- "$tmp"
+    }
+fi
