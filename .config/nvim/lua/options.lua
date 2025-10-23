@@ -51,6 +51,7 @@ vim.opt.mousemoveevent = true -- Enable mouse move event, useful for hover event
 vim.opt.clipboard = 'unnamedplus' -- Always save yank to clipboard
 
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
+vim.opt.sidescrolloff = 5 -- Minimum number of characters padding when scrolling sideways
 
 vim.opt.breakindent = true -- Enable break indent
 
