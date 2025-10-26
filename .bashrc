@@ -57,3 +57,9 @@ if command -v yazi &>/dev/null; then
         rm -f -- "$tmp"
     }
 fi
+
+# SDKs
+FLUTTER_PATH="~/SDKs/flutter/bin"
+if [ -d $FLUTTER_PATH ]; then
+    export PATH="$FLUTTER_PATH:$PATH"
+fi

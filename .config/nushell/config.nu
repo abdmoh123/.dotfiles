@@ -52,3 +52,6 @@ source ./bat.nu
 # aliases
 source $"($nu.default-config-dir)/generated-aliases.nu"
 rm $"($nu.default-config-dir)/generated-aliases.nu"
+
+# import sdks to path
+source ./sdks.nu
