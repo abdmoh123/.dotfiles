@@ -33,8 +33,8 @@ unset rc
 # fnm
 FNM_PATH="~/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
+    export PATH="$FNM_PATH:$PATH"
+    eval "`fnm env`"
 fi
 
 # # starship
@@ -44,7 +44,7 @@ fi
 
 # zoxide
 if command -v zoxide &>/dev/null; then
-  eval "$(zoxide init bash)"
+    eval "$(zoxide init bash)"
 fi
 
 # yazi setup
