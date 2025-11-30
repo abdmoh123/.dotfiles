@@ -207,6 +207,12 @@ return {
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install python specific config
-    require('dap-python').setup 'python'
+    local python_path = 'python'
+    -- Use uv if it's installed and a lock file is available
+    if vim.fn.executable 'uv' and vim.fn.findfile('uv.lock', vim.fn.getcwd()) then
+      python_path = 'uv'
+    end
+
+    require('dap-python').setup(python_path)
   end,
 }
