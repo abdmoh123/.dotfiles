@@ -42,11 +42,6 @@ return {
       -- lint.linters_by_ft['terraform'] = nil
       -- lint.linters_by_ft['text'] = nil
 
-      -- make mypy use a venv's python if possible
-      lint.linters.mypy.args = {
-        '--python-executable',
-        'python3', -- should select the .venv executable if it's sourced
-      }
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
