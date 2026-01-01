@@ -38,6 +38,9 @@ return {
         trim_left = '<',
         trim_right = '>',
       },
+      options = {
+        use_as_default_explorer = false, -- use oil.nvim
+      },
       windows = {
         preview = true,
         width_focus = 50,

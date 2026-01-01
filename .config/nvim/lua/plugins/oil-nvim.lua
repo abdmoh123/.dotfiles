@@ -5,6 +5,7 @@ return {
   ---@module 'oil'
   ---@type oil.SetupOpts
   opts = {
+    default_file_explorer = true,
     columns = {
       'icon',
       'permissions',
