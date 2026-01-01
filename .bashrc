@@ -63,3 +63,12 @@ FLUTTER_PATH=~/SDKs/flutter/bin
 if [ -d $FLUTTER_PATH ]; then
     export PATH="$FLUTTER_PATH:$PATH"
 fi
+
+# API keys
+API_DIR=~/.dotfiles/secrets/ai-api-keys
+
+# gemini api key
+if [ -f $API_DIR/gemini.env ]; then
+    export GEMINI_API_KEY=$(cat $API_DIR/gemini.env)
+fi
+
