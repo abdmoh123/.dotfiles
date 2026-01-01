@@ -21,6 +21,28 @@ return {
 
     require('mini.pairs').setup()
 
+    require('mini.move').setup {
+      mappings = {
+        -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+        left = '<M-h>',
+        right = '<M-l>',
+        down = '<M-j>',
+        up = '<M-k>',
+
+        -- Disable move line in normal mode (use V to select line in visual mode)
+        line_left = '',
+        line_right = '',
+        line_down = '',
+        line_up = '',
+      },
+
+      -- Options which control moving behavior
+      options = {
+        -- Automatically reindent selection during linewise vertical move
+        reindent_linewise = true,
+      },
+    }
+
     -- mini files (oil.nvim like file tree)
     require('mini.files').setup {
       mappings = {
