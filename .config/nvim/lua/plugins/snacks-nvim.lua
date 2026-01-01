@@ -101,7 +101,7 @@ return {
       desc = 'Get git blame details',
     },
     {
-      '<leader>rf',
+      'grf',
       function()
         Snacks.rename.rename_file()
       end,
