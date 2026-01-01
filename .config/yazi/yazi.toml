@@ -86,8 +86,7 @@ image_bound      = [ 0, 0 ]
 suppress_preload = false
 
 [plugin]
-
-preloaders = [
+append_preloaders = [
 	# Image
 	{ mime = "image/*", run = "image" },
 	# Video
@@ -95,7 +94,7 @@ preloaders = [
 	# PDF
 	{ mime = "application/pdf", run = "pdf" },
 ]
-previewers = [
+append_previewers = [
 	{ name = "*/", run = "folder", sync = true },
 	# Code
 	{ mime = "text/*", run = "code" },
