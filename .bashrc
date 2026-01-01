@@ -31,8 +31,8 @@ fi
 unset rc
 
 # fnm
-FNM_PATH="~/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
+FNM_PATH=~/.local/share/fnm
+if [ -d $FNM_PATH ]; then
     export PATH="$FNM_PATH:$PATH"
     eval "`fnm env`"
 fi
@@ -59,7 +59,7 @@ if command -v yazi &>/dev/null; then
 fi
 
 # SDKs
-FLUTTER_PATH="~/SDKs/flutter/bin"
+FLUTTER_PATH=~/SDKs/flutter/bin
 if [ -d $FLUTTER_PATH ]; then
     export PATH="$FLUTTER_PATH:$PATH"
 fi
