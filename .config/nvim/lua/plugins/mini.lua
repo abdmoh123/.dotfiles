@@ -38,7 +38,11 @@ return {
         trim_left = '<',
         trim_right = '>',
       },
-      windows = { preview = true },
+      windows = {
+        preview = true,
+        width_focus = 50,
+        width_preview = 80, -- follows the standard 80 column rule
+      },
     }
 
     -- open MiniFiles at current file directory like oil.nvim
