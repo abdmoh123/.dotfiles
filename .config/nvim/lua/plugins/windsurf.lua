@@ -10,6 +10,9 @@ return {
       virtual_text = {
         enabled = true,
         idle_delay = 50, -- delay in ms before making a request
+        filetypes = {
+          codecompanion = false,
+        },
       },
     }
   end,
