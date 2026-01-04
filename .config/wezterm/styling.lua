@@ -1,16 +1,55 @@
 local wezterm = require("wezterm")
+---@type Utils
+local utils = require("utils")
+
+local get_integrated_title_button_style, get_integrated_title_button_alignment, get_integrated_title_button_order
 
 local module = {}
 
+---@param os_type OSTypes
+---@return string
+function get_integrated_title_button_style(os_type)
+	if os_type == utils.OSTypes.MacOS then
+		return "MacOsNative"
+	elseif os_type == utils.OSTypes.Windows then
+		return "Windows"
+	elseif os_type == utils.OSTypes.Linux then
+		return "Gnome"
+	else
+		return ""
+	end
+end
+
+---@param os_type OSTypes
+---@return string
+function get_integrated_title_button_alignment(os_type)
+	if os_type == utils.OSTypes.MacOS then
+		return "Left"
+	end
+	return "Right"
+end
+
+---@param os_type OSTypes
+---@return string[]
+function get_integrated_title_button_order(os_type)
+	if os_type == utils.OSTypes.MacOS then
+		return { "Close", "Maximize", "Hide" }
+	end
+	return { "Hide", "Maximize", "Close" }
+end
+
 function module.apply_to_config(config)
 	-- window title bar buttons
-	config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
 	local os_type = utils.get_os()
 	if os_type == utils.OSTypes.Linux then
 		config.window_decorations = "TITLE|RESIZE" -- until the wayland integrated titlebar bug is fixed
 	else
 		config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 	end
+
+	config.integrated_title_button_style = get_integrated_title_button_style(os_type)
+	config.integrated_title_button_alignment = get_integrated_title_button_alignment(os_type)
+	config.integrated_title_buttons = get_integrated_title_button_order(os_type)
 
 	-- [[ Font stuff ]]
 	config.font = wezterm.font("JetBrainsMono Nerd Font")
