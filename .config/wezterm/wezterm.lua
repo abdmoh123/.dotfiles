@@ -17,7 +17,7 @@ local os_type = utils.get_os()
 if os_type == utils.OSTypes.Windows then
 	config.win32_system_backdrop = "Acrylic"
 elseif os_type == utils.OSTypes.Linux then
-	config.enable_wayland = true
+	config.enable_wayland = false -- until the wayland integrated titlebar bug is fixed
 end
 
 -- [[ Colour and appearance ]]

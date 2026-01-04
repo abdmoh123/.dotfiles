@@ -4,8 +4,13 @@ local module = {}
 
 function module.apply_to_config(config)
 	-- window title bar buttons
-	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 	config.integrated_title_buttons = { "Hide", "Maximize", "Close" }
+	local os_type = utils.get_os()
+	if os_type == utils.OSTypes.Linux then
+		config.window_decorations = "TITLE|RESIZE" -- until the wayland integrated titlebar bug is fixed
+	else
+		config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+	end
 
 	-- [[ Font stuff ]]
 	config.font = wezterm.font("JetBrainsMono Nerd Font")
