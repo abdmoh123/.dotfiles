@@ -1,0 +1,3 @@
+ignore = ["*.bak", ".DS_Store", "Thumbs.db", "desktop.ini", "*.log", ".config/syncthing", ".git", ".gitignore", ".gitmodules"]
+
+verbose = true
