@@ -9,6 +9,9 @@ PowerShell/Scripts/
 .config/scoop/config.json
 .config/github-copilot/apps.json
 .config/gh/hosts.yml
+# Raycast extensions
+.config/raycast-x/
 
 # Secret environment files like API keys
 secrets/
+
