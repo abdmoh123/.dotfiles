@@ -38,6 +38,13 @@ return {
       separator_style = { '', '' }, -- disable separators
       always_show_bufferline = false,
       auto_toggle_bufferline = true,
+      diagnostics = 'nvim_lsp',
+      close_comand = function(buf)
+        require('snacks').bufdelete(buf)
+      end,
+      right_mouse_comand = function(buf)
+        require('snacks').bufdelete(buf)
+      end,
     },
   },
   keys = {
