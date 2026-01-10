@@ -240,6 +240,10 @@ return {
     --  You can press `g?` for help in this menu.
     require('mason').setup {
       PATH = 'append', -- prioritise the locally installed binaries (e.g. in python venv)
+      registries = {
+        'github:mason-org/mason-registry',
+        'github:Crashdummyy/mason-registry',
+      },
     }
 
     -- You can add other tools here that you want Mason to install
