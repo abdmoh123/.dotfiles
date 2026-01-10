@@ -1,4 +1,10 @@
 [core]
+	fsmonitor = true
+	untrackedcache = true
+	commitgraph = true
+
+[fetch]
+	writeCommitGraph = true
 
 [interactive]
 	diffFilter = delta --color-only
