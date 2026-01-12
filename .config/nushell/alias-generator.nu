@@ -29,7 +29,24 @@ let aliases = if (bin_exists eza) {
 		| append { alias: "treel", command: `eza --tree --color=always --icons=always --group-directories-first` }
 		| append { alias: "treela", command: `eza --tree -a --color=always --icons=always --group-directories-first` }
 } else { $aliases }
-if not (bin_exists eza) { echo "WARNING: eza not installed!"}
+if not (bin_exists eza) { echo "WARNING: eza not installed!" }
+
+# ls aliases for nushell
+def lsg [
+	dir?: path
+	-a
+] {
+	let $dir = match $dir {
+		null => "."
+		_ => $dir
+	}
+
+	if $a {
+		nuls -a $dir | grid --color --icons  --separator='   '
+	} else {
+		nuls $dir | grid --color --icons  --separator='   '
+	}
+}
 
 # Git shortcuts
 # ==============================================================================
