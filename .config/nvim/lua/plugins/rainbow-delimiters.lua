@@ -1,6 +1,7 @@
+local colours = require 'utils.colours'
+
 return {
   'HiPhish/rainbow-delimiters.nvim',
-  dependencies = { 'lukas-reineke/indent-blankline.nvim' },
   event = { 'BufReadPost', 'BufNewFile' },
   ---@type rainbow_delimiters.config
   config = function()
@@ -19,15 +20,7 @@ return {
         [''] = 110,
         lua = 210,
       },
-      highlight = {
-        'RainbowDelimiterRed',
-        'RainbowDelimiterOrange',
-        'RainbowDelimiterYellow',
-        'RainbowDelimiterGreen',
-        'RainbowDelimiterCyan',
-        'RainbowDelimiterBlue',
-        'RainbowDelimiterViolet',
-      },
+      highlight = colours.rainbow_highlights,
       blacklist = { 'c', 'cpp' },
     }
   end,
