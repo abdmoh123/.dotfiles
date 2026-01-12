@@ -15,3 +15,4 @@ PowerShell/Scripts/
 # Secret environment files like API keys
 secrets/
 
+.local/
