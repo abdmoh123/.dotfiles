@@ -17,12 +17,10 @@ M.themes = {
   {
     -- gruvbox dark and light theme
     'ellisonleao/gruvbox.nvim',
-    config = function()
-      require('gruvbox').setup {
-        transparent_mode = true,
-        inverse = false,
-      }
-    end,
+    opts = {
+      transparent_mode = true,
+      inverse = false,
+    },
   },
   {
     -- gruvbox material theme
@@ -30,8 +28,6 @@ M.themes = {
   },
   {
     'sainnhe/everforest',
-    priority = 1000,
-    lazy = false,
   },
   {
     'folke/tokyonight.nvim',
@@ -39,6 +35,22 @@ M.themes = {
   {
     'savq/melange-nvim',
   },
+  {
+    'maxmx03/fluoromachine.nvim',
+    opts = {
+      glow = true,
+      theme = 'fluoromachine',
+    },
+  },
+  {
+    'nyngwang/nvimgelion',
+  },
 }
+
+-- apply global properties to all themes
+for _, theme in ipairs(M.themes) do
+  theme.priority = 1000
+  theme.lazy = false
+end
 
 return M
