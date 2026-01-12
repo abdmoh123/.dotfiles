@@ -42,9 +42,9 @@ def lsg [
 	}
 
 	if $a {
-		nuls -a $dir | grid --color --icons  --separator='   '
+		nuls -a $dir | sort-by type name | grid --color --icons --separator='   '
 	} else {
-		nuls $dir | grid --color --icons  --separator='   '
+		nuls $dir | sort-by type name | grid --color --icons --separator='   '
 	}
 }
 
