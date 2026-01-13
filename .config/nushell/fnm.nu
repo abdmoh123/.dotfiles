@@ -1,4 +1,4 @@
-let fnm_path = "~/.local/share/fnm"
+let fnm_path = (which fnm).path | first
 
 # skip fnm stuff if the path doesn't exist (not installed)
 if not ($fnm_path | path exists) {
@@ -17,5 +17,12 @@ load-env (fnm env --shell bash
 	| reduce -f {} {|it, acc| $acc
 		| upsert $it.name $it.value })
 
-$env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
+let is_windows = ((sys host | select name).name == "Windows")
+let path_to_add = if $is_windows {
+	$env.FNM_MULTISHELL_PATH
+} else {
+	$"($env.FNM_MULTISHELL_PATH)/bin"
+}
+
+$env.PATH = ($env.PATH | prepend path_to_add)
 
