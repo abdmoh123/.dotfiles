@@ -1,0 +1,23 @@
+let mapleader=" "
+
+set number
+set relativenumber
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+map <leader><Tab> :vsc View.SolutionExplorer<Enter>
+
+" editor window navigation
+map <C-H> <C-w>h
+map <C-J> <C-w>j
+map <C-K> <C-w>k
+map <C-L> <C-w>l
+
+" navigation forward and backwards
+map <C-o> :vsc View.NavigateBackward<Enter>
+map <C-i> :vsc View.NavigateForward<Enter>
+
+" build hotkey
+map <leader>b :vsc Build.Build<Enter>
+map <leader>B :vsc Build.Rebuild<Enter>
