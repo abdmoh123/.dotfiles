@@ -7,8 +7,7 @@ local M = {}
 
 -- apply the default theme
 function M.init()
-  vim.cmd.colorscheme 'everforest'
-  vim.cmd.hi 'Comment gui=none'
+  vim.cmd.colorscheme 'fluoromachine'
 end
 
 -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
