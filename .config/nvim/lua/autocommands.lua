@@ -30,3 +30,27 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt.spelllang:append 'en_us'
   end,
 })
+
+-- enable tree sitter on file open
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('treesitter-enable', { clear = true }),
+  callback = function(args)
+    -- skip if file doesn't have a file type
+    local lang = vim.treesitter.language.get_lang(args.match)
+    if not lang then
+      return
+    end
+
+    -- enable highlights if file supports it and the parser is installed
+    if vim.treesitter.query.get(lang, 'highlights') then
+      vim.treesitter.start(args.buf)
+    end
+
+    -- enable indentation if file supports it and the parser is installed
+    if vim.treesitter.query.get(lang, 'indents') then
+      vim.opt_local.indentexpr = 'v:lua.require("nvim-treesitter").indentexpr()'
+    end
+
+    -- NOTE: Folds are not enabled as that will be handled by nvim-ufo
+  end,
+})
