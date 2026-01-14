@@ -11,6 +11,8 @@ PowerShell/Scripts/
 .config/gh/hosts.yml
 # Raycast extensions
 .config/raycast-x/
+# Related to docker mcp stuff?
+.config/cagent/.cagent_first_run
 
 # Secret environment files like API keys
 secrets/
