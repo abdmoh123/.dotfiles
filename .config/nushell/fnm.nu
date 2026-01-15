@@ -1,4 +1,5 @@
-let fnm_path = (which fnm).path | first
+# let fnm_path = (which fnm).path | first
+let fnm_path = "~/.local/share/fnm"
 
 # skip fnm stuff if the path doesn't exist (not installed)
 if not ($fnm_path | path exists) {
