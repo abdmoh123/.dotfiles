@@ -52,7 +52,7 @@ function module.apply_to_config(config)
 	config.integrated_title_buttons = get_integrated_title_button_order(os_type)
 
 	-- [[ Font stuff ]]
-	config.font = wezterm.font("JetBrainsMono Nerd Font")
+	config.font = wezterm.font("Maple Mono NF")
 	config.font_size = 10.5
 
 	-- desaturate and dim inactive panes
