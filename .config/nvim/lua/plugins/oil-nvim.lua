@@ -2,6 +2,7 @@ return {
   'stevearc/oil.nvim',
   -- Optional dependencies
   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  event = 'VimEnter',
   ---@module 'oil'
   ---@type oil.SetupOpts
   opts = {
