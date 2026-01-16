@@ -23,7 +23,10 @@
 	email = abdhawisa@gmail.com
 	name = abdmoh123
 
-[includeIf "gitdir:D:/D Documents/Projects/Coding/Work Projects/"]
+[includeIf "gitdir:D:/Projects/Dontyne Projects/**"]
+	path = "D:/Projects/Dontyne Projects/.gitconfig"
+
+[includeIf "gitdir:D:/D Documents/Projects/Coding/Work Projects/**"]
 	path = "D:/D Documents/Projects/Coding/Work Projects/.gitconfig"
 
 [filter "lfs"]
