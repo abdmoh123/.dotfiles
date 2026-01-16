@@ -24,6 +24,32 @@ return {
         vim.cmd 'TSBufDisable indent'
       end,
     },
+    ---@class snacks.toggle.Config
+    ---@field icon? string|{ enabled: string, disabled: string }
+    ---@field color? string|{ enabled: string, disabled: string }
+    ---@field wk_desc? string|{ enabled: string, disabled: string }
+    ---@field map? fun(mode: string|string[], lhs: string, rhs: string|fun(), opts?: vim.keymap.set.Opts)
+    ---@field which_key? boolean
+    ---@field notify? boolean|fun(state:boolean, opts: snacks.toggle.Opts)
+    toggle = {
+      map = vim.keymap.set, -- keymap.set function to use
+      which_key = true, -- integrate with which-key to show enabled/disabled icons and colors
+      notify = true, -- show a notification when toggling
+      -- icons for enabled/disabled states
+      icon = {
+        enabled = ' ',
+        disabled = ' ',
+      },
+      -- colors for enabled/disabled states
+      color = {
+        enabled = 'green',
+        disabled = 'yellow',
+      },
+      wk_desc = {
+        enabled = 'Disable ',
+        disabled = 'Enable ',
+      },
+    },
     -- sets lazygit colorscheme to match neovim's
     ---@class snacks.lazygit.Config: snacks.terminal.Opts
     ---@field args? string[]
@@ -153,6 +179,18 @@ return {
         Snacks.toggle.diagnostics():map '<leader>td'
         Snacks.toggle.treesitter():map '<leader>tT' -- treesitter highlighting
         Snacks.toggle.inlay_hints():map '<leader>th' -- example 'func([str: ]"hello");' inlay_hint = in square brackets
+        Snacks.toggle
+          .new({
+            id = 'autoformat',
+            name = 'Auto-format',
+            get = function()
+              return vim.g.is_format_enabled
+            end,
+            set = function(state)
+              vim.g.is_format_enabled = state
+            end,
+          })
+          :map '<leader>tf'
 
         -- toggle between dark and light background
         Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>tb'
