@@ -1,12 +1,5 @@
-# let fnm_path = (which fnm).path | first
-let fnm_path = "~/.local/share/fnm"
-
-# skip fnm stuff if the path doesn't exist (not installed)
-if not ($fnm_path | path exists) {
-	return
-}
-
-$env.PATH = ($env.PATH | prepend $fnm_path)
+# skip fnm stuff if fnm wasn't added to path
+if not (bin_exists fnm) { return }
 
 load-env (fnm env --shell bash
 	| lines
@@ -25,5 +18,5 @@ let path_to_add = if $is_windows {
 	$"($env.FNM_MULTISHELL_PATH)/bin"
 }
 
-$env.PATH = ($env.PATH | prepend path_to_add)
+$env.PATH = ($env.PATH | prepend $path_to_add)
 
