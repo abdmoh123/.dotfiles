@@ -93,9 +93,9 @@ return {
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
     -- git related searches
-    vim.keymap.set('n', '<leader>sgc', builtin.git_commits, { desc = '[S]earch [G]it [C]ommits' })
-    vim.keymap.set('n', '<leader>sgb', builtin.git_commits, { desc = '[S]earch [G]it commits in [B]uffer' })
-    vim.keymap.set('n', '<leader>sgs', builtin.git_status, { desc = '[S]earch [G]it [S]tatus' })
+    vim.keymap.set('n', '<leader>svc', builtin.git_commits, { desc = '[S]earch [G]it [C]ommits' })
+    vim.keymap.set('n', '<leader>svb', builtin.git_commits, { desc = '[S]earch [G]it commits in [B]uffer' })
+    vim.keymap.set('n', '<leader>svs', builtin.git_status, { desc = '[S]earch [G]it [S]tatus' })
 
     -- grep with arguments
     vim.keymap.set(
