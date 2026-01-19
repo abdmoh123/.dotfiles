@@ -91,7 +91,13 @@ return {
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-    -- custom keybinds
+
+    -- git related searches
+    vim.keymap.set('n', '<leader>sgc', builtin.git_commits, { desc = '[S]earch [G]it [C]ommits' })
+    vim.keymap.set('n', '<leader>sgb', builtin.git_commits, { desc = '[S]earch [G]it commits in [B]uffer' })
+    vim.keymap.set('n', '<leader>sgs', builtin.git_status, { desc = '[S]earch [G]it [S]tatus' })
+
+    -- grep with arguments
     vim.keymap.set(
       'n',
       '<leader>sG',
