@@ -173,7 +173,7 @@ disabled = false
 
 [time]
 disabled = false
-format = "[ $time]($style)"
+format = "[](fg:white)[ $time]($style)[](fg:white)"
 time_format = "%R"
 utc_time_offset = "local"
 style = "bold bg:white fg:black"
