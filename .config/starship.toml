@@ -95,7 +95,7 @@ fish_indicator = '[󰈺 fsh](bg:green fg:black)'
 nu_indicator = '[󰟆 nu](bg:green fg:black)'
 cmd_indicator = '[ cmd](bg:green fg:black)'
 pwsh_indicator = '[󰨊 pwsh](bg:green fg:black)'
-style = 'bold fg:green'
+style = 'fg:green'
 format = '[$indicator]($style) '
 disabled = false
 
