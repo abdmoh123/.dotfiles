@@ -96,6 +96,9 @@ if vim.g.neovide then
   require 'neovide-setup'
 end
 
+-- [[ Environment variables ]]
+require 'env'
+
 -- [[ Options ]]
 require 'options'
 
