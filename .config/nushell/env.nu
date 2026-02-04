@@ -54,3 +54,7 @@ $env.AVANTE_GEMINI_API_KEY = $env.GEMINI_API_KEY
 
 # create generated alias file
 source $"($nu.default-config-dir)/alias-generator.nu"
+
+# activate mise for completions
+let mise_path = $nu.default-config-dir | path join mise.nu
+^mise activate nu | save $mise_path --force

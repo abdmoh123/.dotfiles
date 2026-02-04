@@ -47,6 +47,11 @@ if command -v zoxide &>/dev/null; then
     eval "$(zoxide init bash)"
 fi
 
+# mise
+if command -v mise &>/dev/null; then
+    eval "$(mise activate bash)"
+fi
+
 # yazi setup
 if command -v yazi &>/dev/null; then
     function yy() {

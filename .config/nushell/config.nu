@@ -55,3 +55,6 @@ rm $"($nu.default-config-dir)/generated-aliases.nu"
 
 # import sdks to path
 source ./sdks.nu
+
+# setup mise shell completions
+use ($nu.default-config-dir | path join mise.nu)

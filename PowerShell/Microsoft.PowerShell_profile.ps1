@@ -3,6 +3,7 @@
 . $PSScriptRoot\Modules\choco\setup.ps1
 . $PSScriptRoot\Modules\yazi\setup.ps1
 . $PSScriptRoot\Modules\autocomplete\setup.ps1
+. $PSScriptRoot\Modules\mise\setup.ps1
 
 . $PSScriptRoot\Aliases\eza.ps1
 . $PSScriptRoot\Aliases\zoxide.ps1

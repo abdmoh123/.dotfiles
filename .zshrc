@@ -125,6 +125,11 @@ if type "bat" > /dev/null; then
   export BAT_THEME="dracula"
 fi
 
+# mise
+if command -v mise &>/dev/null; then
+    eval "$(mise activate zsh)"
+fi
+
 # Enable history based auto-complete (right arrow)
 if [[ -f ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] then
   source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
