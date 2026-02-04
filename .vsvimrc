@@ -46,7 +46,7 @@ nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
 " ========================================
-" Visual Studio Integration (Porting Telescope functionality)
+" Visual Studio Integration
 " ========================================
 
 " Solution Explorer (NeoTree alternative)
@@ -68,12 +68,15 @@ nnoremap gra :vsc View.ShowSmartTag<CR>
 nnoremap grn :vsc Refactor.Rename<CR>
 " Extract method
 nnoremap gre :vsc Refactor.ExtractMethod<CR>
+" Shows the hover menu (details about the given symbol). Will show diagnostic info if it exists (visual studio
+" limitaion)
+nnoremap K :vsc Edit.QuickInfo<CR>
 
 " Error navigation (Diagnostic navigation)
 nnoremap [d :vsc Edit.GoToPrevLocation<CR>
 nnoremap ]d :vsc Edit.GoToNextLocation<CR>
 nnoremap <leader>q :vsc View.ErrorList<CR>
-" Will open a diagnostic info if there is an error. Otherwise, it might just show what the hovered symbol is (e.g. a class type)
+" Will open a diagnostic info if there is an error. Otherwise, it will show the hover menu (visual studio limitation)
 nnoremap <leader>e :vsc Edit.QuickInfo<CR>
 
 " Search functionality (Telescope alternatives)
