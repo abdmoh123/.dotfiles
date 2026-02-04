@@ -1,23 +1,148 @@
+" Leader key configuration
 let mapleader=" "
 
-set number
-set relativenumber
-set tabstop=4
-set shiftwidth=4
-set expandtab
+" ========================================
+" Basic Options (from options.lua)
+" ========================================
+set number               " Line numbers
+set relativenumber       " Relative line numbers
+set tabstop=4            " Tab = 4 spaces
+set shiftwidth=4         " Auto indented tabs = 4 spaces
+set expandtab            " Tabs are replaced with spaces
+set ignorecase           " Case-insensitive searching
+set smartcase            " Override ignorecase if capital letters present
+set hlsearch             " Highlight search results
+set scrolloff=10         " Keep 10 lines visible when scrolling
 
-map <leader><Tab> :vsc View.SolutionExplorer<Enter>
+" ========================================
+" Useful Keybinds
+" ========================================
 
-" editor window navigation
-map <C-H> <C-w>h
-map <C-J> <C-w>j
-map <C-K> <C-w>k
-map <C-L> <C-w>l
+" Clear search highlighting with Escape
+nnoremap <Esc> :nohlsearch<CR>
 
-" navigation forward and backwards
-map <C-o> :vsc View.NavigateBackward<Enter>
-map <C-i> :vsc View.NavigateForward<Enter>
+" Extra motions for insert mode
+" Delete word before cursor
+inoremap <C-BS> <C-o>db
+inoremap <A-BS> <C-o>db
+" Delete word after cursor
+inoremap <A-Del> <C-o>dw
+inoremap <C-Del> <C-o>dw
 
-" build hotkey
-map <leader>b :vsc Build.Build<Enter>
-map <leader>B :vsc Build.Rebuild<Enter>
+" ========================================
+" Window Navigation
+" ========================================
+
+" Editor window navigation
+nnoremap <C-H> <C-w>h
+nnoremap <C-J> <C-w>j
+nnoremap <C-K> <C-w>k
+nnoremap <C-L> <C-w>l
+
+" Alt navigation (alternative, easier to reach)
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+" ========================================
+" Visual Studio Integration (Porting Telescope functionality)
+" ========================================
+
+" Solution Explorer (NeoTree alternative)
+nnoremap <leader><Tab> :vsc View.SolutionExplorer<CR>
+" Oil.nvim style keymap
+nnoremap - :vsc View.SolutionExplorer<CR>
+" Searches in solution explorer
+nnoremap <leader>sf :vsc Window.SolutionExplorerSearch<CR>
+
+" Navigation in code (LSP equivalents)
+nnoremap gD :vsc Edit.GoToDeclaration<CR>
+nnoremap grr :vsc Edit.FindAllReferences<CR>
+nnoremap gi :vsc Edit.GoToImplementation<CR>
+" Symbol searcher
+nnoremap grw :vsc Edit.NavigateTo<CR>
+" Code action
+nnoremap gra :vsc View.ShowSmartTag<CR>
+" Refactor rename
+nnoremap grn :vsc Refactor.Rename<CR>
+" Extract method
+nnoremap gre :vsc Refactor.ExtractMethod<CR>
+
+" Error navigation (Diagnostic navigation)
+nnoremap [d :vsc Edit.GoToPrevLocation<CR>
+nnoremap ]d :vsc Edit.GoToNextLocation<CR>
+nnoremap <leader>q :vsc View.ErrorList<CR>
+" Will open a diagnostic info if there is an error. Otherwise, it might just show what the hovered symbol is (e.g. a class type)
+nnoremap <leader>e :vsc Edit.QuickInfo<CR>
+
+" Search functionality (Telescope alternatives)
+nnoremap <leader>sg :vsc Edit.FindinFiles<CR>
+nnoremap <leader>sw :vsc Edit.FindCurrentWord<CR>
+
+" ========================================
+" Build & Debug Operations
+" ========================================
+
+" Build commands (existing enhanced)
+nnoremap <leader>b :vsc Build.Build<CR>
+nnoremap <leader>B :vsc Build.Rebuild<CR>
+
+" Debug commands
+nnoremap <C-F5> :vsc Debug.BreakAll<CR>
+nnoremap <A-F5> :vsc Debug.Restart<CR>
+
+" Set breakpoint
+nnoremap <A-b> :vsc Debug.ToggleBreakpoint<CR>
+" For advanced conditional breakpoints
+nnoremap <A-B> :vsc Debug.ToggleBreakpoint<CR>:vsc EditorContextMenus.CodeWindow.Breakpoint.BreakpointConditions<CR>
+
+" ========================================
+" Window & View Management
+" ========================================
+
+" Navigation forward/backward
+nnoremap <C-o> :vsc View.NavigateBackward<CR>
+nnoremap <C-i> :vsc View.NavigateForward<CR>
+
+" Window management
+nnoremap <C-w>s :split<CR>
+nnoremap <C-w>v :vsc Window.NewWindow :vsc Window.NewVerticalTabGroup<CR>
+
+" Tool windows
+nnoremap <C-w>O :vsc View.Output<CR>
+nnoremap <C-w>E :vsc View.ErrorList<CR>
+nnoremap <C-w>T :vsc View.Toolbox<CR>
+nnoremap <C-w>W :vsc View.PropertiesWindow<CR>
+
+" ========================================
+" Code Editing & Refactoring
+" ========================================
+
+" Code completion and formatting
+nnoremap <leader>f :vsc Edit.FormatDocument<CR>
+vnoremap <leader>f :vsc Edit.FormatSelection<CR>
+
+" Comment/Uncomment (built-in VS commands)
+nnoremap gcc :vsc Edit.ToggleLineComment<CR>
+nnoremap gcC :vsc Edit.CommentSelection<CR>
+vnoremap gcu :vsc Edit.UncommentSelection<CR>
+
+" ========================================
+" Buffer Management (Alternative to telescope buffers)
+" ========================================
+
+" Switch between documents
+nnoremap ]b :vsc Window.NextTab<CR>
+nnoremap [b :vsc Window.PreviousTab<CR>
+
+" ========================================
+" Toggle Commands (Alternative to snacks.nvim toggles)
+" ========================================
+
+" Toggle line numbers
+nnoremap <leader>tl :set number! number?<CR>
+nnoremap <leader>tL :set relativenumber! relativenumber?<CR>
+
+" Toggle wrap
+nnoremap <leader>tw :set wrap! wrap?<CR>
