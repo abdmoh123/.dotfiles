@@ -37,6 +37,13 @@ return {
     indent = { enable = true, disable = { 'ruby' } },
     folds = { enable = true },
   },
+  init = function()
+    require('vim.treesitter.query').add_predicate('is-mise?', function(_, _, bufnr, _)
+      local filepath = vim.api.nvim_buf_get_name(tonumber(bufnr) or 0)
+      local filename = vim.fn.fnamemodify(filepath, ':t')
+      return string.match(filename, '.*mise.*%.toml$') ~= nil
+    end, { force = true, all = false })
+  end,
   -- There are additional nvim-treesitter modules that you can use to interact
   -- with nvim-treesitter. You should go explore a few and see what interests you:
   --
