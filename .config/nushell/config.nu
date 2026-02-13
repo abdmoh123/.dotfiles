@@ -56,5 +56,8 @@ rm $"($nu.default-config-dir)/generated-aliases.nu"
 # import sdks to path
 source ./sdks.nu
 
+# import distrobox related configuration
+source ./distrobox.nu
+
 # setup mise shell completions
 use ($nu.default-config-dir | path join mise.nu)
