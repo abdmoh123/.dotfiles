@@ -104,13 +104,13 @@ nnoremap <A-B> :vsc Debug.ToggleBreakpoint<CR>:vsc EditorContextMenus.CodeWindow
 " Window & View Management
 " ========================================
 
-" Navigation forward/backward
+" Navigation forward/backward (jump-list navigation)
 nnoremap <C-o> :vsc View.NavigateBackward<CR>
 nnoremap <C-i> :vsc View.NavigateForward<CR>
 
 " Window management
 nnoremap <C-w>s :split<CR>
-nnoremap <C-w>v :vsc Window.NewWindow :vsc Window.NewVerticalTabGroup<CR>
+nnoremap <C-w>v :vsc Window.NewWindow<CR> :vsc Window.NewVerticalTabGroup<CR>
 
 " Tool windows
 nnoremap <C-w>O :vsc View.Output<CR>
