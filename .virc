@@ -1,0 +1,61 @@
+" ========================================
+" Options
+" ========================================
+set number               " Line numbers
+set relativenumber       " Relative line numbers
+set tabstop=4            " Tab = 4 spaces
+set shiftwidth=4         " Auto indented tabs = 4 spaces
+set expandtab            " Tabs are replaced with spaces
+set autoindent           " Try to stay at the same indentation as the previous line
+set smartindent          " Chooses whether or not to stay on the same indentation based on file type (might not do anything)
+set ignorecase           " Case-insensitive searching
+set smartcase            " Override ignorecase if capital letters present
+set hlsearch             " Highlight search results
+set nowrap               " Disable line wrapping
+set scrolloff=10         " Keep 10 lines visible when scrolling
+set mouse=a              " Enable mouse support (e.g. selecting text)
+set autoread             " Reload file automatically if editted outside vi
+set noswapfile           " Don't create swap files when editing them
+
+" ========================================
+" Keybinds
+" ========================================
+
+" Extra motions for insert mode
+" ========================================
+" Delete word before cursor
+inoremap <C-BS> <C-o>db
+" Delete word after cursor
+inoremap <C-Del> <C-o>dw
+
+" Window navigation
+" ========================================
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Toggling options
+" ========================================
+nnoremap <space>tw :set wrap!<CR>
+nnoremap <space>tl :set number! relativenumber!<CR>
+
+" Buffer navigation
+" ========================================
+nnoremap ]b :bnext<CR>
+nnoremap [b :bprevious<CR>
+
+" ========================================
+" Commands
+" ========================================
+" Create any required directories to save the current file
+command CreateDir !mkdir -p %:h
+
+" ========================================
+" Autocommands
+" ========================================
+" Remove trailing spaces on save
+autocmd BufWritePre * %s/\s\+$//e
+
+" Create any required directories to save the current file
+autocmd BufWritePre * silent CreateDir
