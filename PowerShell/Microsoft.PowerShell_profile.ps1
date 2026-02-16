@@ -1,5 +1,6 @@
 . $PSScriptRoot\Modules\zoxide\setup.ps1
 . $PSScriptRoot\Modules\fzf\setup.ps1
+. $PSScriptRoot\Modules\fzf\setup_psfzf.ps1
 . $PSScriptRoot\Modules\choco\setup.ps1
 . $PSScriptRoot\Modules\yazi\setup.ps1
 . $PSScriptRoot\Modules\autocomplete\setup.ps1
