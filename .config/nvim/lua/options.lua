@@ -48,7 +48,10 @@ vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mousemoveevent = true -- Enable mouse move event, useful for hover events like in bufferline plugin
 
-vim.opt.clipboard = 'unnamedplus' -- Always save yank to clipboard
+-- schedule it as it might increase startup time
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus' -- Always save yank to clipboard
+end)
 
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 5 -- Minimum number of characters padding when scrolling sideways
