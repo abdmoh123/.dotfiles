@@ -103,7 +103,7 @@ require 'env'
 require 'options'
 
 -- [[ Keymaps ]]
-require 'keybindings'
+require('keybindings').setup()
 
 -- [[ Autocommands ]]
 require 'autocommands'
