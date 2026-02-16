@@ -4,6 +4,7 @@
 
 local diagnostic_keymaps = require('keybindings.diagnostics').keymaps
 local extra_motions_keymaps = require('keybindings.extra-motions').keymaps
+local miscellaneous_keymaps = require('keybindings.miscellaneous').keymaps
 
 local function apply_keymap(keymap_tables)
   for _, keymap_table in pairs(keymap_tables) do
@@ -14,3 +15,4 @@ end
 
 apply_keymap(diagnostic_keymaps)
 apply_keymap(extra_motions_keymaps)
+apply_keymap(miscellaneous_keymaps)

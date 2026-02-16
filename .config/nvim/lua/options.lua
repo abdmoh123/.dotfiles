@@ -78,7 +78,6 @@ vim.opt.undofile = true -- Save undo history
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true -- Set highlight on search
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Clear highlighting on pressing <Esc> in normal mode
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 
 vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time (displays which key sooner)
