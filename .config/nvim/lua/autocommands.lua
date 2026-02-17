@@ -54,3 +54,11 @@ vim.api.nvim_create_autocmd('FileType', {
     -- NOTE: Folds are not enabled as that will be handled by nvim-ufo
   end,
 })
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('treesitter-enable', { clear = true }),
+  pattern = 'term://*toggleterm#*',
+  callback = function()
+    vim.opt_local.statuscolumn = ''
+  end,
+})
