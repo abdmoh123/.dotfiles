@@ -66,27 +66,7 @@ function module.apply_to_config(config)
 	config.window_background_opacity = 1.0
 
 	-- [[ Get theme's colours as variables ]]
-	-- WARNING: Some themes may not have ANSI colours
-	local theme_colours = wezterm.color.get_builtin_schemes()[theme_name]
-	local transparent = "rgba(0,0,0,0)"
-	local black = theme_colours.ansi[1]
-	local maroon = theme_colours.ansi[2]
-	local green = theme_colours.ansi[3]
-	local olive = theme_colours.ansi[4] -- dark yellow
-	local navy = theme_colours.ansi[5]
-	local purple = theme_colours.ansi[6]
-	local teal = theme_colours.ansi[7]
-	local silver = theme_colours.ansi[8]
-	local grey = theme_colours.brights[1]
-	local red = theme_colours.brights[2]
-	local lime = theme_colours.brights[3]
-	local yellow = theme_colours.brights[4]
-	local blue = theme_colours.brights[5]
-	local fuschia = theme_colours.brights[6]
-	local aqua = theme_colours.brights[7]
-	local white = theme_colours.brights[8]
-	local background = theme_colours.background
-	local foreground = theme_colours.foreground
+	local colours = utils.get_colours(theme_name)
 
 	-- [[ Tabs ]]
 	config.enable_tab_bar = true
@@ -115,10 +95,10 @@ function module.apply_to_config(config)
 		border_bottom_height = conv_to_cell(padding_val / 2.0),
 		border_left_width = conv_to_cell(padding_val),
 		border_right_width = conv_to_cell(padding_val),
-		border_top_color = background,
-		border_bottom_color = background,
-		border_left_color = background,
-		border_right_color = background,
+		border_top_color = colours.background,
+		border_bottom_color = colours.background,
+		border_left_color = colours.background,
+		border_right_color = colours.background,
 	}
 
 	-- styling for retro tab bar only
@@ -146,14 +126,14 @@ function module.apply_to_config(config)
 	end
 
 	-- set tab bar colours
-	local bar_background = background
-	local bar_foreground = silver
-	local bar_foreground_hover = black
-	local tab_background = black
-	local tab_background_hover = yellow
-	local bar_background_hover = silver
-	local active_tab_background = yellow
-	local active_tab_foreground = black
+	local bar_background = colours.background
+	local bar_foreground = colours.silver
+	local bar_foreground_hover = colours.black
+	local tab_background = colours.black
+	local tab_background_hover = colours.yellow
+	local bar_background_hover = colours.silver
+	local active_tab_background = colours.yellow
+	local active_tab_foreground = colours.black
 	-- tab style (both retro and fancy style)
 	config.colors = {
 		tab_bar = {
@@ -206,29 +186,29 @@ function module.apply_to_config(config)
 
 		local mode
 		local mode_bg_colour
-		local mode_fg_colour = background
+		local mode_fg_colour = colours.background
 		if window:active_key_table() then
 			mode = format_mode_text(window:active_key_table())
 			if mode == "COPY" then
 				mode = wezterm.nerdfonts.md_content_copy .. " " .. mode
-				mode_bg_colour = red
+				mode_bg_colour = colours.red
 			elseif mode == "SEARCH" then
 				mode = wezterm.nerdfonts.fa_search .. " " .. mode
-				mode_bg_colour = aqua
+				mode_bg_colour = colours.aqua
 			elseif mode == "TAB" then
 				mode = wezterm.nerdfonts.md_tab .. " " .. mode
-				mode_bg_colour = yellow
+				mode_bg_colour = colours.yellow
 			elseif mode == "PANE" then
 				mode = wezterm.nerdfonts.fa_square_o .. " " .. mode
-				mode_bg_colour = purple
+				mode_bg_colour = colours.purple
 			else
 				-- fallback
 				mode = wezterm.nerdfonts.fa_question_circle_o .. " " .. mode
-				mode_bg_colour = blue
+				mode_bg_colour = colours.blue
 			end
 		elseif window:leader_is_active() then
 			mode = wezterm.nerdfonts.fa_dot_circle_o .. " LEADER"
-			mode_bg_colour = blue
+			mode_bg_colour = colours.blue
 		else
 			mode = wezterm.nerdfonts.fa_circle_o .. " NORMAL"
 			mode_bg_colour = bar_background_hover
@@ -310,7 +290,7 @@ function module.apply_to_config(config)
 		end
 
 		return {
-			{ Background = { Color = background } },
+			{ Background = { Color = colours.background } },
 			{ Foreground = { Color = tab_num_background } },
 			{ Text = "" },
 			{ Background = { Color = tab_num_background } },
@@ -320,7 +300,7 @@ function module.apply_to_config(config)
 			"ResetAttributes",
 			{ Attribute = { Intensity = tab_text_intensity } },
 			{ Text = " " .. tab_title },
-			{ Background = { Color = background } },
+			{ Background = { Color = colours.background } },
 			{ Foreground = { Color = border_right_foreground } },
 			{ Text = " " },
 		}

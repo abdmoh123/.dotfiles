@@ -123,4 +123,32 @@ function generic_shell_finder(shell_find_command)
 	return shells
 end
 
+---@param theme_name string
+---@return table
+function M.get_colours(theme_name)
+	-- WARNING: Some themes may not have ANSI colours
+	local theme_colours = wezterm.color.get_builtin_schemes()[theme_name]
+	return {
+		transparent = "rgba(0,0,0,0)",
+		black = theme_colours.ansi[1],
+		maroon = theme_colours.ansi[2],
+		green = theme_colours.ansi[3],
+		olive = theme_colours.ansi[4],
+		navy = theme_colours.ansi[5],
+		purple = theme_colours.ansi[6],
+		teal = theme_colours.ansi[7],
+		silver = theme_colours.ansi[8],
+		grey = theme_colours.brights[1],
+		red = theme_colours.brights[2],
+		lime = theme_colours.brights[3],
+		yellow = theme_colours.brights[4],
+		blue = theme_colours.brights[5],
+		fuschia = theme_colours.brights[6],
+		aqua = theme_colours.brights[7],
+		white = theme_colours.brights[8],
+		background = theme_colours.background,
+		foreground = theme_colours.foreground,
+	}
+end
+
 return M
