@@ -80,21 +80,21 @@ function module.apply_to_config(config)
 	local MINIMISE_ICON = " " .. wezterm.nerdfonts.cod_chrome_minimize .. " "
 
 	-- [[ Padding ]]
-	local padding_val = 1.0
-	local conv_to_cell = function(val)
-		return val .. "cell"
-	end
+	local padding_left = 1.0
+	local padding_right = 1.0
+	local padding_top = 1.0
+	local padding_bottom = 1.0
 	config.window_padding = {
 		left = 0,
 		right = 0,
-		top = conv_to_cell(padding_val / 2.0),
+		top = utils.convert_padding_to_cell(padding_top / 2.0),
 		bottom = 0,
 	}
 	config.window_frame = {
-		border_top_height = conv_to_cell(padding_val / 2.0),
-		border_bottom_height = conv_to_cell(padding_val / 2.0),
-		border_left_width = conv_to_cell(padding_val),
-		border_right_width = conv_to_cell(padding_val),
+		border_top_height = utils.convert_padding_to_cell(padding_top / 2.0),
+		border_bottom_height = utils.convert_padding_to_cell(padding_bottom / 2.0),
+		border_left_width = utils.convert_padding_to_cell(padding_left),
+		border_right_width = utils.convert_padding_to_cell(padding_right),
 		border_top_color = colours.background,
 		border_bottom_color = colours.background,
 		border_left_color = colours.background,

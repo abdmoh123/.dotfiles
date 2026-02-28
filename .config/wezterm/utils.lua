@@ -151,4 +151,10 @@ function M.get_colours(theme_name)
 	}
 end
 
+---@param padding_value number
+---@return string
+function M.convert_padding_to_cell(padding_value)
+	return padding_value .. "cell"
+end
+
 return M
