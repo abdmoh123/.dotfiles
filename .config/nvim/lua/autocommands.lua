@@ -56,7 +56,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd('TermOpen', {
-  group = vim.api.nvim_create_augroup('treesitter-enable', { clear = true }),
+  group = vim.api.nvim_create_augroup('toggleterm-disable-statuscolumn', { clear = true }),
   pattern = 'term://*toggleterm#*',
   callback = function()
     vim.opt_local.statuscolumn = ''
