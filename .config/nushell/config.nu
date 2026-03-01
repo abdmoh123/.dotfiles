@@ -60,4 +60,6 @@ source ./sdks.nu
 source ./distrobox.nu
 
 # setup mise shell completions
-use ($nu.default-config-dir | path join mise.nu)
+if (bin_exists mise) {
+	use ($nu.default-config-dir | path join mise.nu)
+}
