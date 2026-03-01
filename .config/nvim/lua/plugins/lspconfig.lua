@@ -211,7 +211,7 @@ return {
         filetypes = { 'python' },
         settings = {
           configurationPreference = 'filesystemFirst', -- project ruff.toml takes priority
-          lineLength = 120,
+          lineLength = vim.opt.colorcolumn,
           lint = {
             extendSelect = { 'E501' },
           },
