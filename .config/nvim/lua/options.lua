@@ -87,6 +87,8 @@ vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time (displays which k
 vim.opt.updatetime = 250 -- Decrease update time
 
 -- [[ Miscellaneous ]]
+-- enable inline diagnostics
+vim.diagnostic.config { virtual_text = true }
 -- treat xaml files as xml
 vim.filetype.add {
   extension = {
