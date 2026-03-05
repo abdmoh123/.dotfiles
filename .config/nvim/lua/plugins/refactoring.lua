@@ -4,6 +4,6 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
-  lazy = false,
+  cmd = 'Refactor',
   opts = {},
 }
