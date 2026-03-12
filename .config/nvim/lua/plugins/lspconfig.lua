@@ -235,6 +235,10 @@ return {
       jdtls = {
         filetypes = { 'java', 'fxml' },
       },
+      powershell_es = {
+        filetypes = { 'ps1' },
+        bundle_path = vim.fn.stdpath 'data' .. '/mason/packages/powershell-editor-services',
+      },
     }
 
     -- Ensure the servers and tools above are installed
