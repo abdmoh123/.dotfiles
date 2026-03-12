@@ -7,6 +7,7 @@ return {
       ft_ignore = {
         'neo-tree',
         'undotree',
+        'toggleterm',
         'diff',
         'alpha',
         'dapui_scopes',
