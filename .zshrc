@@ -50,7 +50,7 @@ PS1+='%n@%m %% '
 
 # App specific stuff (configs and aliases)
 # Do fzf things only if fzf is installed
-if type "fzf" > /dev/null; then
+if type "fzf" >/dev/null 2>&1; then
   # Enable zsh keybindings and auto-complete to fzf
   source /usr/share/fzf/shell/key-bindings.zsh
   if [[ -f ~/.config/fzf/completion.zsh ]] then
@@ -58,7 +58,7 @@ if type "fzf" > /dev/null; then
   fi
 
   # Enable fd (faster find) integration in fzf
-  if type "fd" > /dev/null; then
+  if type "fd" >/dev/null 2>&1; then
     # Use fd for searching files and directories
     export FZF_DEFAULT_COMMAND='fd --type=f --strip-cwd-prefix --hidden --follow --exclude .git'
     export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
@@ -77,12 +77,12 @@ if type "fzf" > /dev/null; then
     }
   fi
 
-  if type "git" > /dev/null; then
+  if type "git" >/dev/null 2>&1; then
     # Enable git integration for fzf
     source ~/.config/fzf/fzf-git/fzf-git.sh
   fi
 
-  if type "bat" "eza" > /dev/null; then
+  if type "bat" "eza" >/dev/null 2>&1; then
     # Integrate bat and eza for use in fzf previews
     export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
     export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
@@ -109,25 +109,30 @@ if type "fzf" > /dev/null; then
 fi
 
 # Do zoxide things only if zoxide is installed
-if type "zoxide" > /dev/null; then
+if type "zoxide" >/dev/null 2>&1; then
   source ~/.config/zsh/aliases/zoxide.zsh
   eval "$(zoxide init zsh)"
 fi
 
 # Enable eza aliases (ls, ll, tree) if it is installed
-if type "eza" > /dev/null; then
+if type "eza" >/dev/null 2>&1; then
   source ~/.config/zsh/aliases/eza.zsh
 fi
 
 # Do bat things only if bat is installed
-if type "bat" > /dev/null; then
+if type "bat" >/dev/null 2>&1; then
   # Set theme to gruvbox-dark
   export BAT_THEME="dracula"
 fi
 
 # mise
-if command -v mise &>/dev/null; then
+if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
+fi
+
+# worktrunk
+if command -v wt >/dev/null 2>&1; then
+    eval "$(command wt config shell init zsh)";
 fi
 
 # Enable history based auto-complete (right arrow)

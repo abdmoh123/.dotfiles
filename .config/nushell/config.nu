@@ -59,6 +59,11 @@ source ./sdks.nu
 # import distrobox related configuration
 source ./distrobox.nu
 
+# setup wt shell integration
+if (bin_exists wt) {
+	use ($nu.default-config-dir | path join wt.nu)
+}
+
 # setup mise shell completions
 if (bin_exists mise) {
 	use ($nu.default-config-dir | path join mise.nu)

@@ -38,22 +38,22 @@ if [ -d $FNM_PATH ]; then
 fi
 
 # starship
-if command -v starship &>/dev/null; then
+if command -v starship >/dev/null 2>&1; then
   eval "$(starship init bash)"
 fi
 
 # zoxide
-if command -v zoxide &>/dev/null; then
+if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init bash)"
 fi
 
 # mise
-if command -v mise &>/dev/null; then
+if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate bash)"
 fi
 
 # yazi setup
-if command -v yazi &>/dev/null; then
+if command -v yazi >/dev/null 2>&1; then
     function yy() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
         yazi "$@" --cwd-file="$tmp"
@@ -61,6 +61,11 @@ if command -v yazi &>/dev/null; then
         [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
         rm -f -- "$tmp"
     }
+fi
+
+# Worktrunk setup
+if command -v wt >/dev/null 2>&1; then
+    eval "$(command wt config shell init bash)";
 fi
 
 # SDKs
