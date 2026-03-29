@@ -8,11 +8,15 @@ return {
     'nvim-neotest/neotest-python',
   },
   cmd = { 'Neotest' },
-  opts = {
-    adapters = {
-      ['neotest-python'] = {
-        runner = 'pytest',
+  config = function(_, _)
+    ---@diagnostic disable: missing-fields
+    require('neotest').setup {
+      adapters = {
+        require 'neotest-python' {
+          dap = { justMyCode = false },
+          runner = 'pytest',
+        },
       },
-    },
-  },
+    }
+  end,
 }
