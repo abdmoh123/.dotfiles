@@ -5,25 +5,25 @@ $env:DOTNET_CLI_TELEMETRY_OPTOUT = 1
 
 if (Command-Exists zoxide)
 {
-    . $PSScriptRoot\Modules\zoxide\setup.ps1
+    . $PSScriptRoot\Configs\zoxide\setup.ps1
     . $PSScriptRoot\Aliases\zoxide.ps1
 }
 if (Command-Exists fzf)
 {
-    . $PSScriptRoot\Modules\fzf\setup.ps1
-    . $PSScriptRoot\Modules\fzf\setup_psfzf.ps1
+    . $PSScriptRoot\Configs\fzf\setup.ps1
+    . $PSScriptRoot\Configs\fzf\setup_psfzf.ps1
 }
 if (Command-Exists choco)
 {
-    . $PSScriptRoot\Modules\choco\setup.ps1
+    . $PSScriptRoot\Configs\choco\setup.ps1
 }
 if (Command-Exists yazi)
 {
-    . $PSScriptRoot\Modules\yazi\setup.ps1
+    . $PSScriptRoot\Configs\yazi\setup.ps1
 }
 if (Command-Exists carapace)
 {
-    . $PSScriptRoot\Modules\carapace\setup.ps1
+    . $PSScriptRoot\Configs\carapace\setup.ps1
 }
 if (Command-Exists starship)
 {
@@ -39,5 +39,5 @@ if (Command-Exists eza)
 # Must do this after all Command-Exists calls (at the end) to prevent MethodInvocationException
 if (Command-Exists mise)
 {
-    . $PSScriptRoot\Modules\mise\setup.ps1
+    . $PSScriptRoot\Configs\mise\setup.ps1
 }
