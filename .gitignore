@@ -13,6 +13,8 @@ PowerShell/Scripts/
 .config/raycast-x/
 # Related to docker mcp stuff?
 .config/cagent/.cagent_first_run
+# Ignore gitlab CLI
+.config/glab-cli/
 
 # Secret environment files like API keys
 secrets/
