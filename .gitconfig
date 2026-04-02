@@ -2,6 +2,7 @@
 	fsmonitor = true
 	untrackedcache = true
 	commitgraph = true
+	pager = delta
 
 [fetch]
 	writeCommitGraph = true
@@ -11,7 +12,29 @@
 
 [delta]
 	navigate = true  # use n and N to move between diff sections
-	syntax-theme = base16
+	syntax-theme = ansi
+	tabs = 4
+
+	file-style = omit
+	file-decoration-style = none
+	line-numbers-left-format = "{nm:>4}▕ "
+	line-numbers-right-format = "│ {np:>4}▕ "
+	line-numbers-left-style = white dim
+	line-numbers-right-style = white dim
+	line-numbers-zero-style = white dim
+	line-numbers-plus-style = green
+	line-numbers-minus-style = red
+	line-numbers-zero-style = white dim
+	
+	wrap-left-symbol = " "
+	wrap-right-symbol = " "
+	wrap-right-prefix-symbol = " "
+	
+	hunk-label = " 󰡏"
+	hunk-header-line-number-style = white dim
+	hunk-header-style = white
+	hunk-header-file-style = white dim
+	hunk-header-decoration-style = blue ol ul
 
 [merge]
 	conflictstyle = zdiff3
