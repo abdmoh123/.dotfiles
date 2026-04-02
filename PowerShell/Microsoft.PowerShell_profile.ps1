@@ -36,6 +36,11 @@ if (Command-Exists eza)
     . $PSScriptRoot\Aliases\eza.ps1
 }
 
+if (Command-Exists git-wt)
+{
+    Invoke-Expression (& git-wt config shell init powershell | Out-String) 
+}
+
 # Must do this after all Command-Exists calls (at the end) to prevent MethodInvocationException
 if (Command-Exists mise)
 {
