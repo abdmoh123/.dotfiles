@@ -81,13 +81,6 @@ return {
       desc = 'Debug: Restart',
     },
     {
-      '<F6>',
-      function()
-        require('dap').disconnect()
-      end,
-      desc = 'Debug: Disconnect/Detach',
-    },
-    {
       '<F7>',
       function()
         -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception
