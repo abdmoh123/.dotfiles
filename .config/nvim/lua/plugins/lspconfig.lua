@@ -239,6 +239,7 @@ return {
         filetypes = { 'ps1' },
         bundle_path = vim.fn.stdpath 'data' .. '/mason/packages/powershell-editor-services',
       },
+      cmake = {},
     }
 
     -- Ensure the servers and tools above are installed
