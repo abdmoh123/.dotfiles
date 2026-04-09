@@ -39,6 +39,8 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       cs = { 'csharpier' },
+      c = { 'clang-format' },
+      cpp = { 'clang-format' },
       python = { 'ruff' },
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
