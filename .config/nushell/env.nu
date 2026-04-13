@@ -39,7 +39,7 @@ mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
 
 # api keys
-const API_SECRETS_DIR = "~/.dotfiles/secrets/ai-api-keys"
+const API_SECRETS_DIR = "~/.secrets/ai-api-keys"
 const CLAUDE_API_KEY_PATH = $API_SECRETS_DIR | path join 'claude.env'
 $env.ANTHROPIC_API_KEY = if (echo $CLAUDE_API_KEY_PATH | path exists) {
 	$CLAUDE_API_KEY_PATH | open | str trim

@@ -75,10 +75,10 @@ if [ -d $FLUTTER_PATH ]; then
 fi
 
 # API keys
-API_DIR=~/.dotfiles/secrets/ai-api-keys
+AI_API_DIR=~/.secrets/ai-api-keys
 
 # gemini api key
-if [ -f $API_DIR/gemini.env ]; then
-    export GEMINI_API_KEY=$(cat $API_DIR/gemini.env)
+if [ -f $AI_API_DIR/gemini.env ]; then
+    export GEMINI_API_KEY=$(cat $AI_API_DIR/gemini.env)
 fi
 
